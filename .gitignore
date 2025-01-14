@@ -87,3 +87,7 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Logs directory (keep directory but ignore contents)
+/logs/*
+!/logs/.gitkeep

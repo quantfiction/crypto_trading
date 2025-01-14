@@ -29,6 +29,7 @@ arcticdb = "*"
 dtale = "*"
 ipywidgets = "*"
 arch = "*"
+duckdb = "*"
 
 [dev-packages]
 black = "*"
