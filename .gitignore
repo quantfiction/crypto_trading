@@ -92,3 +92,6 @@ target/
 # Logs directory (keep directory but ignore contents)
 /logs/*
 !/logs/.gitkeep
+
+# Cline rules files
+.clinerules*
