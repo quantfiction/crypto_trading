@@ -10,7 +10,7 @@ import pandas as pd
 import requests
 import logging
 
-from crypto_trading.amberdata import (
+from crypto_trading.ingestion.providers.amberdata import (
     get_exchange_reference_futures,
     get_ohlcv_info_futures,
 )
@@ -64,6 +64,7 @@ df_symbol_info = pl.read_database_uri(query=query_symbol_info_mv, uri=uri)
 # Functions
 def convert_datetime_to_utc_timestamp(datetime_val):
     return int(datetime_val.replace(tzinfo=timezone.utc).timestamp() * 1000)
+
 
 async def insert_ohlc_data(conn, table_name, exchange, symbol, ohlc_data):
     """

@@ -1,5 +1,7 @@
 import logging
-from crypto_trading.data.amberdata_ingestor import AmberdataOHLCVInfoIngestor
+from crypto_trading.ingestion.providers.amberdata_ingestor import (
+    AmberdataExchangeReferenceIngestor,
+)
 
 # Configure logging
 logging.basicConfig(
@@ -9,8 +11,8 @@ logger = logging.getLogger(__name__)
 
 if __name__ == "__main__":
     try:
-        ingestor = AmberdataOHLCVInfoIngestor()
-        ingestor.ingest_ohlcv_info()
+        ingestor = AmberdataExchangeReferenceIngestor()
+        ingestor.ingest_exchange_reference()
     except Exception as e:
         logger.error(f"Script failed: {e}")
         raise

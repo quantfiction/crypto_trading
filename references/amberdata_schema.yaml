@@ -1,0 +1,744 @@
+database:
+  name: crypto_data.db
+  description: DuckDB database containing cryptocurrency market data from Amberdata
+    API
+  generated_at: '2025-01-24T16:52:48.618033+00:00'
+  schema_version: 74d39b5e
+  schemas:
+    amberdata:
+      description: Schema containing amberdata-specific tables
+      tables:
+        exchange_reference:
+          description: Reference data for exchanges and their supported instruments,
+            including trading limits and contract specifications
+          columns:
+            exchange:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Exchange where the instrument is traded (e.g., binance,
+                bybit)
+            instrument:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Trading instrument identifier (e.g., BTCUSDT)
+            base_symbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Base currency of the trading pair (e.g., BTC in BTC/USDT)
+            quote_symbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Quote currency of the trading pair (e.g., USDT in BTC/USDT)
+            market:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Market type (e.g., spot, futures)
+            exchange_enabled:
+              type: BOOLEAN
+              nullable: true
+              default: null
+              description: Whether trading is currently enabled on the exchange
+            limits_price_min:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum allowed price for orders
+            limits_price_max:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum allowed price for orders
+            limits_volume_min:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum order volume
+            limits_volume_max:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum order volume
+            limits_market_min:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum market order value
+            limits_market_max:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum market order value
+            limits_leverage_min:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum allowed leverage
+            limits_leverage_max:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum allowed leverage
+            limits_leverage_super_max:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Maximum super leverage allowed (if applicable)
+            limits_cost_min:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Minimum order cost in quote currency
+            limits_cost_max:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Maximum order cost in quote currency
+            precision_price:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for price values
+            precision_volume:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for volume values
+            precision_base:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for base currency
+            precision_quote:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for quote currency
+            listing_timestamp:
+              type: TIMESTAMP_NS
+              nullable: true
+              default: null
+              description: When the instrument was first listed on the exchange
+            contract_underlying:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Underlying asset for derivative contracts
+            contract_expiration_timestamp:
+              type: TIMESTAMP_NS
+              nullable: true
+              default: null
+              description: When the contract expires (null for perpetual contracts)
+            contract_period:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Contract period type (e.g., perpetual, quarterly)
+            contract_size:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Size of one contract in base currency units
+            contract_settle_type:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Settlement type (e.g., linear, inverse)
+            contract_settle_symbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Currency used for contract settlement
+          row_count: 1575
+          constraints: []
+          relationships:
+          - referenced_table: amberdata.ohlcv_info_futures
+            columns:
+            - &id001
+              - exchange
+              - exchange
+            - &id002
+              - instrument
+              - instrument
+            type: known
+          integrity_issues:
+          - Found orphaned records in amberdata.exchange_reference referencing amberdata.ohlcv_info_futures
+          sample_data:
+          - exchange: binance
+            instrument: 1000000MOGUSDT
+            base_symbol: 1000000MOG
+            quote_symbol: USDT
+            market: futures
+            exchange_enabled: true
+            limits_price_min: 0.0001
+            limits_price_max: 2000.0
+            limits_volume_min: 0.1
+            limits_volume_max: 200000.0
+            limits_market_min: 0.1
+            limits_market_max: 20000.0
+            limits_leverage_min: .nan
+            limits_leverage_max: .nan
+            limits_leverage_super_max: .nan
+            limits_cost_min: .nan
+            limits_cost_max: .nan
+            precision_price: 0.0001
+            precision_volume: 0.1
+            precision_base: 1.0e-08
+            precision_quote: 1.0e-08
+            listing_timestamp: '2024-11-07 12:30:00'
+            contract_underlying: 1000000MOG
+            contract_expiration_timestamp: .nan
+            contract_period: perpetual
+            contract_size: .nan
+            contract_settle_type: linear
+            contract_settle_symbol: null
+          - exchange: binance
+            instrument: 1000BONKUSDC
+            base_symbol: 1000BONK
+            quote_symbol: USDC
+            market: futures
+            exchange_enabled: true
+            limits_price_min: 1.0e-06
+            limits_price_max: 200.0
+            limits_volume_min: 1.0
+            limits_volume_max: 10000000.0
+            limits_market_min: 1.0
+            limits_market_max: 2000000.0
+            limits_leverage_min: .nan
+            limits_leverage_max: .nan
+            limits_leverage_super_max: .nan
+            limits_cost_min: .nan
+            limits_cost_max: .nan
+            precision_price: 1.0e-06
+            precision_volume: 1.0
+            precision_base: 1.0e-08
+            precision_quote: 1.0e-08
+            listing_timestamp: '2024-05-02 07:00:00'
+            contract_underlying: 1000BONK
+            contract_expiration_timestamp: .nan
+            contract_period: perpetual
+            contract_size: .nan
+            contract_settle_type: linear
+            contract_settle_symbol: null
+          - exchange: binance
+            instrument: 1000BONKUSDT
+            base_symbol: 1000BONK
+            quote_symbol: USDT
+            market: futures
+            exchange_enabled: true
+            limits_price_min: 1.0e-06
+            limits_price_max: 200.0
+            limits_volume_min: 1.0
+            limits_volume_max: 40000000.0
+            limits_market_min: 1.0
+            limits_market_max: 6000000.0
+            limits_leverage_min: .nan
+            limits_leverage_max: .nan
+            limits_leverage_super_max: .nan
+            limits_cost_min: .nan
+            limits_cost_max: .nan
+            precision_price: 1.0e-06
+            precision_volume: 1.0
+            precision_base: 1.0e-08
+            precision_quote: 1.0e-08
+            listing_timestamp: '2023-11-22 14:00:00'
+            contract_underlying: 1000BONK
+            contract_expiration_timestamp: .nan
+            contract_period: perpetual
+            contract_size: .nan
+            contract_settle_type: linear
+            contract_settle_symbol: null
+        ohlcv_info_futures:
+          description: Metadata and trading information for futures contracts, including
+            trading dates and status
+          columns:
+            exchange:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Exchange where the instrument is traded (e.g., binance,
+                bybit)
+            instrument:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Trading instrument identifier (e.g., BTCUSDT)
+            trading_start_date:
+              type: TIMESTAMP
+              nullable: true
+              default: null
+              description: Date when trading begins for the contract
+            trading_end_date:
+              type: TIMESTAMP
+              nullable: true
+              default: null
+              description: Date when trading ends for the contract
+            active:
+              type: BOOLEAN
+              nullable: true
+              default: null
+              description: Whether the contract is currently active for trading
+            updated_at:
+              type: TIMESTAMP
+              nullable: true
+              default: null
+              description: Last time this record was updated
+          row_count: 1566
+          constraints: []
+          relationships:
+          - referenced_table: amberdata.exchange_reference
+            columns:
+            - - exchange
+              - exchange
+            - - instrument
+              - instrument
+            type: known
+          - referenced_table: amberdata.ohlcv_perps_1d
+            columns:
+            - *id001
+            - *id002
+            type: known
+          integrity_issues:
+          - Found orphaned records in amberdata.ohlcv_info_futures referencing amberdata.ohlcv_perps_1d
+          sample_data:
+          - exchange: binance
+            instrument: 1000000MOGUSDT
+            trading_start_date: '2024-11-07 00:00:00'
+            trading_end_date: '2025-01-23 00:00:00'
+            active: true
+            updated_at: '2025-01-24 04:31:05'
+          - exchange: binance
+            instrument: 1000BONKUSDC
+            trading_start_date: '2024-05-02 00:00:00'
+            trading_end_date: '2025-01-23 00:00:00'
+            active: true
+            updated_at: '2025-01-24 04:31:05'
+          - exchange: binance
+            instrument: 1000BONKUSDT
+            trading_start_date: '2023-11-22 00:00:00'
+            trading_end_date: '2025-01-23 00:00:00'
+            active: true
+            updated_at: '2025-01-24 04:31:05'
+        ohlcv_perps_1d:
+          description: Daily OHLCV (Open, High, Low, Close, Volume) data for perpetual
+            futures contracts
+          columns:
+            instrument:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Trading instrument identifier (e.g., BTCUSDT)
+            open:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Opening price for the period
+            high:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Highest price during the period
+            low:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Lowest price during the period
+            close:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Closing price for the period
+            volume:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Trading volume during the period
+            exchange:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Exchange where the instrument is traded (e.g., binance,
+                bybit)
+            datetime:
+              type: TIMESTAMP_NS
+              nullable: true
+              default: null
+              description: Timestamp for the data point
+          row_count: 482471
+          constraints: []
+          relationships:
+          - referenced_table: amberdata.ohlcv_info_futures
+            columns:
+            - - exchange
+              - exchange
+            - - instrument
+              - instrument
+            type: known
+          integrity_issues: []
+          sample_data:
+          - instrument: 1000000MOGUSDT
+            open: 2.0896
+            high: 2.25
+            low: 1.9158
+            close: 2.1226
+            volume: 30109764.0
+            exchange: binance
+            datetime: '2024-11-07 00:00:00'
+          - instrument: 1000000MOGUSDT
+            open: 2.1229
+            high: 2.1962
+            low: 1.9278
+            close: 2.0126
+            volume: 22044481.5
+            exchange: binance
+            datetime: '2024-11-08 00:00:00'
+          - instrument: 1000000MOGUSDT
+            open: 2.0126
+            high: 2.1032
+            low: 1.91
+            close: 2.0543
+            volume: 14401968.3
+            exchange: binance
+            datetime: '2024-11-09 00:00:00'
+    main:
+      description: Schema containing main-specific tables
+      tables:
+        spot_ohlc_1h:
+          description: Hourly OHLCV data for spot trading pairs
+          columns:
+            exchange:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Exchange where the instrument is traded (e.g., binance,
+                bybit)
+            instrument:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Trading instrument identifier (e.g., BTCUSDT)
+            baseSymbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Base currency of the trading pair (e.g., BTC in BTC/USDT)
+            quoteSymbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Quote currency of the trading pair (e.g., USDT in BTC/USDT)
+            market:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Market type (e.g., spot, futures)
+            exchangeEnabled:
+              type: BOOLEAN
+              nullable: true
+              default: null
+              description: Whether trading is currently enabled on the exchange
+            limitsPriceMin:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum allowed price for orders
+            limitsPriceMax:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum allowed price for orders
+            limitsVolumeMin:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Minimum order volume
+            limitsVolumeMax:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Maximum order volume
+            limitsMarketMin:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Minimum market order value
+            limitsMarketMax:
+              type: BIGINT
+              nullable: true
+              default: null
+              description: Maximum market order value
+            limitsLeverageMin:
+              type: BIGINT
+              nullable: true
+              default: null
+              description: Minimum allowed leverage
+            limitsLeverageMax:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Maximum allowed leverage
+            limitsLeverageSuperMax:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Maximum super leverage allowed (if applicable)
+            limitsCostMin:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Minimum order cost in quote currency
+            limitsCostMax:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Maximum order cost in quote currency
+            precisionPrice:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for price values
+            precisionVolume:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: Decimal precision for volume values
+            precisionBase:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Decimal precision for base currency
+            precisionQuote:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Decimal precision for quote currency
+            listingTimestamp:
+              type: BIGINT
+              nullable: true
+              default: null
+              description: When the instrument was first listed on the exchange
+            contractUnderlying:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Underlying asset for derivative contracts
+            contractExpirationTimestamp:
+              type: DOUBLE
+              nullable: true
+              default: null
+              description: When the contract expires (null for perpetual contracts)
+            contractPeriod:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Contract period type (e.g., perpetual, quarterly)
+            contractSize:
+              type: INTEGER
+              nullable: true
+              default: null
+              description: Size of one contract in base currency units
+            contractSettleType:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Settlement type (e.g., linear, inverse)
+            contractSettleSymbol:
+              type: VARCHAR
+              nullable: true
+              default: null
+              description: Currency used for contract settlement
+          row_count: 51
+          constraints: []
+          relationships: []
+          integrity_issues: []
+          sample_data:
+          - exchange: bybit
+            instrument: VETUSDT
+            baseSymbol: VET
+            quoteSymbol: USDT
+            market: futures
+            exchangeEnabled: true
+            limitsPriceMin: 1.0e-05
+            limitsPriceMax: 19.99998
+            limitsVolumeMin: .nan
+            limitsVolumeMax: .nan
+            limitsMarketMin: 1.0
+            limitsMarketMax: 18783100
+            limitsLeverageMin: 1
+            limitsLeverageMax: 25.0
+            limitsLeverageSuperMax: .nan
+            limitsCostMin: .nan
+            limitsCostMax: .nan
+            precisionPrice: 1.0e-05
+            precisionVolume: 1.0
+            precisionBase: .nan
+            precisionQuote: .nan
+            listingTimestamp: 1635120000000
+            contractUnderlying: VET
+            contractExpirationTimestamp: .nan
+            contractPeriod: perpetual
+            contractSize: .nan
+            contractSettleType: linear
+            contractSettleSymbol: USDT
+          - exchange: bybit
+            instrument: VGXUSDT
+            baseSymbol: VGX
+            quoteSymbol: USDT
+            market: futures
+            exchangeEnabled: false
+            limitsPriceMin: 1.0e-05
+            limitsPriceMax: 19.99998
+            limitsVolumeMin: .nan
+            limitsVolumeMax: .nan
+            limitsMarketMin: 1.0
+            limitsMarketMax: 531500
+            limitsLeverageMin: 1
+            limitsLeverageMax: 12.5
+            limitsLeverageSuperMax: .nan
+            limitsCostMin: .nan
+            limitsCostMax: .nan
+            precisionPrice: 1.0e-05
+            precisionVolume: 1.0
+            precisionBase: .nan
+            precisionQuote: .nan
+            listingTimestamp: 1690869952000
+            contractUnderlying: VGX
+            contractExpirationTimestamp: .nan
+            contractPeriod: perpetual
+            contractSize: .nan
+            contractSettleType: linear
+            contractSettleSymbol: USDT
+          - exchange: bybit
+            instrument: VIDTUSDT
+            baseSymbol: VIDT
+            quoteSymbol: USDT
+            market: futures
+            exchangeEnabled: true
+            limitsPriceMin: 1.0e-05
+            limitsPriceMax: 19.99998
+            limitsVolumeMin: .nan
+            limitsVolumeMax: .nan
+            limitsMarketMin: 10.0
+            limitsMarketMax: 2150000
+            limitsLeverageMin: 1
+            limitsLeverageMax: 12.5
+            limitsLeverageSuperMax: .nan
+            limitsCostMin: .nan
+            limitsCostMax: .nan
+            precisionPrice: 1.0e-05
+            precisionVolume: 10.0
+            precisionBase: .nan
+            precisionQuote: .nan
+            listingTimestamp: 1724655235000
+            contractUnderlying: VIDT
+            contractExpirationTimestamp: .nan
+            contractPeriod: perpetual
+            contractSize: .nan
+            contractSettleType: linear
+            contractSettleSymbol: USDT
+relationships:
+  known:
+  - name: active_perpetuals
+    description: Relationship between exchange reference and futures info for active
+      perpetual contracts
+    tables:
+    - exchange_reference
+    - ohlcv_info_futures
+    type: JOIN
+    conditions:
+    - exchange_reference.exchange = ohlcv_info_futures.exchange
+    - exchange_reference.instrument = ohlcv_info_futures.instrument
+    filters:
+    - exchange_reference.contract_period = 'perpetual'
+    - ohlcv_info_futures.active = true
+  suggested:
+  - tables:
+    - amberdata.exchange_reference
+    - amberdata.ohlcv_info_futures
+    potential_join_columns:
+    - exchange
+    - instrument
+    confidence: suggested
+  - tables:
+    - amberdata.exchange_reference
+    - amberdata.ohlcv_perps_1d
+    potential_join_columns:
+    - exchange
+    - instrument
+    confidence: suggested
+  - tables:
+    - amberdata.exchange_reference
+    - main.spot_ohlc_1h
+    potential_join_columns:
+    - exchange
+    - instrument
+    - market
+    confidence: suggested
+  - tables:
+    - amberdata.ohlcv_info_futures
+    - amberdata.ohlcv_perps_1d
+    potential_join_columns:
+    - exchange
+    - instrument
+    confidence: suggested
+  - tables:
+    - amberdata.ohlcv_info_futures
+    - main.spot_ohlc_1h
+    potential_join_columns:
+    - exchange
+    - instrument
+    confidence: suggested
+  - tables:
+    - amberdata.ohlcv_perps_1d
+    - main.spot_ohlc_1h
+    potential_join_columns:
+    - exchange
+    - instrument
+    confidence: suggested
+  validation_issues: []
+sample_queries:
+  get_latest_prices:
+    description: Get the most recent prices for all active perpetual contracts
+    sql: "\n                        SELECT \n                            o.exchange,\n\
+      \                            o.instrument,\n                            o.datetime,\n\
+      \                            o.close as price,\n                           \
+      \ o.volume\n                        FROM amberdata.ohlcv_perps_1d o\n      \
+      \                  JOIN amberdata.ohlcv_info_futures i\n                   \
+      \         ON o.exchange = i.exchange\n                            AND o.instrument\
+      \ = i.instrument\n                        WHERE i.active = true\n          \
+      \              AND o.datetime = (\n                            SELECT MAX(datetime)\n\
+      \                            FROM amberdata.ohlcv_perps_1d\n               \
+      \         )\n                        ORDER BY o.exchange, o.instrument\n   \
+      \                 "
+  get_trading_pairs:
+    description: Get all trading pairs with their specifications
+    sql: "\n                        SELECT \n                            exchange,\n\
+      \                            instrument,\n                            base_symbol,\n\
+      \                            quote_symbol,\n                            contract_period,\n\
+      \                            contract_settle_type,\n                       \
+      \     limits_leverage_max,\n                            precision_price,\n \
+      \                           precision_volume\n                        FROM amberdata.exchange_reference\n\
+      \                        WHERE exchange_enabled = true\n                   \
+      \     ORDER BY exchange, instrument\n                    "
+maintenance_guidelines:
+  schema_changes:
+  - Run this documentation generator after any schema changes
+  - Compare schema_version to detect structural changes
+  - Review validation_issues and integrity_issues sections
+  - Update known_relationships when adding new foreign keys
+  - Check suggested relationships for potential missing constraints
+  data_integrity:
+  - Monitor integrity_issues section for each table
+  - Address any NULL values in non-nullable columns
+  - Fix any orphaned records in relationships
+  - Maintain referential integrity when deleting records
+  best_practices:
+  - Add new tables to appropriate schemas based on data source
+  - Document all columns with clear descriptions
+  - Include appropriate constraints and indexes
+  - Update sample queries when adding new use cases
+  - Keep relationship documentation in sync with actual foreign keys

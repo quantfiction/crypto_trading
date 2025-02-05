@@ -2,7 +2,7 @@ import logging
 from pathlib import Path
 import pandas as pd
 from duckdb import DuckDBPyConnection
-from crypto_trading.db.handler import DatabaseHandler
+from crypto_trading.common.db.handler import DatabaseHandler
 
 
 class BaseIngestor:

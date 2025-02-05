@@ -2,8 +2,8 @@ import logging
 from pathlib import Path
 import pandas as pd
 from duckdb import DuckDBPyConnection
-from crypto_trading.data.ingestor import BaseIngestor
-from crypto_trading.amberdata import AmberdataHandler
+from crypto_trading.ingestion.ingestor import BaseIngestor
+from crypto_trading.ingestion.providers.amberdata import AmberdataHandler
 
 
 class AmberdataOHLCVIngestor(BaseIngestor):

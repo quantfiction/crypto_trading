@@ -1,0 +1,208 @@
+# Schema Metadata Configuration
+# This file defines patterns and rules for schema documentation
+
+# Column patterns for automatic description generation
+column_patterns:
+  # Time-related columns
+  - pattern: ".*_timestamp$|.*_date$|datetime$"
+    type: "timestamp"
+    description: "Timestamp indicating {normalized_name}"
+    examples: ["2024-01-01 00:00:00"]
+
+  # Price-related columns
+  - pattern: "^price|.*_price$|^open$|^high$|^low$|^close$"
+    type: "price"
+    description: "Price value representing {normalized_name}"
+    examples: ["100.50", "1234.56"]
+
+  # Volume-related columns
+  - pattern: "^volume|.*_volume$"
+    type: "volume"
+    description: "Trading volume for {normalized_name}"
+    examples: ["1000", "1000000"]
+
+  # Symbol columns
+  - pattern: ".*_symbol$"
+    type: "symbol"
+    description: "Trading symbol for {normalized_name}"
+    examples: ["BTC", "ETH"]
+
+  # Status columns
+  - pattern: ".*_enabled$|.*_active$|status$"
+    type: "status"
+    description: "Status flag indicating {normalized_name}"
+    examples: ["true", "false"]
+
+  # Limit columns
+  - pattern: ".*_limit$|.*_min$|.*_max$"
+    type: "limit"
+    description: "Trading limit for {normalized_name}"
+    examples: ["0.001", "1000000"]
+
+  # Precision columns
+  - pattern: ".*_precision$"
+    type: "precision"
+    description: "Decimal precision for {normalized_name}"
+    examples: ["0.00001", "0.1"]
+
+  # Contract-related columns
+  - pattern: "^contract_.*"
+    type: "contract"
+    description: "Contract specification for {normalized_name}"
+    examples: ["perpetual", "linear"]
+
+  # Exchange-related columns
+  - pattern: "^exchange.*"
+    type: "exchange"
+    description: "Exchange information for {normalized_name}"
+    examples: ["binance", "bybit"]
+
+  # Instrument-related columns
+  - pattern: "^instrument$"
+    type: "instrument"
+    description: "Trading instrument identifier"
+    examples: ["BTCUSDT", "ETHUSDT"]
+
+# Table patterns for automatic categorization
+table_patterns:
+  - pattern: ".*_ohlcv.*"
+    category: "market_data"
+    description: "Market data containing Open, High, Low, Close, and Volume information"
+    expected_columns: ["open", "high", "low", "close", "volume", "datetime"]
+    
+  - pattern: ".*_reference.*"
+    category: "reference"
+    description: "Reference data containing static or slowly changing information"
+    expected_columns: ["exchange", "instrument", "symbol"]
+    
+  - pattern: ".*_info.*"
+    category: "metadata"
+    description: "Metadata and supplementary information"
+    expected_columns: ["updated_at", "active"]
+
+# Common relationship patterns
+relationship_patterns:
+  - name: "exchange_instrument"
+    columns: ["exchange", "instrument"]
+    description: "Links trading pairs across different data types"
+    validation_query: |
+      SELECT DISTINCT t1.exchange, t1.instrument
+      FROM {table1} t1
+      LEFT JOIN {table2} t2
+        ON t1.exchange = t2.exchange
+        AND t1.instrument = t2.instrument
+      WHERE t2.exchange IS NULL
+    
+  - name: "time_series"
+    columns: ["datetime", "timestamp"]
+    description: "Links time series data points"
+    validation_query: |
+      SELECT MIN(datetime) as start_date,
+             MAX(datetime) as end_date,
+             COUNT(*) as point_count
+      FROM {table}
+
+# Data type mappings for better descriptions
+type_descriptions:
+  VARCHAR: "Text value"
+  DOUBLE: "Decimal number with high precision"
+  INTEGER: "Whole number"
+  TIMESTAMP: "Date and time value"
+  TIMESTAMP_NS: "High-precision date and time value (nanoseconds)"
+  BOOLEAN: "True/false value"
+  BIGINT: "Large whole number"
+
+# Validation rules
+validation_rules:
+  # Time-related validations
+  - name: "timestamp_not_null"
+    pattern: ".*_timestamp$|.*_date$|datetime$"
+    rule: "NOT NULL"
+    message: "Timestamp columns should not be null"
+    
+  - name: "timestamp_range"
+    pattern: ".*_timestamp$|.*_date$|datetime$"
+    rule: "BETWEEN '2000-01-01' AND '2100-01-01'"
+    message: "Timestamp should be within reasonable range"
+    
+  # Price validations
+  - name: "price_positive"
+    pattern: "^price|.*_price$|^open$|^high$|^low$|^close$"
+    rule: "> 0"
+    message: "Price values should be positive"
+    
+  - name: "price_reasonable"
+    pattern: "^price|.*_price$|^open$|^high$|^low$|^close$"
+    rule: "< 1000000"
+    message: "Price values should be reasonable"
+    
+  # Volume validations
+  - name: "volume_non_negative"
+    pattern: "^volume|.*_volume$"
+    rule: ">= 0"
+    message: "Volume values should not be negative"
+    
+  # Status validations
+  - name: "status_valid"
+    pattern: ".*_enabled$|.*_active$|status$"
+    rule: "IN (true, false)"
+    message: "Status should be true or false"
+    
+  # Limit validations
+  - name: "min_less_than_max"
+    pattern: ".*_min$"
+    rule: "< {table}.{column_root}_max"
+    message: "Minimum value should be less than maximum"
+
+# Documentation templates
+templates:
+  table_doc: |
+    {table_name}
+    Description: {description}
+    Category: {category}
+    Row Count: {row_count}
+    Last Updated: {last_updated}
+    
+    Columns:
+    {columns}
+    
+    Relationships:
+    {relationships}
+    
+    Validation Issues:
+    {validation_issues}
+    
+    Sample Data:
+    {sample_data}
+
+  column_doc: |
+    {column_name}:
+      Type: {data_type} ({type_description})
+      Nullable: {is_nullable}
+      Description: {description}
+      Examples: {examples}
+      Validation Rules:
+      {validation_rules}
+
+# Maintenance guidelines
+maintenance_guidelines:
+  schema_changes:
+    - Run documentation generator after any schema changes
+    - Compare schema_version to detect structural changes
+    - Review validation issues and update rules if needed
+    - Update relationship patterns for new table types
+    - Check suggested relationships for missing constraints
+    
+  data_integrity:
+    - Monitor validation issues in each table
+    - Address any NULL values in required columns
+    - Fix orphaned records in relationships
+    - Maintain referential integrity
+    - Review and update validation rules
+    
+  metadata_management:
+    - Add new column patterns for consistency
+    - Update type descriptions for new data types
+    - Add relationship patterns for new table types
+    - Keep examples current and relevant
+    - Document any special cases or exceptions
