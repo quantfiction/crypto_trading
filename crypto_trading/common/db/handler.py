@@ -10,7 +10,7 @@ import pandas as pd
 class DatabaseHandler:
     """Base class for database operations"""
 
-    DEFAULT_DB_PATH = Path(__file__).parent.parent.parent / "data" / "crypto_data.db"
+    DEFAULT_DB_PATH = Path(__file__).parents[3] / "data" / "crypto_data.db"
 
     def __init__(self, db_path: Optional[Path] = None):
         self.db_path = db_path or self.DEFAULT_DB_PATH

@@ -11,7 +11,7 @@ class AmberdataOHLCVIngestor(BaseIngestor):
 
     def __init__(self, data_path: Path = None):
         if data_path is None:
-            data_path = Path(__file__).parent.parent.parent / "data"
+            data_path = Path(__file__).parents[3] / "data"
         super().__init__(data_path / "crypto_data.db")
         self.handler = AmberdataHandler()
 
@@ -146,7 +146,7 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
 
     def __init__(self, data_path: Path = None):
         if data_path is None:
-            data_path = Path(__file__).parent.parent.parent / "data"
+            data_path = Path(__file__).parents[3] / "data"
         super().__init__(data_path / "crypto_data.db")
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]
@@ -250,7 +250,7 @@ class AmberdataExchangeReferenceIngestor(BaseIngestor):
 
     def __init__(self, data_path: Path = None):
         if data_path is None:
-            data_path = Path(__file__).parent.parent.parent / "data"
+            data_path = Path(__file__).parents[3] / "data"
         super().__init__(data_path / "crypto_data.db")
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]

@@ -5,7 +5,7 @@ source /home/quantfiction/.bashrc
 
 # Set absolute paths
 REPO_PATH="/home/quantfiction/repositories/crypto_trading"
-VENV_PATH="/home/quantfiction/snap/code/179/.local/share/virtualenvs/crypto_trading-pCflR77s"
+VENV_PATH="/home/quantfiction/.local/share/virtualenvs/crypto_trading-pCflR77s"
 LOG_PATH="$REPO_PATH/logs"
 
 # Ensure log directory exists
@@ -20,7 +20,7 @@ PYTHON_PATH="$VENV_PATH/bin/python"
 
 # Run the script
 cd "$REPO_PATH"
-$PYTHON_PATH scripts/ingest_amberdata_ohlcv_info_futures.py >> "$LOG_PATH/amberdata_ohlcv_info_ingest.log" 2>&1
+$PYTHON_PATH scripts/ingestion/ingest_amberdata_ohlcv_info_futures.py >> "$LOG_PATH/amberdata_ohlcv_info_ingest.log" 2>&1
 
 # Check if script ran successfully
 if [ $? -eq 0 ]; then

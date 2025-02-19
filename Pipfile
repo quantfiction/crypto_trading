@@ -30,6 +30,7 @@ dtale = "*"
 ipywidgets = "*"
 arch = "*"
 duckdb = "*"
+boto3 = "*"
 
 [dev-packages]
 black = "*"

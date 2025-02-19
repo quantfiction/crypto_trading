@@ -13,18 +13,20 @@ mkdir -p "$LOG_PATH"
 
 # Set environment variables
 export PYTHONPATH="$REPO_PATH"
-export AMBERDATA_API_KEY=$(grep AMBERDATA_API_KEY "$REPO_PATH/.env" | cut -d '=' -f2 | tr -d '"' | tr -d "'" | tr -d ' ')
+# AWS credentials for S3 uploads
+export AWS_ACCESS_KEY_ID=$(grep AWS_ACCESS_KEY_ID "$REPO_PATH/.env" | cut -d '=' -f2 | tr -d '"' | tr -d "'" | tr -d ' ')
+export AWS_SECRET_ACCESS_KEY=$(grep AWS_SECRET_ACCESS_KEY "$REPO_PATH/.env" | cut -d '=' -f2 | tr -d '"' | tr -d "'" | tr -d ' ')
 
 # Use the virtual environment's Python directly instead of relying on pipenv
 PYTHON_PATH="$VENV_PATH/bin/python"
 
 # Run the script
 cd "$REPO_PATH"
-$PYTHON_PATH scripts/ingestion/ingest_amberdata_exchange_reference.py >> "$LOG_PATH/amberdata_exchange_reference_ingest.log" 2>&1
+$PYTHON_PATH scripts/trading/generate_trading_signals.py >> "$LOG_PATH/trading_signals.log" 2>&1
 
 # Check if script ran successfully
 if [ $? -eq 0 ]; then
-    echo "$(date) - Script executed successfully" >> "$LOG_PATH/amberdata_exchange_reference_ingest.log"
+    echo "$(date) - Trading signals generated successfully" >> "$LOG_PATH/trading_signals.log"
 else
-    echo "$(date) - Script execution failed" >> "$LOG_PATH/amberdata_exchange_reference_ingest.log"
+    echo "$(date) - Trading signal generation failed" >> "$LOG_PATH/trading_signals.log"
 fi

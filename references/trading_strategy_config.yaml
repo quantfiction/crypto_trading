@@ -1,0 +1,88 @@
+database:
+  query_lookback_days: 102
+
+trading:
+  symbols:
+    - BTCUSDT
+    - ETHUSDT
+    - SOLUSDT
+    - BNBUSDT
+    - DOGEUSDT
+    - TONUSDT
+    - XRPUSDT
+
+features:
+  lookback_periods:
+    short: 3
+    medium: 10
+    long: 30
+    extended: 100
+
+  indicators:
+    range_perc:
+      enabled: true
+      ema_lookback: 5
+
+    position_in_range:
+      periods: [3, 7, 10, 30, 100]
+
+    ema_cross:
+      pairs:
+        - [3, 12]
+        - [10, 40]
+        - [25, 100]
+
+    aroon:
+      periods: [10, 30, 60]
+
+signals:
+  breakout:
+    pos_in_range_min: 0.67
+    range_perc_rel_max: 0
+    aroon_min: 50
+
+  breakdown:
+    pos_in_range_max: 0.4
+    range_perc_rel_max: 0
+    low_distance_max: 0.5
+    aroon_10_max: -50
+    aroon_30_max: 0
+
+  rip_fade:
+    range_perc_rel_min: 0.25
+    aroon_conditions:
+      aroon_10_max: -50
+      aroon_30_max: 0
+
+  dip_buy:
+    range_perc_rel_min: 0.25
+    aroon_conditions:
+      aroon_10_min: 50
+      aroon_30_min: 50
+
+output:
+  local:
+    enabled: true
+    path: "data/processed"
+    files:
+      - big_boys.csv
+      - breakouts.csv
+      - breakdowns.csv
+      - dip_buys.csv
+      - rip_fades.csv
+      - top_st_trend.csv
+      - bottom_st_trend.csv
+      - top_lt_trend.csv
+      - bottom_lt_trend.csv
+
+  s3:
+    enabled: true
+    bucket: "stellar-repos"
+    acl: "public-read"
+    content_type: "text/html"
+    content_disposition: "inline"
+
+logging:
+  level: INFO
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: 'logs/trading_strategy.log'
