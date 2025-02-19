@@ -66,8 +66,44 @@ def save_outputs(
     # Upload to S3 if enabled
     if output_config["s3"]["enabled"]:
         try:
+            # Load AWS credentials from .env file
+            env_path = Path(".env")
+            if not env_path.exists():
+                logger.warning("'.env' file not found in the repository root.")
+                logger.warning("Skipping S3 upload")
+                return
+
+            from dotenv import dotenv_values
+
+            config_env = dotenv_values(env_path)
+            aws_access_key_id = config_env.get("AWS_ACCESS_KEY_ID")
+            aws_secret_access_key = config_env.get("AWS_SECRET_ACCESS_KEY")
+
+            if not aws_access_key_id or not aws_secret_access_key:
+                logger.warning("AWS credentials not found in .env file")
+                logger.warning("Skipping S3 upload")
+                return
+
             s3_config = output_config["s3"]
-            s3_client = boto3.client("s3")
+            s3_client = boto3.client(
+                "s3",
+                aws_access_key_id=aws_access_key_id,
+                aws_secret_access_key=aws_secret_access_key,
+            )
+
+            # Test bucket access
+            try:
+                s3_client.head_bucket(Bucket=s3_config["bucket"])
+            except ClientError as e:
+                error_code = e.response.get("Error", {}).get("Code")
+                if error_code == "403":
+                    logger.warning(f"No access to S3 bucket {s3_config['bucket']}")
+                elif error_code == "404":
+                    logger.warning(f"S3 bucket {s3_config['bucket']} does not exist")
+                else:
+                    logger.warning(f"Error accessing S3 bucket: {str(e)}")
+                logger.warning("Skipping S3 upload")
+                return
 
             # Upload biases
             biases_buffer = biases.to_csv().encode()
@@ -92,7 +128,7 @@ def save_outputs(
                     ContentType=s3_config["content_type"],
                     ContentDisposition=s3_config["content_disposition"],
                 )
-                logger.info(f"Uploaded {name} to S3 bucket {s3_config['bucket']}")
+            logger.info(f"Uploaded {name} to S3 bucket {s3_config['bucket']}")
 
         except Exception as e:
             logger.warning(f"Error uploading to S3: {str(e)}")

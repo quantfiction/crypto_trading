@@ -163,9 +163,18 @@ def _rolling_window_extremes(
     """
     windows = _get_rolling_windows(values, lookback)
 
-    # Suppress warnings for incomplete windows which will be NaN anyway
-    with np.errstate(invalid="ignore"):
-        return np.nanmax(windows, axis=1), np.nanmin(windows, axis=1)
+    if windows.size == 0:
+        return np.array([np.nan] * len(values)), np.array([np.nan] * len(values))
+
+    import warnings
+
+    with warnings.catch_warnings():
+        warnings.filterwarnings("ignore", category=RuntimeWarning)
+        # Calculate max and min
+        rolling_max = np.nanmax(windows, axis=1)
+        rolling_min = np.nanmin(windows, axis=1)
+
+    return rolling_max, rolling_min
 
 
 def get_bar_triangle(df: pd.DataFrame, lookback: int = 3) -> pd.Series:
@@ -272,6 +281,7 @@ def get_lowest_low(df: pd.DataFrame, lookback: int = 3) -> pd.Series:
     Args:
         df: DataFrame containing OHLC data
         lookback: Number of periods to look back
+        lookback: Number of periods to look back
 
     Returns:
         Series with rolling lowest low values
@@ -325,5 +335,6 @@ def calc_aroon(
         100 / (lookback - 1)
     )
     low_days = (lookback - 1 - np.argmin(window_lows, axis=1)) * (100 / (lookback - 1))
-
+    if window_highs.size == 0 or window_lows.size == 0:
+        return pd.Series(np.array([np.nan] * len(df)), index=df.index)
     return pd.Series(low_days - high_days, index=df.index)

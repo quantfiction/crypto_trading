@@ -7,6 +7,10 @@ from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
+import boto3
+from botocore.exceptions import ClientError
+from pathlib import Path
+from dotenv import dotenv_values
 
 from crypto_trading.analysis.features.feature_generator import (
     generate_features,
@@ -442,6 +446,42 @@ class SignalGenerator:
             latest_date = features["datetime"].max()
             df_recent = features[features["datetime"] == latest_date].copy()
 
+            # Get output configuration
+            output_config = self.config.get_output_config()
+            local_enabled = output_config["local"]["enabled"]
+            s3_enabled = output_config["s3"]["enabled"]
+            output_path = Path(output_config["local"]["path"])
+
+            # Save df_recent to local file and upload to S3
+            if local_enabled:
+                file_path = output_path / "bnf_recent.csv"
+                df_recent.to_csv(file_path, index=False)
+                logger.info(f"Saved df_recent to {file_path}")
+
+                if s3_enabled:
+                    s3_config = output_config["s3"]
+                    env_path = Path(".env")
+                    config_env = dotenv_values(env_path)
+                    aws_access_key_id = config_env.get("AWS_ACCESS_KEY_ID")
+                    aws_secret_access_key = config_env.get("AWS_SECRET_ACCESS_KEY")
+                    s3_client = boto3.client(
+                        "s3",
+                        aws_access_key_id=aws_access_key_id,
+                        aws_secret_access_key=aws_secret_access_key,
+                    )
+                    csv_buffer = df_recent.to_csv(index=False).encode()
+                    s3_client.put_object(
+                        Bucket=s3_config["bucket"],
+                        Key="bnf_recent.csv",
+                        Body=csv_buffer,
+                        ACL=s3_config["acl"],
+                        ContentType=s3_config["content_type"],
+                        ContentDisposition=s3_config["content_disposition"],
+                    )
+                    logger.info(
+                        f"Uploaded df_recent to S3 bucket {s3_config['bucket']}"
+                    )
+
             # Generate breakout signals
             breakout_config = self.signals_config["breakout"]
             signals["breakouts"] = df_recent[
@@ -550,6 +590,10 @@ class SignalGenerator:
 
             # Calculate market biases
             biases = self._calculate_market_biases(df_recent)
+
+            # Save TradingView watchlists
+            if local_enabled:
+                self.save_tradingview_watchlists(signals, output_path)
 
             return biases, signals
 
