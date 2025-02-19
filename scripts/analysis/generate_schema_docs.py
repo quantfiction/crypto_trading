@@ -13,7 +13,7 @@ from datetime import datetime
 import pytz
 from typing import Dict, Any, List, Set, Tuple
 import duckdb
-from crypto_trading.db.handler import DatabaseHandler
+from crypto_trading.common.db.handler import DatabaseHandler
 
 # Configure logging
 logging.basicConfig(
@@ -32,10 +32,12 @@ class SchemaDocumentationGenerator:
     """Generates YAML documentation for database schema with validation"""
 
     def __init__(self, max_retries: int = 3, retry_delay: float = 2.0):
-        self.db_handler = DatabaseHandler()
+        db_config = {"connection_string": "duckdb:///data/crypto_data.db"}
+        self.db_handler = DatabaseHandler(db_config)
         self.doc_path = (
-            Path(__file__).parent.parent / "references" / "amberdata_schema.yaml"
+            Path(__file__).parent.parent.parent / "references" / "amberdata_schema.yaml"
         )
+
         self.max_retries = max_retries
         self.retry_delay = retry_delay
         self.known_relationships = {
@@ -100,12 +102,12 @@ class SchemaDocumentationGenerator:
             "limits_leverage_max": "Maximum allowed leverage",
             "limits_leverage_super_max": "Maximum super leverage allowed (if applicable)",
             "limits_cost_min": "Minimum order cost in quote currency",
-            "limits_cost_max": "Maximum order cost in quote currency",
+            "limitsCostMax": "Maximum order cost in quote currency",
             # Precision fields
             "precision_price": "Decimal precision for price values",
             "precision_volume": "Decimal precision for volume values",
-            "precision_base": "Decimal precision for base currency",
-            "precision_quote": "Decimal precision for quote currency",
+            "precisionBase": "Decimal precision for base currency",
+            "precisionQuote": "Decimal precision for quote currency",
             # CamelCase variants for spot_ohlc_1h
             "baseSymbol": "Base currency of the trading pair (e.g., BTC in BTC/USDT)",
             "quoteSymbol": "Quote currency of the trading pair (e.g., USDT in BTC/USDT)",
@@ -188,12 +190,10 @@ class SchemaDocumentationGenerator:
                 (tables_df["schema"] == schema1) & (tables_df["table"] == name1)
             ).any():
                 issues.append(f"Table {table1} not found")
-                continue
             if not (
                 (tables_df["schema"] == schema2) & (tables_df["table"] == name2)
             ).any():
                 issues.append(f"Table {table2} not found")
-                continue
 
             # Check if columns exist
             schema1_df = self.db_handler.get_table_schema(schema1, name1)
@@ -303,20 +303,6 @@ class SchemaDocumentationGenerator:
             relationships = self._get_table_relationships(schema, table)
             integrity_issues = self._check_data_integrity(schema, table)
 
-            # Get sample data if table is not empty
-            sample_data = []
-            if info["row_count"] > 0:
-                sample_query = f"""
-                SELECT *
-                FROM {schema}.{table}
-                LIMIT 3
-                """
-                df = self.db_handler.query_to_df(sample_query)
-                # Convert timestamps to ISO format strings
-                for col in df.select_dtypes(include=["datetime64"]).columns:
-                    df[col] = df[col].dt.strftime("%Y-%m-%d %H:%M:%S")
-                sample_data = df.to_dict("records")
-
             return {
                 "description": self._get_table_description(table),
                 "columns": columns,
@@ -324,7 +310,6 @@ class SchemaDocumentationGenerator:
                 "constraints": constraints,
                 "relationships": relationships,
                 "integrity_issues": integrity_issues,
-                "sample_data": sample_data,
             }
 
         return self._execute_with_retry(_get_details)
@@ -441,9 +426,13 @@ class SchemaDocumentationGenerator:
 
                 for _, row in schema_tables.iterrows():
                     table_name = row["table"]
-                    doc["database"]["schemas"][schema]["tables"][table_name] = (
-                        self.get_table_details(schema, table_name)
-                    )
+                    table_details = self.get_table_details(schema, table_name)
+                    # Remove sample_data from table details
+                    if "sample_data" in table_details:
+                        del table_details["sample_data"]
+                    doc["database"]["schemas"][schema]["tables"][
+                        table_name
+                    ] = table_details
 
             # Add relationships section
             doc["relationships"] = {
@@ -560,6 +549,7 @@ class SchemaDocumentationGenerator:
 
 def main():
     try:
+        db_config = {"connection_string": "duckdb:///data/crypto_data.db"}
         generator = SchemaDocumentationGenerator()
         doc = generator.generate_documentation()
         generator.save_documentation(doc)

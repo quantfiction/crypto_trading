@@ -66,6 +66,10 @@ class TradingStrategyConfig:
         if not self.config["features"]["lookback_periods"]:
             raise ValueError("No lookback periods configured")
 
+        # Validate database settings
+        if "connection_string" not in self.config["database"]:
+            raise ValueError("Database configuration must include a connection_string")
+
         # Validate output paths
         if self.config["output"]["local"]["enabled"]:
             if not self.config["output"]["local"]["path"]:
@@ -89,7 +93,8 @@ class TradingStrategyConfig:
 
     def get_database_config(self) -> Dict[str, Any]:
         """Get database configuration settings."""
-        return self.config["database"]
+        database_config = self.config["database"]
+        return database_config
 
     def get_trading_config(self) -> Dict[str, Any]:
         """Get trading configuration settings."""

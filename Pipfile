@@ -31,6 +31,9 @@ ipywidgets = "*"
 arch = "*"
 duckdb = "*"
 boto3 = "*"
+sqlalchemy = "*"
+duckdb-engine = "*"
+mysql-connector-python = "*"
 
 [dev-packages]
 black = "*"

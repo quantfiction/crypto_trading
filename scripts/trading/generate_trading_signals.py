@@ -164,7 +164,8 @@ def main():
         start_time = datetime.now()
 
         # Setup components
-        db_handler = DatabaseHandler()
+        db_config = config.get_database_config()
+        db_handler = DatabaseHandler(db_config)
         signal_generator = SignalGenerator(db_handler, config)
 
         # Generate signals

@@ -381,7 +381,7 @@ class SignalGenerator:
                 self.fetch_highest_volume_exchanges()
 
             # Create raw directory if it doesn't exist
-            raw_path = output_path / "raw"
+            raw_path = output_path
             raw_path.mkdir(parents=True, exist_ok=True)
 
             # Generate watchlist files

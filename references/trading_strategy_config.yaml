@@ -1,5 +1,6 @@
 database:
   query_lookback_days: 102
+  connection_string: "duckdb:///data/crypto_data.db"
 
 trading:
   symbols:

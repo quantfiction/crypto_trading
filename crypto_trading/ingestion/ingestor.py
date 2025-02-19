@@ -3,6 +3,7 @@ from pathlib import Path
 import pandas as pd
 from duckdb import DuckDBPyConnection
 from crypto_trading.common.db.handler import DatabaseHandler
+from sqlalchemy import text
 
 
 class BaseIngestor:
@@ -12,17 +13,15 @@ class BaseIngestor:
         self.db_handler = DatabaseHandler(db_path)
         self.logger = logging.getLogger(self.__class__.__name__)
 
-    def create_schema(
-        self, cursor: DuckDBPyConnection, schema: str = "amberdata"
-    ) -> None:
+    def create_schema(self, connection, schema: str = "amberdata") -> None:
         """Create a schema if it doesn't exist"""
-        cursor.execute(f"CREATE SCHEMA IF NOT EXISTS {schema}")
+        connection.execute(text(f"CREATE SCHEMA IF NOT EXISTS {schema}"))
 
     def register_dataframe(
-        self, cursor: DuckDBPyConnection, df: pd.DataFrame, name: str = "temp_df"
+        self, connection, df: pd.DataFrame, name: str = "temp_df"
     ) -> None:
-        """Register a temporary DataFrame in DuckDB"""
-        cursor.register(name, df)
+        """Register a temporary DataFrame in SQLAlchemy"""
+        df.to_sql(name, con=connection, if_exists="replace", index=False)
 
     def store_data(
         self, df: pd.DataFrame, table_name: str, schema: str = "amberdata"

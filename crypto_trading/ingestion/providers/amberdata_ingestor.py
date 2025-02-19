@@ -4,6 +4,7 @@ import pandas as pd
 from duckdb import DuckDBPyConnection
 from crypto_trading.ingestion.ingestor import BaseIngestor
 from crypto_trading.ingestion.providers.amberdata import AmberdataHandler
+from sqlalchemy import text
 
 
 class AmberdataOHLCVIngestor(BaseIngestor):
@@ -12,14 +13,16 @@ class AmberdataOHLCVIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        super().__init__(data_path / "crypto_data.db")
+        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        super().__init__(db_config)
         self.handler = AmberdataHandler()
 
-    def create_ohlcv_table(self, cursor: DuckDBPyConnection) -> None:
+    def create_ohlcv_table(self, connection) -> None:
         """Create OHLCV table with proper schema"""
-        self.create_schema(cursor)
-        cursor.execute(
-            """
+        self.create_schema(connection)
+        connection.execute(
+            text(
+                """
             CREATE TABLE IF NOT EXISTS amberdata.ohlcv_perps_1d (
                 instrument VARCHAR,
                 open DOUBLE PRECISION,
@@ -31,12 +34,15 @@ class AmberdataOHLCVIngestor(BaseIngestor):
                 datetime TIMESTAMP
             )
             """
+            )
         )
-        cursor.execute(
-            """
+        connection.execute(
+            text(
+                """
             CREATE UNIQUE INDEX IF NOT EXISTS ohlcv_perps_1d_unique_idx
             ON amberdata.ohlcv_perps_1d (exchange, instrument, datetime);
             """
+            )
         )
 
     def store_data(
@@ -59,12 +65,13 @@ class AmberdataOHLCVIngestor(BaseIngestor):
         if not self.validate_data(df, required_columns):
             return
 
-        def transaction_operations(cursor: DuckDBPyConnection):
-            self.create_schema(cursor)
-            self.create_ohlcv_table(cursor)
-            self.register_dataframe(cursor, df)
-            cursor.execute(
-                f"""
+        def transaction_operations(connection):
+            self.create_schema(connection, schema)
+            self.create_ohlcv_table(connection)
+            self.register_dataframe(connection, df)
+            connection.execute(
+                text(
+                    f"""
                 INSERT INTO {schema}.{table_name}
                 SELECT instrument, open, high, low, close, volume, exchange, datetime
                 FROM temp_df
@@ -75,25 +82,30 @@ class AmberdataOHLCVIngestor(BaseIngestor):
                     close = excluded.close,
                     volume = excluded.volume
                 """
+                )
             )
 
         self.db_handler.execute_transaction([transaction_operations])
 
     def get_active_contracts(self, start_date: pd.Timestamp) -> pd.DataFrame:
         """Get list of active perpetual contracts"""
-        with self.db_handler.db_connection() as conn:
-            return conn.execute(
-                """
-                SELECT er.exchange, er.instrument 
-                FROM amberdata.exchange_reference er
-                JOIN amberdata.ohlcv_info_futures oif
-                    ON er.exchange = oif.exchange
-                    AND er.instrument = oif.instrument
-                WHERE er.contract_period = 'perpetual'
-                    AND oif.trading_end_date > CAST(? AS TIMESTAMP)
-                """,
-                [start_date.strftime("%Y-%m-%d %H:%M:%S")],
-            ).fetch_df()
+        query = text(
+            """
+            SELECT er.exchange, er.instrument
+            FROM amberdata.exchange_reference er
+            JOIN amberdata.ohlcv_info_futures oif
+                ON er.exchange = oif.exchange
+                AND er.instrument = oif.instrument
+            WHERE er.contract_period = 'perpetual'
+                AND oif.trading_end_date > CAST(:start_date AS TIMESTAMP)
+            """
+        )
+        with self.db_handler.engine.connect() as connection:
+            result = connection.execute(
+                query, {"start_date": start_date.strftime("%Y-%m-%d %H:%M:%S")}
+            )
+            df = pd.DataFrame(result.fetchall(), columns=result.keys())
+            return df
 
     def fetch_ohlcv_data(
         self,
@@ -147,14 +159,16 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        super().__init__(data_path / "crypto_data.db")
+        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        super().__init__(db_config)
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]
 
-    def create_info_table(self, cursor: DuckDBPyConnection) -> None:
+    def create_info_table(self, connection) -> None:
         """Create OHLCV info table with proper schema"""
-        cursor.execute(
-            """
+        connection.execute(
+            text(
+                """
             CREATE TABLE IF NOT EXISTS amberdata.ohlcv_info_futures (
                 exchange VARCHAR,
                 instrument VARCHAR,
@@ -164,12 +178,15 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
                 updated_at TIMESTAMP
             )
             """
+            )
         )
-        cursor.execute(
-            """
+        connection.execute(
+            text(
+                """
             CREATE UNIQUE INDEX IF NOT EXISTS ohlcv_info_futures_unique_idx
             ON amberdata.ohlcv_info_futures (exchange, instrument);
             """
+            )
         )
 
     def store_data(
@@ -190,12 +207,13 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
         if not self.validate_data(df, required_columns):
             return
 
-        def transaction_operations(cursor: DuckDBPyConnection):
-            self.create_schema(cursor)
-            self.create_info_table(cursor)
-            self.register_dataframe(cursor, df)
-            cursor.execute(
-                f"""
+        def transaction_operations(connection):
+            self.create_schema(connection, schema)
+            self.create_info_table(connection)
+            self.register_dataframe(connection, df)
+            connection.execute(
+                text(
+                    f"""
                 INSERT INTO {schema}.{table_name}
                 SELECT exchange, instrument, trading_start_date, trading_end_date, active, updated_at
                 FROM temp_df
@@ -205,6 +223,7 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
                     active = excluded.active,
                     updated_at = excluded.updated_at
                 """
+                )
             )
 
         self.db_handler.execute_transaction([transaction_operations])
@@ -251,7 +270,8 @@ class AmberdataExchangeReferenceIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        super().__init__(data_path / "crypto_data.db")
+        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        super().__init__(db_config)
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]
 
@@ -263,19 +283,21 @@ class AmberdataExchangeReferenceIngestor(BaseIngestor):
     ) -> None:
         """Store exchange reference data with complete table refresh"""
 
-        def transaction_operations(cursor: DuckDBPyConnection):
-            self.create_schema(cursor)
+        def transaction_operations(connection):
+            self.create_schema(connection, schema)
             # Drop existing table
-            cursor.execute(f"DROP TABLE IF EXISTS {schema}.{table_name}")
+            connection.execute(text(f"DROP TABLE IF EXISTS {schema}.{table_name}"))
             # Register temporary dataframe
-            self.register_dataframe(cursor, df)
+            self.register_dataframe(connection, df)
             # Create new table with data
-            cursor.execute(
-                f"""
+            connection.execute(
+                text(
+                    f"""
                 CREATE TABLE {schema}.{table_name} AS
                 SELECT * FROM temp_df
                 ORDER BY exchange, instrument
                 """
+                )
             )
 
         self.db_handler.execute_transaction([transaction_operations])
