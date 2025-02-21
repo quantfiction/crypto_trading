@@ -70,6 +70,9 @@ def save_outputs(
             env_path = Path(".env")
             if not env_path.exists():
                 logger.warning("'.env' file not found in the repository root.")
+                logger.warning(
+                    "Create a '.env' file with AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to enable S3 uploads."
+                )
                 logger.warning("Skipping S3 upload")
                 return
 
@@ -92,6 +95,7 @@ def save_outputs(
             )
 
             # Test bucket access
+            error_code = None
             try:
                 s3_client.head_bucket(Bucket=s3_config["bucket"])
             except ClientError as e:
@@ -120,18 +124,21 @@ def save_outputs(
             # Upload signals
             for name, df in signals.items():
                 csv_buffer = df.to_csv(index=False).encode()
-                s3_client.put_object(
-                    Bucket=s3_config["bucket"],
-                    Key=f"{name}.csv",
-                    Body=csv_buffer,
-                    ACL=s3_config["acl"],
-                    ContentType=s3_config["content_type"],
-                    ContentDisposition=s3_config["content_disposition"],
-                )
-            logger.info(f"Uploaded {name} to S3 bucket {s3_config['bucket']}")
+                try:
+                    s3_client.put_object(
+                        Bucket=s3_config["bucket"],
+                        Key=f"{name}.csv",
+                        Body=csv_buffer,
+                        ACL=s3_config["acl"],
+                        ContentType=s3_config["content_type"],
+                        ContentDisposition=s3_config["content_disposition"],
+                    )
+                    logger.info(f"Uploaded {name} to S3 bucket {s3_config['bucket']}")
+                except Exception as e:
+                    logger.warning(f"Error uploading {name} to S3: {str(e)}")
 
         except Exception as e:
-            logger.warning(f"Error uploading to S3: {str(e)}")
+            logger.warning(f"Error uploading to S3 (biases): {str(e)}")
             logger.warning("Continuing with local files only")
 
 

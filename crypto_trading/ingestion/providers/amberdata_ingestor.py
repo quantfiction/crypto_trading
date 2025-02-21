@@ -1,10 +1,12 @@
+"""Ingestor for Amberdata exchange reference data"""
+
 import logging
 from pathlib import Path
 import pandas as pd
-from duckdb import DuckDBPyConnection
+from sqlalchemy import text
+
 from crypto_trading.ingestion.ingestor import BaseIngestor
 from crypto_trading.ingestion.providers.amberdata import AmberdataHandler
-from sqlalchemy import text
 
 
 class AmberdataOHLCVIngestor(BaseIngestor):
@@ -13,13 +15,16 @@ class AmberdataOHLCVIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        db_config = {
+            "db_type": "duckdb",
+            "path": f"{data_path}/crypto_data.db",
+        }
         super().__init__(db_config)
         self.handler = AmberdataHandler()
 
-    def create_ohlcv_table(self, connection) -> None:
+    def create_ohlcv_table(self, connection):
         """Create OHLCV table with proper schema"""
-        self.create_schema(connection)
+        self.create_schema(connection, "amberdata")
         connection.execute(
             text(
                 """
@@ -91,7 +96,7 @@ class AmberdataOHLCVIngestor(BaseIngestor):
         """Get list of active perpetual contracts"""
         query = text(
             """
-            SELECT er.exchange, er.instrument
+            SELECT er.exchange, er.instrument 
             FROM amberdata.exchange_reference er
             JOIN amberdata.ohlcv_info_futures oif
                 ON er.exchange = oif.exchange
@@ -159,12 +164,15 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        db_config = {
+            "db_type": "duckdb",
+            "path": f"{data_path}/crypto_data.db",
+        }
         super().__init__(db_config)
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]
 
-    def create_info_table(self, connection) -> None:
+    def create_info_table(self, connection):
         """Create OHLCV info table with proper schema"""
         connection.execute(
             text(
@@ -228,41 +236,6 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
 
         self.db_handler.execute_transaction([transaction_operations])
 
-    def ingest_ohlcv_info(self) -> None:
-        """Main method to ingest OHLCV information for futures contracts"""
-        try:
-            for exchange in self.exchanges:
-                self.logger.info(f"Processing OHLCV info for exchange: {exchange}")
-                try:
-                    response = self.handler.get_ohlcv_info_futures(
-                        exchange=exchange,
-                        include_inactive=True,
-                        time_format="ms",
-                        time_interval="days",
-                    )
-
-                    if not response.empty:
-                        df_info = response[
-                            [
-                                "exchange",
-                                "instrument",
-                                "trading_start_date",
-                                "trading_end_date",
-                                "active",
-                            ]
-                        ].assign(updated_at=pd.Timestamp.now(tz="UTC"))
-
-                        self.store_data(df_info)
-
-                except Exception as e:
-                    self.logger.error(
-                        f"Error processing OHLCV info for {exchange}: {e}"
-                    )
-
-        except Exception as e:
-            self.logger.error(f"Error ingesting OHLCV info: {e}")
-            raise
-
 
 class AmberdataExchangeReferenceIngestor(BaseIngestor):
     """Ingestor for Amberdata exchange reference data"""
@@ -270,7 +243,10 @@ class AmberdataExchangeReferenceIngestor(BaseIngestor):
     def __init__(self, data_path: Path = None):
         if data_path is None:
             data_path = Path(__file__).parents[3] / "data"
-        db_config = {"connection_string": f"duckdb:///{data_path}/crypto_data.db"}
+        db_config = {
+            "db_type": "duckdb",
+            "path": f"{data_path}/crypto_data.db",
+        }
         super().__init__(db_config)
         self.handler = AmberdataHandler()
         self.exchanges = ["binance", "bybit"]

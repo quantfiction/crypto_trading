@@ -91,17 +91,17 @@ class SignalGenerator:
                 LatestDatePerInstrument ldi
             ON
                 ohlcv.instrument = ldi.instrument
-                AND ohlcv.datetime = ldi.latest_datetime
+            AND ohlcv.datetime = ldi.latest_datetime
             JOIN
                 amberdata.ohlcv_info_futures info
             ON
                 ohlcv.exchange = info.exchange
-                AND ohlcv.instrument = info.instrument
+            AND ohlcv.instrument = info.instrument
             JOIN
                 amberdata.exchange_reference ref
             ON
                 ohlcv.exchange = ref.exchange
-                AND ohlcv.instrument = ref.instrument
+            AND ohlcv.instrument = ref.instrument
             WHERE
                 info.active = true
                 AND ref.exchange_enabled = true
@@ -313,58 +313,53 @@ class SignalGenerator:
         Returns:
             DataFrame with market bias calculations
         """
-        try:
-            # Calculate trend metrics
-            trend_features = [
-                "pos_in_range_3",
-                "pos_in_range_7",
-                "pos_in_range_30",
-                "aroon_10",
-                "aroon_30",
-                "cmema_3_12",
-            ]
+        # Calculate trend metrics
+        trend_features = [
+            "pos_in_range_3",
+            "pos_in_range_7",
+            "pos_in_range_30",
+            "aroon_10",
+            "aroon_30",
+            "cmema_3_12",
+        ]
 
-            # Normalize features to 0-1 range
-            df_normalized = df_recent.copy()
+        # Normalize features to 0-1 range
+        df_normalized = df_recent.copy()
 
-            # Normalize Aroon indicators
-            df_normalized = normalize_0_1(
-                df_normalized,
-                cols=["aroon_10", "aroon_30"],
-                min_value=-100,
-                max_value=100,
-            )
+        # Normalize Aroon indicators
+        df_normalized = normalize_0_1(
+            df_normalized,
+            cols=["aroon_10", "aroon_30"],
+            min_value=-100,
+            max_value=100,
+        )
 
-            # Normalize CMEMA
-            df_normalized = normalize_0_1(
-                df_normalized, cols=["cmema_3_12"], min_value=-2, max_value=2
-            )
+        # Normalize CMEMA
+        df_normalized = normalize_0_1(
+            df_normalized, cols=["cmema_3_12"], min_value=-2, max_value=2
+        )
 
-            # Calculate mean trend score
-            trend_score = df_normalized[trend_features].mean(axis=1)
-            avg_trend = trend_score.mean()
+        # Calculate mean trend score
+        trend_score = df_normalized[trend_features].mean(axis=1)
+        avg_trend = trend_score.mean()
 
-            # Calculate range metrics
-            range_score = 1 - min_max_norm(
-                df_recent["range_perc_rel"], min_value=-1.5, max_value=1.5
-            )
-            avg_range = range_score.mean()
+        # Calculate range metrics
+        range_score = 1 - min_max_norm(
+            df_recent["range_perc_rel"], min_value=-1.5, max_value=1.5
+        )
+        avg_range = range_score.mean()
 
-            # Compile biases
-            biases = pd.Series(
-                {
-                    "Bull": avg_trend,
-                    "Bear": 1 - avg_trend,
-                    "Trend": avg_range,
-                    "Chop": 1 - avg_range,
-                }
-            )
+        # Compile biases
+        biases = pd.Series(
+            {
+                "Bull": avg_trend,
+                "Bear": 1 - avg_trend,
+                "Trend": avg_range,
+                "Chop": 1 - avg_range,
+            }
+        )
 
-            return biases.to_frame()
-
-        except Exception as e:
-            logger.error(f"Error calculating market biases: {str(e)}")
-            raise
+        return biases.to_frame()
 
     def save_tradingview_watchlists(
         self, signals: Dict[str, pd.DataFrame], output_path: Path
@@ -440,11 +435,20 @@ class SignalGenerator:
             Tuple of (market biases, signal DataFrames)
         """
         try:
+            # Ensure we have highest volume exchanges
+            if self.highest_volume_exchanges is None:
+                self.fetch_highest_volume_exchanges()
+
             signals = {}
 
             # Filter for latest data
             latest_date = features["datetime"].max()
             df_recent = features[features["datetime"] == latest_date].copy()
+
+            # Add exchange column
+            df_recent["exchange"] = df_recent["instrument"].apply(
+                lambda x: self.highest_volume_exchanges.get(x)
+            )
 
             # Get output configuration
             output_config = self.config.get_output_config()
@@ -490,7 +494,7 @@ class SignalGenerator:
                 & (df_recent["range_perc_rel"] < breakout_config["range_perc_rel_max"])
                 & (df_recent["aroon_10"] >= breakout_config["aroon_min"])
                 & (df_recent["aroon_30"] >= breakout_config["aroon_min"])
-            ].sort_values(["pos_in_range_30", "aroon_30"], ascending=False)
+            ]
 
             # Generate breakdown signals
             breakdown_config = self.signals_config["breakdown"]
@@ -505,9 +509,7 @@ class SignalGenerator:
                 & (df_recent["low_distance"] < breakdown_config["low_distance_max"])
                 & (df_recent["aroon_10"] <= breakdown_config["aroon_10_max"])
                 & (df_recent["aroon_30"] <= breakdown_config["aroon_30_max"])
-            ].sort_values(
-                ["range_perc_rel", "low_distance", "pos_in_range_30", "aroon_30"]
-            )
+            ]
 
             # Generate rip fade signals
             rip_fade_config = self.signals_config["rip_fade"]
@@ -521,10 +523,7 @@ class SignalGenerator:
                     df_recent["aroon_30"]
                     <= rip_fade_config["aroon_conditions"]["aroon_30_max"]
                 )
-            ].sort_values(
-                ["range_perc_rel", "pos_in_range_30", "aroon_30"],
-                ascending=[False, True, True],
-            )
+            ]
 
             # Generate dip buy signals
             dip_buy_config = self.signals_config["dip_buy"]
@@ -538,10 +537,7 @@ class SignalGenerator:
                     df_recent["aroon_30"]
                     >= dip_buy_config["aroon_conditions"]["aroon_30_min"]
                 )
-            ].sort_values(
-                ["range_perc_rel", "pos_in_range_30", "aroon_30"],
-                ascending=[False, False, False],
-            )
+            ]
 
             # Generate trend ranking signals
             trend_features = [
@@ -572,18 +568,16 @@ class SignalGenerator:
             # Long-term trend signals
             signals["top_lt_trend"] = (
                 df_recent.dropna(subset=["pos_in_range_100"])
-                .query("pos_in_range_100 >= 0.75")
-                .sort_values("pos_in_range_100", ascending=False)[
-                    ["instrument", "range_perc_pred", "pos_in_range_100"]
+                .query("pos_in_range_100 >= 0.75")[
+                    ["instrument", "range_perc_pred", "pos_in_range_100", "exchange"]
                 ]
                 .head(20)
             )
 
             signals["bottom_lt_trend"] = (
                 df_recent.dropna(subset=["pos_in_range_100"])
-                .query("pos_in_range_100 <= 0.25")
-                .sort_values("pos_in_range_100", ascending=True)[
-                    ["instrument", "range_perc_pred", "pos_in_range_100"]
+                .query("pos_in_range_100 <= 0.25")[
+                    ["instrument", "range_perc_pred", "pos_in_range_100", "exchange"]
                 ]
                 .head(20)
             )
@@ -599,4 +593,4 @@ class SignalGenerator:
 
         except Exception as e:
             logger.error(f"Error generating signals: {str(e)}")
-            raise
+            pass
