@@ -1,5 +1,5 @@
 import logging
-from crypto_trading.ingestion.providers.amberdata_ingestor import (
+from crypto_trading.ingestion.amberdata.amberdata_ingestor import (
     AmberdataExchangeReferenceIngestor,
 )
 

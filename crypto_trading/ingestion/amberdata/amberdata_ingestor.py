@@ -6,7 +6,7 @@ import pandas as pd
 from sqlalchemy import text
 
 from crypto_trading.ingestion.ingestor import BaseIngestor
-from crypto_trading.ingestion.providers.amberdata import AmberdataHandler
+from crypto_trading.ingestion.amberdata.amberdata import AmberdataHandler
 
 
 class AmberdataOHLCVIngestor(BaseIngestor):

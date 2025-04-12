@@ -5,7 +5,7 @@ source /home/quantfiction/.bashrc
 
 # Set absolute paths
 REPO_PATH="/home/quantfiction/repositories/crypto_trading"
-VENV_PATH="/home/quantfiction/.local/share/virtualenvs/crypto_trading-pCflR77s"
+VENV_PATH="$REPO_PATH/.venv"
 LOG_PATH="$REPO_PATH/logs"
 
 # Ensure log directory exists

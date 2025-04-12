@@ -1,5 +1,5 @@
 import logging
-from crypto_trading.ingestion.providers.amberdata_ingestor import AmberdataOHLCVIngestor
+from crypto_trading.ingestion.amberdata.amberdata_ingestor import AmberdataOHLCVIngestor
 
 # Configure logging
 logging.basicConfig(
