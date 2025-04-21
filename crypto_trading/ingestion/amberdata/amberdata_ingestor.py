@@ -236,6 +236,24 @@ class AmberdataOHLCVInfoIngestor(BaseIngestor):
 
         self.db_handler.execute_transaction([transaction_operations])
 
+    def ingest_ohlcv_info(self):
+        """Fetch, validate, and store OHLCV info data."""
+        # Fetch data from the handler using the corrected method
+        # This fetches info for all exchanges by default
+        data = self.handler.get_ohlcv_info_futures(
+            include_inactive=True
+        )  # Explicitly include inactive
+
+        # Validate and store the data
+        if data is not None and not data.empty:
+            # Add the updated_at column before storing
+            data["updated_at"] = pd.Timestamp.now(tz="UTC")
+            self.store_data(data)
+        else:
+            logging.warning(
+                "No data fetched or empty DataFrame returned for OHLCV info."
+            )
+
 
 class AmberdataExchangeReferenceIngestor(BaseIngestor):
     """Ingestor for Amberdata exchange reference data"""

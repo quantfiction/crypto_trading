@@ -8,6 +8,14 @@ from dotenv import dotenv_values, find_dotenv
 import pandas as pd
 import re
 
+# Configure logging to display debug messages
+logging.basicConfig(level=logging.INFO)
+
+# Load environment variables from .env file
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class AmberdataHandler:
     def __init__(self):
@@ -19,6 +27,7 @@ class AmberdataHandler:
             "x-api-key": self.config.get("AMBERDATA_API_KEY"),
         }
         self.logger = logging.getLogger(__name__)
+        logging.debug(self.headers)
 
     def _load_config(self) -> Dict:
         """Load and validate configuration"""
@@ -51,10 +60,13 @@ class AmberdataHandler:
                     # Handle potential overflow by capping values
                     max_timestamp = 2**53 - 1  # JavaScript max safe integer
                     df[column] = df[column].where(df[column] <= max_timestamp, pd.NaT)
-                    df[column] = pd.to_datetime(df[column], unit=unit, errors="coerce")
+                    # Convert to datetime and immediately localize to UTC
+                    df[column] = pd.to_datetime(
+                        df[column], unit=unit, errors="coerce"
+                    ).dt.tz_localize("UTC")
                 except Exception as e:
                     logging.warning(f"Error converting {column} to datetime: {e}")
-                    df[column] = pd.NaT
+                    df[column] = pd.NaT  # Keep NaT as timezone-naive
         return df
 
     @retry(
@@ -65,6 +77,7 @@ class AmberdataHandler:
         url = urljoin(self.base_url, endpoint)
         try:
             response = requests.get(url, headers=self.headers, params=params)
+            self.logger.debug(f"API response: {response.status_code} - {response.text}")
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
@@ -118,65 +131,121 @@ class AmberdataHandler:
     def get_ohlcv_info_futures(
         self,
         exchange: Optional[str] = None,
+        instrument: Optional[str] = None,
         include_inactive: bool = True,
-        time_format: str = "iso8601",
-        time_interval: str = "days",
-        url: Optional[str] = None,
     ) -> pd.DataFrame:
-        """Get OHLCV information for futures contracts
+        """Get OHLCV information for futures contracts from Amberdata.
+
+        Fetches information about available OHLCV data ranges for futures
+        instruments, including trading start/end dates. Handles pagination
+        automatically and formats data for the ohlcv_info_futures table.
 
         Args:
-            exchange: Exchange name (optional if url is provided)
-            include_inactive: Include inactive instruments
-            time_format: Time format for timestamps
-            time_interval: Time interval for OHLCV data
-            url: Direct URL for pagination (optional)
+            exchange (Optional[str]): Comma-separated list of exchanges to filter by.
+                                      Defaults to all exchanges.
+            instrument (Optional[str]): Instrument symbol to filter by.
+            include_inactive (bool): Whether to include inactive instruments.
+                                     Defaults to True.
 
         Returns:
-            DataFrame containing OHLCV information
+            pd.DataFrame: A DataFrame containing OHLCV information with columns:
+                          exchange, instrument, trading_start_date,
+                          trading_end_date, active. Returns empty DataFrame on error
+                          or if no data is found.
         """
         list_info = []
         total_records = 0
-        current_url = url or f"markets/futures/ohlcv/information"
+        # Start with the relative path for the first request
+        current_url_or_path = "/markets/futures/ohlcv/information"
+        # Build initial parameters dynamically
+        initial_params = {"includeInactive": str(include_inactive).lower()}
+        if exchange:
+            initial_params["exchange"] = exchange
+        if instrument:
+            initial_params["instrument"] = instrument
 
-        while current_url:
+        self.logger.info(f"Fetching OHLCV info with params: {initial_params}")
+
+        while current_url_or_path:
             try:
-                params = {}
-                if not url:
-                    if not exchange:
-                        raise ValueError("Exchange must be provided when not using URL")
-                    params = {
-                        "exchange": exchange,
-                        "includeInactive": "true" if include_inactive else "false",
-                        "timeFormat": time_format,
-                        "timeInterval": time_interval,
-                    }
+                response_json = None
+                # Use requests.get directly for absolute pagination URLs
+                if current_url_or_path.startswith("http"):
+                    self.logger.debug(
+                        f"Fetching paginated data from: {current_url_or_path}"
+                    )
+                    response = requests.get(
+                        current_url_or_path, headers=self.headers, timeout=30
+                    )  # Added timeout
+                    response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+                    response_json = response.json()
+                # Use _fetch_data for the initial relative path request
+                else:
+                    self.logger.debug(
+                        f"Fetching initial data from path: {current_url_or_path}"
+                    )
+                    # _fetch_data handles retries and base URL joining
+                    response_json = self._fetch_data(
+                        current_url_or_path, initial_params
+                    )
 
-                response = self._fetch_data(current_url, params)
-                payload = response.get("payload", {})
+                if not response_json:
+                    self.logger.warning("Received empty response, stopping pagination.")
+                    break  # Exit if response is unexpectedly empty
+
+                payload = response_json.get("payload", {})
                 data = payload.get("data", [])
 
                 if data:
                     chunk_info = pd.DataFrame(data)
                     list_info.append(chunk_info)
                     total_records += len(chunk_info)
+                    self.logger.debug(
+                        f"Fetched {len(chunk_info)} records, total: {total_records}"
+                    )
+                else:
+                    self.logger.debug("No data found in this page.")
 
-                current_url = payload.get("metadata", {}).get("next")
-                time.sleep(0.5)  # Rate limiting
+                # Get the full 'next' URL from metadata for pagination
+                current_url_or_path = payload.get("metadata", {}).get("next")
+                if current_url_or_path:
+                    self.logger.debug(f"Next page URL found: {current_url_or_path}")
+                    time.sleep(0.5)  # Rate limiting
+                else:
+                    self.logger.debug("No next page URL found, pagination complete.")
+                    current_url_or_path = None  # End of pagination
 
+            except requests.exceptions.RequestException as e:
+                self.logger.error(f"HTTP request failed during OHLCV info fetch: {e}")
+                break  # Exit loop on HTTP error
             except Exception as e:
-                self.logger.error(f"Error processing data: {e}")
-                break
+                # Catch other potential errors (e.g., JSON decoding, processing)
+                self.logger.error(
+                    f"Error processing data fetching OHLCV info: {e}", exc_info=True
+                )
+                break  # Exit loop on processing error
 
-        self.logger.info(f"Total records fetched: {total_records}")
+        self.logger.info(f"Total OHLCV info records fetched: {total_records}")
 
-        if list_info:
+        if not list_info:
+            self.logger.warning("No OHLCV info records were fetched.")
+            return pd.DataFrame()  # Return empty DataFrame if no data fetched
+
+        try:
             df_info = (
                 pd.concat(list_info, axis=0, ignore_index=True)
                 .pipe(self.convert_df_columns_to_snake_case)
+                # Ensure 'start_date' and 'end_date' exist before conversion
                 .pipe(
-                    self.convert_df_columns_to_datetime,
-                    columns=["start_date", "end_date"],
+                    lambda df: self.convert_df_columns_to_datetime(
+                        df,
+                        columns=[
+                            col
+                            for col in ["start_date", "end_date"]
+                            if col in df.columns
+                        ],
+                        unit="ms",  # API default is ms
+                    )
                 )
                 .rename(
                     columns={
@@ -185,8 +254,53 @@ class AmberdataHandler:
                     }
                 )
             )
-            return df_info
-        return pd.DataFrame()
+
+            # Add the 'active' column based on trading_end_date
+            # Active if end date is NaT (null) or in the future
+            if "trading_end_date" in df_info.columns:
+                now = pd.Timestamp.now(tz="UTC")  # Use timezone-aware comparison
+                df_info["active"] = (df_info["trading_end_date"].isna()) | (
+                    df_info["trading_end_date"] > now
+                )
+            else:
+                # If end_date wasn't in the response, cannot determine active status reliably
+                self.logger.warning(
+                    "Column 'end_date' not found in API response. Cannot determine 'active' status."
+                )
+                df_info["active"] = pd.NA  # Assign NA if calculation isn't possible
+
+            # Select and reorder columns to match the target schema
+            target_columns = [
+                "exchange",
+                "instrument",
+                "trading_start_date",
+                "trading_end_date",
+                "active",
+            ]
+            # Ensure all target columns exist, adding missing ones as NA
+            for col in target_columns:
+                if col not in df_info.columns:
+                    self.logger.warning(
+                        f"Target column '{col}' not found in source data. Adding as NA."
+                    )
+                    df_info[col] = pd.NA
+
+            # Filter out rows where essential columns might be missing after fetch/conversion
+            # Important to do this *after* adding potentially missing columns
+            initial_rows = len(df_info)
+            df_info.dropna(subset=["exchange", "instrument"], inplace=True)
+            if len(df_info) < initial_rows:
+                self.logger.warning(
+                    f"Dropped {initial_rows - len(df_info)} rows due to missing 'exchange' or 'instrument'."
+                )
+
+            return df_info[target_columns]
+
+        except Exception as e:
+            self.logger.error(
+                f"Failed to process concatenated OHLCV info data: {e}", exc_info=True
+            )
+            return pd.DataFrame()  # Return empty DataFrame on processing error
 
     def get_ohlcv_data_futures(
         self,
@@ -197,7 +311,7 @@ class AmberdataHandler:
         time_interval: str = "days",
     ) -> pd.DataFrame:
         """Get OHLCV data for futures instruments"""
-        endpoint = f"/market/futures/ohlcv/exchange/{exchange}/historical"
+        endpoint = f"/markets/futures/ohlcv/exchange/{exchange}/historical"
         params = {
             "instrument": instrument,
             "startDate": start_date,
