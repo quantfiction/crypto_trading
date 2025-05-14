@@ -1,5 +1,6 @@
 import logging
 import time
+from datetime import timedelta as td
 from typing import List, Dict, Optional, Union
 from urllib.parse import urljoin
 import requests
@@ -49,24 +50,59 @@ class AmberdataHandler:
 
     @staticmethod
     def convert_df_columns_to_datetime(
-        df: pd.DataFrame, columns: List[str], unit: str = "ms"
+        df: pd.DataFrame,
+        columns: List[str],
+        unit: Optional[str] = None,  # Make unit optional
     ) -> pd.DataFrame:
-        """Convert specified columns to datetime with error handling"""
+        """Convert specified columns to datetime, handling numeric and string types."""
         for column in columns:
             if column in df.columns:
+                # Skip if column is already all NaT to avoid dtype issues
+                if df[column].isnull().all():
+                    continue
                 try:
-                    # Convert to numeric first to handle potential string values
-                    df[column] = pd.to_numeric(df[column], errors="coerce")
-                    # Handle potential overflow by capping values
-                    max_timestamp = 2**53 - 1  # JavaScript max safe integer
-                    df[column] = df[column].where(df[column] <= max_timestamp, pd.NaT)
-                    # Convert to datetime and immediately localize to UTC
-                    df[column] = pd.to_datetime(
-                        df[column], unit=unit, errors="coerce"
-                    ).dt.tz_localize("UTC")
+                    col_dtype = df[column].dtype
+                    if pd.api.types.is_datetime64_any_dtype(col_dtype):
+                        # Already datetime, ensure it's timezone-naive
+                        if df[column].dt.tz is not None:
+                            df[column] = df[column].dt.tz_localize(None)
+                    elif pd.api.types.is_numeric_dtype(col_dtype):
+                        # Handle numeric types (e.g., Unix timestamps)
+                        # unit parameter is crucial here if data is numeric
+                        if unit is None:
+                            logging.warning(
+                                f"Numeric column {column} requires 'unit' for conversion. Skipping conversion."
+                            )
+                            # Keep numeric or coerce to NaT if needed elsewhere, but don't convert here without unit
+                            continue  # Skip conversion for this column
+                        # Convert to timezone-naive datetime
+                        df[column] = pd.to_datetime(
+                            df[column], unit=unit, errors="coerce"  # Removed utc=True
+                        )
+                    elif pd.api.types.is_string_dtype(
+                        col_dtype
+                    ) or pd.api.types.is_object_dtype(col_dtype):
+                        # Handle string types (e.g., ISO8601) - infer format
+                        # Convert to timezone-naive datetime
+                        # Convert string/object, inferring format
+                        dt_series = pd.to_datetime(df[column], errors="coerce")
+                        # Explicitly make it timezone-naive if timezone was inferred
+                        if dt_series.dt.tz is not None:
+                            df[column] = dt_series.dt.tz_localize(None)
+                        else:
+                            df[column] = dt_series
+                    else:
+                        logging.warning(
+                            f"Unhandled dtype {col_dtype} for column {column}. Coercing to NaT."
+                        )
+                        df[column] = pd.Series([pd.NaT] * len(df), index=df.index)
+
                 except Exception as e:
-                    logging.warning(f"Error converting {column} to datetime: {e}")
-                    df[column] = pd.NaT  # Keep NaT as timezone-naive
+                    # Log error and coerce column to NaT to prevent downstream issues
+                    logging.warning(
+                        f"Error converting {column} to datetime: {e}. Coercing to NaT."
+                    )
+                    df[column] = pd.Series([pd.NaT] * len(df), index=df.index)
         return df
 
     @retry(
@@ -77,9 +113,15 @@ class AmberdataHandler:
         url = urljoin(self.base_url, endpoint)
         try:
             response = requests.get(url, headers=self.headers, params=params)
-            self.logger.debug(f"API response: {response.status_code} - {response.text}")
-            response.raise_for_status()
-            return response.json()
+            self.logger.debug(f"API response: {response.status_code}")
+            response.raise_for_status()  # Raise HTTP errors first
+            json_data = response.json()  # Parse JSON response
+            payload = json_data.get("payload", {})  # Access payload from JSON
+            data_list = payload.get("data", [])  # Access data from payload
+            self.logger.info(
+                f"Number of records retrieved: {len(data_list)}"
+            )  # Log count
+            return json_data  # Return parsed JSON
         except requests.exceptions.RequestException as e:
             self.logger.error(f"API request failed: {e}")
             raise
@@ -158,7 +200,10 @@ class AmberdataHandler:
         # Start with the relative path for the first request
         current_url_or_path = "/markets/futures/ohlcv/information"
         # Build initial parameters dynamically
-        initial_params = {"includeInactive": str(include_inactive).lower()}
+        initial_params = {
+            "includeInactive": str(include_inactive).lower(),
+            "timeInterval": "minutes",
+        }
         if exchange:
             initial_params["exchange"] = exchange
         if instrument:
@@ -258,9 +303,11 @@ class AmberdataHandler:
             # Add the 'active' column based on trading_end_date
             # Active if end date is NaT (null) or in the future
             if "trading_end_date" in df_info.columns:
-                now = pd.Timestamp.now(tz="UTC")  # Use timezone-aware comparison
+                cutoff = pd.Timestamp.now(tz=None) - td(
+                    hours=24
+                )  # Use timezone-aware comparison
                 df_info["active"] = (df_info["trading_end_date"].isna()) | (
-                    df_info["trading_end_date"] > now
+                    df_info["trading_end_date"] > cutoff
                 )
             else:
                 # If end_date wasn't in the response, cannot determine active status reliably
@@ -295,7 +342,6 @@ class AmberdataHandler:
                 )
 
             return df_info[target_columns]
-
         except Exception as e:
             self.logger.error(
                 f"Failed to process concatenated OHLCV info data: {e}", exc_info=True
@@ -310,29 +356,86 @@ class AmberdataHandler:
         end_date: str,
         time_interval: str = "days",
     ) -> pd.DataFrame:
-        """Get OHLCV data for futures instruments"""
-        endpoint = f"/markets/futures/ohlcv/exchange/{exchange}/historical"
+        """Get OHLCV data for multiple futures instruments using the batch endpoint."""
+        endpoint = f"/markets/futures/batch-ohlcv/{exchange}"
         params = {
-            "instrument": instrument,
+            "instruments": instrument,  # Corrected parameter name
             "startDate": start_date,
             "endDate": end_date,
             "timeInterval": time_interval,
+            "timeFormat": "iso8601",  # Explicitly set timeFormat
         }
+        self.logger.info(
+            f"Fetching batch OHLCV data from {endpoint} for exchange {exchange}"
+        )
+        self.logger.debug(f"Batch OHLCV params: {params}")
+
+        all_instrument_data = []
 
         try:
             response = self._fetch_data(endpoint, params)
-            if response.get("payload", {}).get("data"):
-                data = response["payload"]["data"]
-                df_ohlcv_data_futures = (
-                    pd.DataFrame(data)
-                    .rename(columns={"timestamp": "datetime"})
-                    .pipe(self.convert_df_columns_to_snake_case)
-                    .pipe(self.convert_df_columns_to_datetime, ["datetime"])
-                    .assign(exchange=exchange)
-                )
+            payload = response.get("payload", {})
+            # Expecting a flat list of records based on example response
+            data_list = payload.get("data", [])
 
-                return df_ohlcv_data_futures
-            return pd.DataFrame()
+            if not data_list:
+                self.logger.warning(
+                    f"No data returned in payload's data list for batch request to {endpoint}"
+                )
+                return pd.DataFrame()
+
+            self.logger.debug(f"Type of data_list: {type(data_list)}")
+            # self.logger.debug(
+            #     f"Content of data_list (first 500 chars): {str(data_list)[:500]}"
+            # )
+
+            # Create DataFrame directly from the list
+            df_ohlcv_data_futures = (
+                pd.DataFrame(data_list)
+                # Rename the timestamp column based on example response
+                .rename(columns={"exchangeTimestamp": "datetime"})
+                .pipe(self.convert_df_columns_to_snake_case)
+                # Ensure 'datetime' column exists before conversion
+                .pipe(
+                    lambda df: self.convert_df_columns_to_datetime(
+                        df,
+                        # Ensure 'datetime' column exists after rename before conversion
+                        columns=[col for col in ["datetime"] if col in df.columns],
+                        # Use 'iso' unit for pd.to_datetime when source is ISO8601 string
+                        # Or let pandas infer if format is consistent
+                        # Let's try letting pandas infer first. If issues, specify format.
+                        # unit="ms", # unit='ms' is for integer timestamps
+                    )
+                )
+                .assign(exchange=exchange)  # Add exchange column
+            )
+
+            # Reorder columns to a standard format if needed, ensuring essential ones are present
+            final_columns = [
+                "exchange",
+                "instrument",
+                "datetime",
+                "open",
+                "high",
+                "low",
+                "close",
+                "volume",
+            ]
+            # Add missing columns as NA
+            for col in final_columns:
+                if col not in df_ohlcv_data_futures.columns:
+                    self.logger.warning(
+                        f"Column '{col}' missing in batch OHLCV response. Adding as NA."
+                    )
+                    df_ohlcv_data_futures[col] = pd.NA
+
+            return df_ohlcv_data_futures[
+                final_columns
+            ]  # Return with consistent column order
+
         except Exception as e:
-            self.logger.error(f"Failed to fetch OHLCV data: {e}")
-            raise
+            self.logger.error(
+                f"Failed to fetch or process batch OHLCV data: {e}", exc_info=True
+            )
+            # Do not re-raise here, return empty DataFrame as per original logic flow
+            return pd.DataFrame()

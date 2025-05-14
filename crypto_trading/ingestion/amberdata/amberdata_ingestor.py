@@ -102,7 +102,7 @@ class AmberdataOHLCVIngestor(BaseIngestor):
                 ON er.exchange = oif.exchange
                 AND er.instrument = oif.instrument
             WHERE er.contract_period = 'perpetual'
-                AND oif.trading_end_date > CAST(:start_date AS TIMESTAMP)
+                AND (oif.trading_end_date IS NULL OR oif.trading_end_date > CAST(:start_date AS TIMESTAMP))
             """
         )
         with self.db_handler.engine.connect() as connection:
@@ -124,8 +124,9 @@ class AmberdataOHLCVIngestor(BaseIngestor):
         return self.handler.get_ohlcv_data_futures(
             exchange=exchange,
             instrument=instrument_str,
-            start_date=start_date.strftime("%Y-%m-%d"),
-            end_date=end_date.strftime("%Y-%m-%d"),
+            # Format dates as ISO8601 UTC strings
+            start_date=start_date.strftime("%Y-%m-%dT%H:%M:%SZ"),
+            end_date=end_date.strftime("%Y-%m-%dT%H:%M:%SZ"),
             time_interval="days",
         )
 
@@ -135,6 +136,9 @@ class AmberdataOHLCVIngestor(BaseIngestor):
             # Calculate date range
             end_date = pd.Timestamp.now(tz="UTC")
             start_date = end_date - pd.Timedelta(days=days)
+            self.logger.info(
+                f"Using end_date: {end_date} and start_date: {start_date} for data fetching"
+            )
 
             # Get active contracts
             contracts_df = self.get_active_contracts(start_date)
@@ -149,6 +153,11 @@ class AmberdataOHLCVIngestor(BaseIngestor):
                 def process_batch(batch: list):
                     df = self.fetch_ohlcv_data(exchange, batch, start_date, end_date)
                     if not df.empty:
+                        min_date = df["datetime"].min()
+                        max_date = df["datetime"].max()
+                        self.logger.info(
+                            f"Fetched data covers date range: {min_date} to {max_date}"
+                        )
                         self.store_data(df)
 
                 self.process_batch(instruments, 50, process_batch, "instruments")
