@@ -571,6 +571,7 @@ class SignalGenerator:
                 .query("pos_in_range_100 >= 0.75")[
                     ["instrument", "range_perc_pred", "pos_in_range_100", "exchange"]
                 ]
+                .sort_values('pos_in_range_100', ascending=False)
                 .head(20)
             )
 
@@ -579,6 +580,7 @@ class SignalGenerator:
                 .query("pos_in_range_100 <= 0.25")[
                     ["instrument", "range_perc_pred", "pos_in_range_100", "exchange"]
                 ]
+                .sort_values('pos_in_range_100', ascending=True)
                 .head(20)
             )
 
