@@ -95,3 +95,4 @@ target/
 
 # Cline rules files
 .clinerules*
+.python-version

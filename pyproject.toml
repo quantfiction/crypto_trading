@@ -21,7 +21,6 @@ dependencies = [
     "hvplot",
     "pyparsing",
     "plotly",
-    "arcticdb",
     "dtale",
     "ipywidgets",
     "arch",
@@ -35,7 +34,8 @@ dependencies = [
     "pybit",
     "toml",
     "rich",
-    "kaleido==0.2.1"
+    "kaleido==0.2.1",
+    "marimo[recommended]",
 ]
 requires-python = ">=3.11"
 

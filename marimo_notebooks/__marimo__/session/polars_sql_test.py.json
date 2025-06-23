@@ -1,0 +1,378 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.14.1"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "23a58f635f4ceee4d2b4be10e4b20b7b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"imports\">Imports</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "250ebb0a95b5f4b9d91a90e656f55ccf",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "bb1207a5c9979e0a818a335a6e4c9eb5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"config-params\">Config / Params</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "15de65f4d3b8c09d6523213e821b1669",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "0535d2cb2996626d78e20fb553d87819",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "26464903760a0d161153aaa3af0a5462",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"inputs\">Inputs</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "932d445edcc69b83ae6565de385f8075",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "fef2d04164a7d58a9055b2f05a250311",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "1b14cbd39e76217eae294c065e582232",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "886fedd1ea676b1d5a3d9031ffefe605",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"database-functions\">Database Functions</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "03db4030bf427f2e7c4a77de98c92fae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "aa2ae922ed5a7a3a4a12b5d7b8d14c15",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"get-data\">Get Data</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "6e85c72e935ac62354e6e6d7f1772a9d",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='Hstk-0' random-id='86517e98-008c-03c3-ea46-9875754c0cc9'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2025-05-24 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8522,&#92;&quot;high&#92;&quot;:0.8574,&#92;&quot;low&#92;&quot;:0.8522,&#92;&quot;close&#92;&quot;:0.8536,&#92;&quot;base_volume&#92;&quot;:55291.0,&#92;&quot;quote_volume&#92;&quot;:47294.2465,&#92;&quot;base_volume_buy&#92;&quot;:32353.0,&#92;&quot;quote_volume_buy&#92;&quot;:27679.9217,&#92;&quot;vwap&#92;&quot;:0.8553697075473404,&#92;&quot;quote_volume_delta&#92;&quot;:8065.596899999997},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2025-05-24 00:01:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8536,&#92;&quot;high&#92;&quot;:0.8574,&#92;&quot;low&#92;&quot;:0.8535,&#92;&quot;close&#92;&quot;:0.8559,&#92;&quot;base_volume&#92;&quot;:28009.0,&#92;&quot;quote_volume&#92;&quot;:23960.9373,&#92;&quot;base_volume_buy&#92;&quot;:22078.0,&#92;&quot;quote_volume_buy&#92;&quot;:18893.8786,&#92;&quot;vwap&#92;&quot;:0.855472787318362,&#92;&quot;quote_volume_delta&#92;&quot;:13826.819899999999},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2025-05-24 00:02:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8559,&#92;&quot;high&#92;&quot;:0.8569,&#92;&quot;low&#92;&quot;:0.854,&#92;&quot;close&#92;&quot;:0.8547,&#92;&quot;base_volume&#92;&quot;:27391.0,&#92;&quot;quote_volume&#92;&quot;:23443.3074,&#92;&quot;base_volume_buy&#92;&quot;:24513.0,&#92;&quot;quote_volume_buy&#92;&quot;:20982.0844,&#92;&quot;vwap&#92;&quot;:0.8558762878317696,&#92;&quot;quote_volume_delta&#92;&quot;:18520.861399999998},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2025-05-24 00:03:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8547,&#92;&quot;high&#92;&quot;:0.8579,&#92;&quot;low&#92;&quot;:0.8539,&#92;&quot;close&#92;&quot;:0.8564,&#92;&quot;base_volume&#92;&quot;:13960.0,&#92;&quot;quote_volume&#92;&quot;:11943.0534,&#92;&quot;base_volume_buy&#92;&quot;:6696.0,&#92;&quot;quote_volume_buy&#92;&quot;:5732.7894,&#92;&quot;vwap&#92;&quot;:0.8555195845272207,&#92;&quot;quote_volume_delta&#92;&quot;:-477.4746000000014},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2025-05-24 00:04:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8564,&#92;&quot;high&#92;&quot;:0.857,&#92;&quot;low&#92;&quot;:0.8524,&#92;&quot;close&#92;&quot;:0.854,&#92;&quot;base_volume&#92;&quot;:19796.0,&#92;&quot;quote_volume&#92;&quot;:16904.7293,&#92;&quot;base_volume_buy&#92;&quot;:3495.0,&#92;&quot;quote_volume_buy&#92;&quot;:2987.5646,&#92;&quot;vwap&#92;&quot;:0.853946721559911,&#92;&quot;quote_volume_delta&#92;&quot;:-10929.6001}]&quot;' data-total-rows='5' data-total-columns='11' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;datetime&quot;, [&quot;datetime&quot;, &quot;datetime[&#92;u03bcs]&quot;]], [&quot;open&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;high&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;low&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;close&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;vwap&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_delta&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "f1d42c819f0fd4ac1f3d78cf94a94fa0",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"volume-profile-functions\">Volume Profile Functions</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "c967c3fe0ac038e376fd595f69667790",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "d1b0c55294195544a629fd18985a6a28",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "eeaaca84d3fc437119facf83f7aa0dae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "cb23d33c2d7e6023bab26855b995e3cb",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='qnkX-0' random-id='04f66e5e-93e9-75f3-ef0a-fbbfae8a2bd8'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;date&#92;&quot;:&#92;&quot;2025-06-18&#92;&quot;,&#92;&quot;open&#92;&quot;:1.2939,&#92;&quot;high&#92;&quot;:1.4625,&#92;&quot;low&#92;&quot;:1.2481,&#92;&quot;close&#92;&quot;:1.4589,&#92;&quot;quote_volume&#92;&quot;:107858164.94770001,&#92;&quot;quote_volume_buy&#92;&quot;:56389901.7249},{&#92;&quot;date&#92;&quot;:&#92;&quot;2025-06-19&#92;&quot;,&#92;&quot;open&#92;&quot;:1.4589,&#92;&quot;high&#92;&quot;:1.4977,&#92;&quot;low&#92;&quot;:1.2873,&#92;&quot;close&#92;&quot;:1.3165,&#92;&quot;quote_volume&#92;&quot;:66908134.0269,&#92;&quot;quote_volume_buy&#92;&quot;:32939961.178099997},{&#92;&quot;date&#92;&quot;:&#92;&quot;2025-06-20&#92;&quot;,&#92;&quot;open&#92;&quot;:1.3165,&#92;&quot;high&#92;&quot;:1.3611,&#92;&quot;low&#92;&quot;:1.0475,&#92;&quot;close&#92;&quot;:1.0883,&#92;&quot;quote_volume&#92;&quot;:88746538.22639999,&#92;&quot;quote_volume_buy&#92;&quot;:43455493.7471},{&#92;&quot;date&#92;&quot;:&#92;&quot;2025-06-21&#92;&quot;,&#92;&quot;open&#92;&quot;:1.0883,&#92;&quot;high&#92;&quot;:1.1072,&#92;&quot;low&#92;&quot;:0.9352,&#92;&quot;close&#92;&quot;:1.034,&#92;&quot;quote_volume&#92;&quot;:78280132.43540001,&#92;&quot;quote_volume_buy&#92;&quot;:38896890.0174},{&#92;&quot;date&#92;&quot;:&#92;&quot;2025-06-22&#92;&quot;,&#92;&quot;open&#92;&quot;:1.034,&#92;&quot;high&#92;&quot;:1.0446,&#92;&quot;low&#92;&quot;:0.9945,&#92;&quot;close&#92;&quot;:1.0133,&#92;&quot;quote_volume&#92;&quot;:12411402.689399995,&#92;&quot;quote_volume_buy&#92;&quot;:6042684.735000001}]&quot;' data-total-rows='5' data-total-columns='7' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;date&quot;, [&quot;date&quot;, &quot;date&quot;]], [&quot;open&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;high&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;low&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;close&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "94ec2dd9cd1a4b13260f7d610c755745",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: space-between;align-items: normal;flex-wrap: nowrap;gap: 0.5rem'><marimo-ui-element object-id='Xref-0' random-id='30942b3c-c81b-4474-08a1-2921948b4399'><marimo-dropdown data-initial-value='[&quot;bybit&quot;]' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Exchange&lt;/span&gt;&lt;/span&gt;&quot;' data-options='[&quot;bybit&quot;, &quot;binance&quot;]' data-allow-select-none='false' data-searchable='false' data-full-width='false'></marimo-dropdown></marimo-ui-element><marimo-ui-element object-id='BYtC-0' random-id='4a5df6b9-2daa-79e1-da59-207a9998faa2'><marimo-dropdown data-initial-value='[&quot;GIGAUSDT&quot;]' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Symbol&lt;/span&gt;&lt;/span&gt;&quot;' data-options='[&quot;GIGAUSDT&quot;, &quot;PENDLEUSDT&quot;, &quot;ENAUSDT&quot;, &quot;HYPEUSDT&quot;, &quot;FARTCOINUSDT&quot;, &quot;BTCUSDT&quot;, &quot;CROUSDT&quot;, &quot;ONDOUSDT&quot;, &quot;SPXUSDT&quot;, &quot;SOLUSDT&quot;, &quot;BNBUSDT&quot;, &quot;VIRTUALUSDT&quot;, &quot;DOGEUSDT&quot;, &quot;UNIUSD&quot;, &quot;ETHUSDT&quot;, &quot;TONUSDT&quot;, &quot;AVAXUSDT&quot;, &quot;TRXUSDT&quot;, &quot;XRPUSDT&quot;, &quot;CAKEUSDT&quot;, &quot;MKRUSDT&quot;, &quot;AAVEUSDT&quot;]' data-allow-select-none='false' data-searchable='false' data-full-width='false'></marimo-dropdown></marimo-ui-element><marimo-ui-element object-id='BYtC-1' random-id='3b1a290a-509c-d203-aaec-9a1674d1be3e'><marimo-date data-initial-value='&quot;2025-05-24&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;Start Date&lt;/span&gt;&lt;/span&gt;&quot;' data-start='&quot;0001-01-01&quot;' data-stop='&quot;9999-12-31&quot;' data-full-width='false' data-disabled='false'></marimo-date></marimo-ui-element><marimo-ui-element object-id='BYtC-2' random-id='e7e714d6-f39b-483c-363e-c7540e28f91b'><marimo-date data-initial-value='&quot;2025-06-23&quot;' data-label='&quot;&lt;span class=&#92;&quot;markdown prose dark:prose-invert&#92;&quot;&gt;&lt;span class=&#92;&quot;paragraph&#92;&quot;&gt;End Date&lt;/span&gt;&lt;/span&gt;&quot;' data-start='&quot;0001-01-01&quot;' data-stop='&quot;9999-12-31&quot;' data-full-width='false' data-disabled='false'></marimo-date></marimo-ui-element></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Vxnm",
+      "code_hash": "9a76183005d3192f7d7ec93ee98f8e61",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='Vxnm-0' random-id='a20c2aa4-7d28-85e8-ea17-120a27eb9869'><marimo-plotly data-initial-value='{}' data-label='null' data-figure='{&quot;data&quot;: [{&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;}, &quot;name&quot;: &quot;Raw Volume&quot;, &quot;x&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;apz5Lv0itT97HyF2CFm5PwtXM63U/b0/f8X2qWeDwT9eB5NnWTLEP3/cPfHnAcc/IaNHjGLmyT9g6hKv1tLMPzq/bWjfuc8/BaRwb09H0T+g6Hdp5KLSP71xavtN69M/7ZQ1yNEd1T+VH+u3jjnWP4N5umJ1P9c/Zza6+gEy2D9mhB62vhTZP/2lXLCg69k/IYQ4tlm62j9V1TdCvYPbPyAz579USdw/lzR1+DYL3T+PaR6/KcjdPwM9ji0Gft4/Bj4gOEoq3z/TmGEiucrfP1dJw770LuA/DcbHvNFx4D9U6y81fq7gPwYq2AsV5uA/XIJhVwsa4T9vWS785EvhP4v/S83hfOE/nkDz3LGt4T/N5SHPPd7hP6zmQUCMDeI/tuCLnMg54j+1ImMHa2DiPy7C7Nh8fuI/DpXLGPKQ4j/graRADpXiP0sDQ1rJiOI/gDPKIipr4j9eQyVIijziP4NUI0e7/uE/NDcYIQW14T87XtYj/GPhP4ORVhcwEeE/ECxLqLzC4D8tO0DVx37gP8l13l/+SuA/bey66R4s4D9DWjIaoiXgP0fNVU6JOeA/icOh7FZo4D+OfNPwLLHgP+IvfAkJEuE/i4zCrRKI4T96fnk07w/iP5zztMcRpuI/tw+XKgBH4z/YpeGciO/jP2SfM+DnnOQ/cnuJFeBM5T+vk1/pwf3lP/o8G7tpruY/u7ohmjJe5z9CTc5y4QzoP4UMyqWLuug/R1vRRH1n6T8gpmzdIxTqPxAXZJoCweo/DqedQrNu6z/WAnQn9R3sPzZmR7HHz+w/uFkPfYqF7T/Nbsi+GUHuP6/iWszbBO8/o7ruKrXT7z+5fNvYbVjwP7V/DpnDz/A/cPxs20JR8T8WPDug4N3xPy1DHXvldfI/K8gTGcEY8z+tH2639cTzPwYjGPIhePQ/+JrO5Skv9T93POaUeub1P4dvDDNdmvY/Rk+Tu0xH9z9MBAzJP+r3P8N09iTbgPg/QHttVoYJ+T8AOB5zYYP5P/vs3UMh7vk/z+xpNdtJ+j8GsI7AzJb6P/J22rUp1fo/3qMuePoE+z/oi09mDyb7P0hinWIKOPs/sZc0aHs6+z/RIy4LCi37Px1VOfCjD/s/7LB5w6fi+j+TWWfgBKf6P4xtloRJXvo/NdBj3psK+j8q/1pfna75P+xHBTI7Tfk/MpqyKXLp+D8rlJhqD4b4P6wAxLV4Jfg/sHsiFofJ9z+LdfFEfHP3P2IGDJYWJPc/TLhLQsHb9j/4a+Kg2Jr2P1/M67r0YfY/L+Bj7yky9j9+N/byLw32Pz4T03Zj9fU/6s9dgJ3t9T+/qkCm4/j1P5jLjVP8GfY/BSaWP/hS9j8e6gVAxaT2P1B2xOXdDvc/FSluGCWP9z8oGqjr9SH4P7eC6nhnwvg/I4k1Hbxq+T+8uLOJ7BT6P1LaEtE6u/o/gpj4u7hY+z8241dZr+n7P/0bUXXba/w/JScvUXre/D8lVM4nKkL9P/l0kR+pmP0/Btf124Hk/T80LogGtij+PzbUTbp0aP4/5DJ+aOWm/j+hVvTuCOf+PyXU3fCrK/8/M7tix2B3/z9tRSnNdcz/P7pj1WJvFgBACKsakwZNAEDDgW3aXIoAQEmVwDlUzgBAjYHEKDoYAUBkWNqquGYBQN+ow7PYtwFAcp9OCxkJAkAl7uAFmVcCQMRqF35SoAJAUsC7ZVvgAkBkqgGuJRUDQGTMY360PANAqwu9mr9VA0BwkaH8wF8DQBan2U/sWgNA8ctydhNIA0B09dbSfSgDQCKG9m65/QJAZ0oEFG3JAkDY5eo0MY0CQDgjQZNzSgJAzLQ0QWcCAkD8YKGKALYBQH1HELz6ZQFASxqW2OQSAUDCi0ARMr0AQIfN+BBLZQBARmGHtp0LAECLV2ziUmH/PyxZyAgOqv4/cqKQ59Xy/T90Ua+eRD39P+laESUUi/w/U7A0rwPe+z9l4iNstjf7P5TfgVuPmfo/hmARvY4E+j/kNNrHNXn5PyB9ptN09/g/PvXF7qZ++D8DwqMknA34Py8xPsOxovc//fXXA/Y79z9bnWjmUtf2Pxt8iAa7cvY/YX1q1VIM9j91zsMDkaL1P0yDE/tRNPU/mg2B+dvA9D8ak8CN00f0P3/WgZIiyfM/63kUDtZE8z820Rof+bryP1thrv9zK/I/0hz62/WV8T/bkQOp7vnwP07n+3+bVvA/59FhYklW7z9buCXPku3tP9ocewIkcuw/B6M2jQHk6j9muQd8cUTpPwZiCP0nluc/xQdPi0vd5T+3l9g0UB/kP3vTsXOwYuI/ihdRaY+u4D9uvlUJphTePwQeZXqI+to/Ij0vkoAc2D8oYeDEAIfVP+CNojTvRNM/J5OKsoFf0T/iJA8vT7zPPyxp8Y7bjM0/CswGrZs3zD9+BZUexb7LP4/XDmUPH8w/u5lOvutOzT+kP17n5j3PP/9DlPM16tA/xGFWOwx60j+7hAf8YDzUP8mlvQoYHdY/j2rEPToH2D9VNhtgVebZP0QVsarqp9s/Vme5PsA83T95xEyl6pneP28KScVqud8/icDKLyVN4D89FreRGaDgP0+UtgVI2eA/koB7Ta394D9DoDg54RLhP8PIknZxHuE/3zYAaVsl4T8jP74CtyvhP9fex2ebNOE/B1ZkmDtC4T/9sTWEL1bhP3VOGJ7WceE/nG3Rpr2W4T/iWeFg8sbhP2ew3MY0BeI/AuXy8/xU4j+ahJmBVbriP2CxtuyROeM/BGLjNO7W4z9fO0eNJ5bkP9ia9I8deuU/y1miiYiE5j/B2gskzbXnP9g1jgXxDOk/C5/Ixq+H6j/sxI9SrCLsP6dqQ2S42e0/oxBhJCqo7z/L5ItMm8TwPzy5nFsjvPE/FXSOTp648j9KoU2wT7jzPwNKJybTufQ/0bIzRRC89T/uxmfRHb72PxtjSHkYv/c/0KPrk/O9+D+x9PncS7n5P2CDt0tEr/o/63YC53Od+z+oubUl6YD8P/f37XZEVv0/wZp5eOgZ/j8I9pOVO8j+P1uVJIv0Xf8/BWMVyGnY/z+AQINz7RoAQDMvV9PVOgBAL4h5cERMAEC+eQ0IOVAAQNUZeGpSSABAZkiwrLU2AEA6cLvv6B0AQFM+lV+lAABADJPqB0rD/z+y4E+f4ob/P8WOewRuUP8/tNVvE0Yj/z9jqxuplQH/P5WrUFtC7P4/Ha3FAe/i/j+zww3SFOT+PzkL5WYv7f4/HvVqJ/f6/j8nqdYIpQn/P+U5wXs6Ff8/8qEPcsgZ/z93qQrOsBP/PwUo4zve//4/RR6UcO/b/j88nrb1U6b+PzRroeNZXv4/B77dCC0E/j9fgy3jyJj9P/phqnbfHf0/KGNmjbeV/D9B7JdYBQP8P33pf9rAaPs/UzxN3/3J+j/GwHlsySn6PyXHkzEQi/k/iSV1dpDw+D9g4YE22Fz4P76jg8BN0vc/sXEKvT5T9z8yk5x97+H2PwCVMYGjgPY/O55umJgx9j8YSisk8Pb1P9ZjFE2F0vU/yAlYN7PF9T/e2R1JEtH1P4pcwL029PU/2oTPM3wt9j/W7zQ66Xn2P7OxnBgz1fY/tcDnmuU59z/0ueBVraH3P5gRfKq9Bfg/C2XYr0df+D/FWE3W9Kf4P3lQjddX2vg/8NVwRkjy+D8mNmFYIO34P1vok6jYyfg/sGP2AgKJ+D+1rrsWoSz4PyDBV83yt/c/6MW2oiEv9z+NcWmp9Jb2Py5Yt/t/9PU/RQUXf9xM9T+7fgl96qT0PxUx1ysgAfQ/FdCZU2Nl8z9ko5gq7NTyPxTDgHcvUvI/3CYy387e8T/8Z1mZj3vxP1zHXA1ZKPE/mdYvhj3k8D8BOgbmjq3wP/CM8gAAgvA/DW6lUtFe8D+5iA2pBUHwP6jw2baZJfA/CWNbybgJ8D/NdXGU0tXvPwQC3k5aju8/OVFymSg67z9QJYX+gtfuP9J6SE/HZe4/hseGLE3l7T/13mcJPVftPw6b0mJivew/J1lXhP0Z7D+GzAndl2/rPyD65gPdwOo/TNWwLnoQ6j88uXHMBWHpP5ESLMzwtOg/0tHHgYIO6D9hu9fz3m/nP2DijcQV2+Y/dEyxNjZS5j/VVBxzY9flP1Z08ovjbOU/Np35/CMV5T/v3OKTr9LkP603ipITqOQ/nE59ObSX5D+MuOFtk6PkPyWQ3pQOzeQ/jbduyZoU5T9yUo4DiHnlP3/vvWHU+eU/oVjJSBiS5j8vioRJkj3nP4F416ZW9uc/fxX5IqK16D9cCf3jSnTpP4hLvn5FK+o/tsRsYjDU6j9+BXi71WnrP5ZxivST6Os/KH50XZ9O7D+udkjjE5zsP63XyILT0uw/Q11AXjT27D+iUWVGhwrtP6B4XFmEFO0/oynhlq4Y7T+eCeKfwBrtP0RhdSw0He0/I2V3HfMg7T+dAAOdPCXtP9Pe1drCJ+0/35AgI/8k7T/AptMWsxjtPyuMRJKH/uw/9xiKQLXS7D8GWQXEoJLsP3Z5hT5VPew/SdOt7cvT6z8Qup8W9ljrPxzFvsCG0eo/Pd6tlIJD6j8Y/y9MpLXpP6gFnUCqLuk/X7kJ3qS06D+x/q6LXUzoP6NatfPp+Oc/ilXVAHm75z81uNhhXpPnP5XvzjlYfuc/fFebSgJ55z8hMxm3Y3/nP4IE/3GBjec/JlSVAeCf5z9g86o447PnP9ezmAwByOc/bPa2e8Tb5z/ZT4sQpe/nP33RiqS9BOg/rIckuHAc6D9hLIa4CTjoP0oUuCNpWOg/FSMNV8Z96D+wO/HIjafoP+lsgz5e1Og/3YxjuSMC6T9EbMmeSy7pP7rcdwILVuk/CmmtD6526T9ytHRW5o3pP9rnNoMNmuk/xSXN/lKa6T9SOMFVzY7pP74l3f1reOk/RTz2uMpY6T+7elyu7DHpP43uL3XpBek/1e90z5jW6D/2aPsmSqXoP4VZrtaScug/jxUeTTo+6D8iNt7uRQfoP2GsJVshzOc/8BhTWNuK5z91p6f7bEHnP5cMBfD/7eY/4Cz09SmP5j9zxcdWFiTmP7hqSlyZrOU/W2oPPS0p5T8tYK7N2prkP5HetGQSA+Q//wyqsnpj4z+KGdP1u73iP6YCIgtOE+I/C/bhd09l4T9/7HyXarTgP4jBtIvMAOA/rxjlyl6U3j9m4V/M7B/dP6/X3imxots/ffggWScb2j/qafE8QIjYP4hMKKO96dY/tbDC3nRA1T8ok3BfcI7TPz5iZVbt1tE/NbT8fzce0D/2BOtO0tLMPxXTvuYvfMk/lnQO7+9Dxj8ATzB2/DTDPw/kH5EVWcA/oC3ucINwuz+z9rtcyLC2Pw==&quot;}, &quot;y&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;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&quot;}, &quot;type&quot;: &quot;scatter&quot;, &quot;xaxis&quot;: &quot;x&quot;, &quot;yaxis&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;}, &quot;name&quot;: &quot;Weighted Volume&quot;, &quot;x&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;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&quot;}, &quot;y&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;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&quot;}, &quot;type&quot;: &quot;scatter&quot;, &quot;xaxis&quot;: &quot;x&quot;, &quot;yaxis&quot;: &quot;y&quot;}, {&quot;close&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;ZMxdS8gH7T+oxks3iUHsP8E5I0p7g+s//yH99nXg7D/7XG3F/rLrP4ts5/up8eo/OwFNhA1P7T/WVuwvuyftPw+cM6K0N/A/ZvfkYaHW8D9sCfmgZ7PyP/hT46WbxPE/eAskKH6M8j9gdk8eFmrvPzSAt0CC4u0/Vg4tsp3v7z93vp8aL93uPwKaCBueXvA/93XgnBGl7z+u2F92Tx7yP6foSC7/IfE/KA8LtaZ58T99PzVeuknyPzMzMzMzM/I/foy5awn58j+1pnnHKTrxP1dbsb/snvE/2T15WKg18T/iWBe30QDyP+2ePCzUmvI/arx0kxgE8z9os+pztRX0P1K4HoXrUfU/SnuDL0ym9j+/fR04Z0T3P+jZrPpcbfk/5dAi2/l++D/kg57Nqs/5P4v9ZffkYfo/FmpN845T+T8Spb3BFyb1P/VKWYY41vg//fZ14JwR9z+Nl24Sg8D2P9cS8kHPZvY/SFD8GHPX9z/129eBc0b6P02EDU+vlPc/Rdjw9EpZ9j/dtYR80LP0PyL99nXgnPU/gSbChqdX9z9F2PD0Sln2P6rx0k1iEPU/8KfGSzeJ9T/vycNCrWnxP+kmMQisHPE/JQaBlUOL8D+8lpAPejbwPw==&quot;}, &quot;high&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;gEi/fR047T8fhetRuB7tP0YldQKaCO0/Tx4Wak3z7D+neccpOpLtP1r1udqK/es/YHZPHhZq7T9uNIC3QILuP3ZPHhZqTfA/JzEIrBxa8T/pt68D54zzP96Th4Va0/I/vw6cM6K08j/T3uALk6nyP0SLbOf7qe8/EhQ/xty18D+mCkYldQLwP34dOGdEafE/ZvfkYaHW8D+KH2PuWkLyP5SHhVrTvPI/zczMzMzM8j/o2az6XG3zPxBYObTIdvM/5j+k374O8z8ZBFYOLbLzP8BbIEHxY/I/Xf5D+u3r8j+2hHzQs1nyP4y5awn5oPI/7MA5I0p78z8tsp3vp8b0P3E9CtejcPU/UiegibDh9j+cxCCwcmj3Pz0K16NwPfo/U5YhjnVx+T9wzojS3uD7PyPb+X5qvPs/8rBQa5p3+z8Wak3zjlP5P67YX3ZPHvk/xSCwcmiR+T80ETY8vVL3P4Lix5i7lvg/BcWPMXct+D87AU2EDU/7PwU0ETY8vfo/iUFg5dAi+D/Q1VbsL7v2P2gibHh6pfY/ZmZmZmZm9z/YgXNGlPb3P0dy+Q/pt/Y/nl4pyxDH9T/4U+Olm8T1P2UZ4lgXt/E/sb/snjws8T/0bFZ9rrbwPw==&quot;}, &quot;low&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;waikTkAT6z+Hp1fKMsTrP4MvTKYKRus/WMoyxLEu6j/OGVHaG3zrP+m3rwPnjOo/VOOlm8Qg6j/pt68D54zsP9CzWfW52uw/XW3F/rJ77j8f9GxWfa7wP13+Q/rt6/A/YhBYObTI8D+ppE5AE2HvPzXvOEVHcu0/Z0Rpb/CF7T/dJAaBlUPtP9GRXP5D+u0/vJaQD3o27z9uNIC3QILuP2UZ4lgXt/A/YOXQItv58D9WDi2yne/wP7aEfNCzWfE/NKK0N/jC8T/i6ZWyDHHwP13+Q/rt6/A/mEwVjErq8D9d3EYDeAvxP6yt2F92T/E/ih9j7lpC8j+kcD0K16PyP8bctYR80PM/0ZFc/kP69D9UdCSX/5D1P+5aQj7o2fY/l/+Qfvs6+D8u/yH99nX4PzAqqRPQRPk/W9O84xQd+D9GlPYGX5j0P8X+snvysPQ/pU5AE2HD9j/SAN4CCYr1P9xoAG+BBPY/5/up8dJN9j/mP6Tfvg73P2pN845TdPc/gEi/fR049j+QoPgx5q70P5wzorQ3+PM/845TdCSX9D+pE9BE2PD1P7hAguLHmPQ/g1FJnYAm9D/D9Shcj8LwP61p3nGKjvA/sAPnjCjt7T9t5/up8dLvPw==&quot;}, &quot;open&quot;: {&quot;dtype&quot;: &quot;f8&quot;, &quot;bdata&quot;: &quot;odY07zhF6z9kzF1LyAftP6jGSzeJQew/wTkjSnuD6z//If32deDsP/tcbcX+sus/i2zn+6nx6j87AU2EDU/tP9ZW7C+7J+0/D5wzorQ38D9m9+RhodbwP2wJ+aBns/I/+FPjpZvE8T94CyQofozyP2B2Tx4Wau8/NIC3QILi7T9WDi2yne/vP3e+nxov3e4/ApoIG55e8D/3deCcEaXvP67YX3ZPHvI/p+hILv8h8T8oDwu1pnnxP30/NV66SfI/MzMzMzMz8j9+jLlrCfnyP7WmeccpOvE/V1uxv+ye8T/ZPXlYqDXxP+JYF7fRAPI/7Z48LNSa8j9qvHSTGATzP2iz6nO1FfQ/UrgehetR9T9Ke4MvTKb2P799HThnRPc/6Nms+lxt+T/l0CLb+X74P+SDns2qz/k/i/1l9+Rh+j8Wak3zjlP5PxKlvcEXJvU/9UpZhjjW+D/99nXgnBH3P42XbhKDwPY/1xLyQc9m9j9IUPwYc9f3P/Xb14FzRvo/TYQNT6+U9z9F2PD0Sln2P921hHzQs/Q/Iv32deCc9T+BJsKGp1f3P0XY8PRKWfY/qvHSTWIQ9T/wp8ZLN4n1P+/Jw0KtafE/6SYxCKwc8T8lBoGVQ4vwPw==&quot;}, &quot;showlegend&quot;: false, &quot;x&quot;: [&quot;2025-05-24T00:00:00.000000&quot;, &quot;2025-05-24T12:00:00.000000&quot;, &quot;2025-05-25T00:00:00.000000&quot;, &quot;2025-05-25T12:00:00.000000&quot;, &quot;2025-05-26T00:00:00.000000&quot;, &quot;2025-05-26T12:00:00.000000&quot;, &quot;2025-05-27T00:00:00.000000&quot;, &quot;2025-05-27T12:00:00.000000&quot;, &quot;2025-05-28T00:00:00.000000&quot;, &quot;2025-05-28T12:00:00.000000&quot;, &quot;2025-05-29T00:00:00.000000&quot;, &quot;2025-05-29T12:00:00.000000&quot;, &quot;2025-05-30T00:00:00.000000&quot;, &quot;2025-05-30T12:00:00.000000&quot;, &quot;2025-05-31T00:00:00.000000&quot;, &quot;2025-05-31T12:00:00.000000&quot;, &quot;2025-06-01T00:00:00.000000&quot;, &quot;2025-06-01T12:00:00.000000&quot;, &quot;2025-06-02T00:00:00.000000&quot;, &quot;2025-06-02T12:00:00.000000&quot;, &quot;2025-06-03T00:00:00.000000&quot;, &quot;2025-06-03T12:00:00.000000&quot;, &quot;2025-06-04T00:00:00.000000&quot;, &quot;2025-06-04T12:00:00.000000&quot;, &quot;2025-06-05T00:00:00.000000&quot;, &quot;2025-06-05T12:00:00.000000&quot;, &quot;2025-06-06T00:00:00.000000&quot;, &quot;2025-06-06T12:00:00.000000&quot;, &quot;2025-06-07T00:00:00.000000&quot;, &quot;2025-06-07T12:00:00.000000&quot;, &quot;2025-06-08T00:00:00.000000&quot;, &quot;2025-06-08T12:00:00.000000&quot;, &quot;2025-06-09T00:00:00.000000&quot;, &quot;2025-06-09T12:00:00.000000&quot;, &quot;2025-06-10T00:00:00.000000&quot;, &quot;2025-06-10T12:00:00.000000&quot;, &quot;2025-06-11T00:00:00.000000&quot;, &quot;2025-06-11T12:00:00.000000&quot;, &quot;2025-06-12T00:00:00.000000&quot;, &quot;2025-06-12T12:00:00.000000&quot;, &quot;2025-06-13T00:00:00.000000&quot;, &quot;2025-06-13T12:00:00.000000&quot;, &quot;2025-06-14T00:00:00.000000&quot;, &quot;2025-06-14T12:00:00.000000&quot;, &quot;2025-06-15T00:00:00.000000&quot;, &quot;2025-06-15T12:00:00.000000&quot;, &quot;2025-06-16T00:00:00.000000&quot;, &quot;2025-06-16T12:00:00.000000&quot;, &quot;2025-06-17T00:00:00.000000&quot;, &quot;2025-06-17T12:00:00.000000&quot;, &quot;2025-06-18T00:00:00.000000&quot;, &quot;2025-06-18T12:00:00.000000&quot;, &quot;2025-06-19T00:00:00.000000&quot;, &quot;2025-06-19T12:00:00.000000&quot;, &quot;2025-06-20T00:00:00.000000&quot;, &quot;2025-06-20T12:00:00.000000&quot;, &quot;2025-06-21T00:00:00.000000&quot;, &quot;2025-06-21T12:00:00.000000&quot;, &quot;2025-06-22T00:00:00.000000&quot;], &quot;type&quot;: &quot;candlestick&quot;, &quot;xaxis&quot;: &quot;x2&quot;, &quot;yaxis&quot;: &quot;y2&quot;}], &quot;layout&quot;: {&quot;template&quot;: {&quot;data&quot;: {&quot;histogram2dcontour&quot;: [{&quot;type&quot;: &quot;histogram2dcontour&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}], &quot;choropleth&quot;: [{&quot;type&quot;: &quot;choropleth&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}], &quot;histogram2d&quot;: [{&quot;type&quot;: &quot;histogram2d&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}], &quot;heatmap&quot;: [{&quot;type&quot;: &quot;heatmap&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}], &quot;contourcarpet&quot;: [{&quot;type&quot;: &quot;contourcarpet&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}], &quot;contour&quot;: [{&quot;type&quot;: &quot;contour&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}], &quot;surface&quot;: [{&quot;type&quot;: &quot;surface&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}], &quot;mesh3d&quot;: [{&quot;type&quot;: &quot;mesh3d&quot;, &quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}], &quot;scatter&quot;: [{&quot;fillpattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}, &quot;type&quot;: &quot;scatter&quot;}], &quot;parcoords&quot;: [{&quot;type&quot;: &quot;parcoords&quot;, &quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scatterpolargl&quot;: [{&quot;type&quot;: &quot;scatterpolargl&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;bar&quot;: [{&quot;error_x&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;error_y&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;#E5ECF6&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;bar&quot;}], &quot;scattergeo&quot;: [{&quot;type&quot;: &quot;scattergeo&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scatterpolar&quot;: [{&quot;type&quot;: &quot;scatterpolar&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;histogram&quot;: [{&quot;marker&quot;: {&quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;histogram&quot;}], &quot;scattergl&quot;: [{&quot;type&quot;: &quot;scattergl&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scatter3d&quot;: [{&quot;type&quot;: &quot;scatter3d&quot;, &quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scattermap&quot;: [{&quot;type&quot;: &quot;scattermap&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scattermapbox&quot;: [{&quot;type&quot;: &quot;scattermapbox&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scatterternary&quot;: [{&quot;type&quot;: &quot;scatterternary&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;scattercarpet&quot;: [{&quot;type&quot;: &quot;scattercarpet&quot;, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}}], &quot;carpet&quot;: [{&quot;aaxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;minorgridcolor&quot;: &quot;white&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;baxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;minorgridcolor&quot;: &quot;white&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;type&quot;: &quot;carpet&quot;}], &quot;table&quot;: [{&quot;cells&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#EBF0F8&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;header&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#C8D4E3&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;type&quot;: &quot;table&quot;}], &quot;barpolar&quot;: [{&quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;#E5ECF6&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;barpolar&quot;}], &quot;pie&quot;: [{&quot;automargin&quot;: true, &quot;type&quot;: &quot;pie&quot;}]}, &quot;layout&quot;: {&quot;autotypenumbers&quot;: &quot;strict&quot;, &quot;colorway&quot;: [&quot;#636efa&quot;, &quot;#EF553B&quot;, &quot;#00cc96&quot;, &quot;#ab63fa&quot;, &quot;#FFA15A&quot;, &quot;#19d3f3&quot;, &quot;#FF6692&quot;, &quot;#B6E880&quot;, &quot;#FF97FF&quot;, &quot;#FECB52&quot;], &quot;font&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;hovermode&quot;: &quot;closest&quot;, &quot;hoverlabel&quot;: {&quot;align&quot;: &quot;left&quot;}, &quot;paper_bgcolor&quot;: &quot;white&quot;, &quot;plot_bgcolor&quot;: &quot;#E5ECF6&quot;, &quot;polar&quot;: {&quot;bgcolor&quot;: &quot;#E5ECF6&quot;, &quot;angularaxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;radialaxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;ternary&quot;: {&quot;bgcolor&quot;: &quot;#E5ECF6&quot;, &quot;aaxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;baxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;caxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;coloraxis&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;colorscale&quot;: {&quot;sequential&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;sequentialminus&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;diverging&quot;: [[0, &quot;#8e0152&quot;], [0.1, &quot;#c51b7d&quot;], [0.2, &quot;#de77ae&quot;], [0.3, &quot;#f1b6da&quot;], [0.4, &quot;#fde0ef&quot;], [0.5, &quot;#f7f7f7&quot;], [0.6, &quot;#e6f5d0&quot;], [0.7, &quot;#b8e186&quot;], [0.8, &quot;#7fbc41&quot;], [0.9, &quot;#4d9221&quot;], [1, &quot;#276419&quot;]]}, &quot;xaxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;white&quot;, &quot;automargin&quot;: true, &quot;zerolinewidth&quot;: 2}, &quot;yaxis&quot;: {&quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;white&quot;, &quot;automargin&quot;: true, &quot;zerolinewidth&quot;: 2}, &quot;scene&quot;: {&quot;xaxis&quot;: {&quot;backgroundcolor&quot;: &quot;#E5ECF6&quot;, &quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;white&quot;, &quot;gridwidth&quot;: 2}, &quot;yaxis&quot;: {&quot;backgroundcolor&quot;: &quot;#E5ECF6&quot;, &quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;white&quot;, &quot;gridwidth&quot;: 2}, &quot;zaxis&quot;: {&quot;backgroundcolor&quot;: &quot;#E5ECF6&quot;, &quot;gridcolor&quot;: &quot;white&quot;, &quot;linecolor&quot;: &quot;white&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;white&quot;, &quot;gridwidth&quot;: 2}}, &quot;shapedefaults&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}}, &quot;annotationdefaults&quot;: {&quot;arrowcolor&quot;: &quot;#2a3f5f&quot;, &quot;arrowhead&quot;: 0, &quot;arrowwidth&quot;: 1}, &quot;geo&quot;: {&quot;bgcolor&quot;: &quot;white&quot;, &quot;landcolor&quot;: &quot;#E5ECF6&quot;, &quot;subunitcolor&quot;: &quot;white&quot;, &quot;showland&quot;: true, &quot;showlakes&quot;: true, &quot;lakecolor&quot;: &quot;white&quot;}, &quot;title&quot;: {&quot;x&quot;: 0.05}, &quot;mapbox&quot;: {&quot;style&quot;: &quot;light&quot;}}}, &quot;xaxis&quot;: {&quot;anchor&quot;: &quot;y&quot;, &quot;domain&quot;: [0.0, 0.38]}, &quot;yaxis&quot;: {&quot;anchor&quot;: &quot;x&quot;, &quot;domain&quot;: [0.0, 1.0]}, &quot;xaxis2&quot;: {&quot;anchor&quot;: &quot;y2&quot;, &quot;domain&quot;: [0.43, 1.0], &quot;rangeslider&quot;: {&quot;visible&quot;: false}}, &quot;yaxis2&quot;: {&quot;anchor&quot;: &quot;x2&quot;, &quot;domain&quot;: [0.0, 1.0], &quot;matches&quot;: &quot;y&quot;, &quot;showticklabels&quot;: false}, &quot;shapes&quot;: [{&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.234156934097551, &quot;y1&quot;: 1.234156934097551, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.234156934097551, &quot;y1&quot;: 1.234156934097551, &quot;yref&quot;: &quot;y2&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.0445833862148344, &quot;y1&quot;: 1.0445833862148344, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.0445833862148344, &quot;y1&quot;: 1.0445833862148344, &quot;yref&quot;: &quot;y2&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.5360021948040123, &quot;y1&quot;: 1.5360021948040123, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;red&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.5360021948040123, &quot;y1&quot;: 1.5360021948040123, &quot;yref&quot;: &quot;y2&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.2359974539799075, &quot;y1&quot;: 1.2359974539799075, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.2359974539799075, &quot;y1&quot;: 1.2359974539799075, &quot;yref&quot;: &quot;y2&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.537842714686369, &quot;y1&quot;: 1.537842714686369, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.537842714686369, &quot;y1&quot;: 1.537842714686369, &quot;yref&quot;: &quot;y2&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x domain&quot;, &quot;y0&quot;: 1.425571001862624, &quot;y1&quot;: 1.425571001862624, &quot;yref&quot;: &quot;y&quot;}, {&quot;line&quot;: {&quot;color&quot;: &quot;blue&quot;, &quot;dash&quot;: &quot;dash&quot;, &quot;width&quot;: 1}, &quot;type&quot;: &quot;line&quot;, &quot;x0&quot;: 0, &quot;x1&quot;: 1, &quot;xref&quot;: &quot;x2 domain&quot;, &quot;y0&quot;: 1.425571001862624, &quot;y1&quot;: 1.425571001862624, &quot;yref&quot;: &quot;y2&quot;}], &quot;title&quot;: {&quot;text&quot;: &quot;SPXUSDT&quot;}, &quot;height&quot;: 600}}' data-config='{}'></marimo-plotly></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "DnEU",
+      "code_hash": "7d93cdad0169735108b50c86c6b4955c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='DnEU-0' random-id='456ea1cf-67c9-1267-4635-dd95d89bd154'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;quote_volume_buy&#92;&quot;:-163500.98029999994},{&#92;&quot;quote_volume_buy&#92;&quot;:13937.362400000915},{&#92;&quot;quote_volume_buy&#92;&quot;:-496533.45149999857},{&#92;&quot;quote_volume_buy&#92;&quot;:-399288.61069999635},{&#92;&quot;quote_volume_buy&#92;&quot;:149768.51079999655},{&#92;&quot;quote_volume_buy&#92;&quot;:-874897.8563999906},{&#92;&quot;quote_volume_buy&#92;&quot;:-2564109.251199998},{&#92;&quot;quote_volume_buy&#92;&quot;:-1238170.0691999942},{&#92;&quot;quote_volume_buy&#92;&quot;:120193.35200000554},{&#92;&quot;quote_volume_buy&#92;&quot;:108368.94619999826}]&quot;' data-total-rows='30' data-total-columns='1' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "TkJY",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "iULs",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZxPy",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "INAT",
+      "code_hash": null,
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MGpl",
+      "code_hash": "433617486d5b4f7996dd32781ff59332",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "cKHc",
+      "code_hash": "d8af26d61c51452436c66eaf3096e653",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='cKHc-0' random-id='cc5c58f3-7641-7654-4987-9cc06e7a6c91'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-24 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8522,&#92;&quot;high&#92;&quot;:0.9131,&#92;&quot;low&#92;&quot;:0.8461,&#92;&quot;close&#92;&quot;:0.9072,&#92;&quot;quote_volume&#92;&quot;:7357687.653100001,&#92;&quot;quote_volume_buy&#92;&quot;:3785070.0335999997},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-24 12:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.9072,&#92;&quot;high&#92;&quot;:0.91,&#92;&quot;low&#92;&quot;:0.8677,&#92;&quot;close&#92;&quot;:0.883,&#92;&quot;quote_volume&#92;&quot;:6915535.4416,&#92;&quot;quote_volume_buy&#92;&quot;:3269791.0236},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-25 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.883,&#92;&quot;high&#92;&quot;:0.9073,&#92;&quot;low&#92;&quot;:0.8523,&#92;&quot;close&#92;&quot;:0.8598,&#92;&quot;quote_volume&#92;&quot;:6730043.512300001,&#92;&quot;quote_volume_buy&#92;&quot;:3430895.2674999996},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-25 12:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8598,&#92;&quot;high&#92;&quot;:0.9047,&#92;&quot;low&#92;&quot;:0.8182,&#92;&quot;close&#92;&quot;:0.9024,&#92;&quot;quote_volume&#92;&quot;:7801333.478200001,&#92;&quot;quote_volume_buy&#92;&quot;:3923512.3991},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-26 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.9024,&#92;&quot;high&#92;&quot;:0.9241,&#92;&quot;low&#92;&quot;:0.8589,&#92;&quot;close&#92;&quot;:0.8656,&#92;&quot;quote_volume&#92;&quot;:7316676.263199999,&#92;&quot;quote_volume_buy&#92;&quot;:3489236.3266000003},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-26 12:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.8656,&#92;&quot;high&#92;&quot;:0.8747,&#92;&quot;low&#92;&quot;:0.8297,&#92;&quot;close&#92;&quot;:0.842,&#92;&quot;quote_volume&#92;&quot;:5565945.6071,&#92;&quot;quote_volume_buy&#92;&quot;:2696839.2016000003},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-27 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.842,&#92;&quot;high&#92;&quot;:0.9192,&#92;&quot;low&#92;&quot;:0.8165,&#92;&quot;close&#92;&quot;:0.9159,&#92;&quot;quote_volume&#92;&quot;:9580488.5826,&#92;&quot;quote_volume_buy&#92;&quot;:4736329.0951000005},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-27 12:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.9159,&#92;&quot;high&#92;&quot;:0.9534,&#92;&quot;low&#92;&quot;:0.8922,&#92;&quot;close&#92;&quot;:0.9111,&#92;&quot;quote_volume&#92;&quot;:14657242.475,&#92;&quot;quote_volume_buy&#92;&quot;:7431158.8541},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-28 00:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:0.9111,&#92;&quot;high&#92;&quot;:1.0189,&#92;&quot;low&#92;&quot;:0.9017,&#92;&quot;close&#92;&quot;:1.0136,&#92;&quot;quote_volume&#92;&quot;:19907825.091900002,&#92;&quot;quote_volume_buy&#92;&quot;:10191813.1304},{&#92;&quot;bar_time&#92;&quot;:&#92;&quot;2025-05-28 12:00:00&#92;&quot;,&#92;&quot;open&#92;&quot;:1.0136,&#92;&quot;high&#92;&quot;:1.0845,&#92;&quot;low&#92;&quot;:0.9526,&#92;&quot;close&#92;&quot;:1.0524,&#92;&quot;quote_volume&#92;&quot;:29287749.1828,&#92;&quot;quote_volume_buy&#92;&quot;:14680502.567700002}]&quot;' data-total-rows='59' data-total-columns='7' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;bar_time&quot;, [&quot;datetime&quot;, &quot;datetime[&#92;u03bcs]&quot;]], [&quot;open&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;high&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;low&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;close&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "OSsL",
+      "code_hash": "4d52ec2e2e2e97fcb30d846191a7e303",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "'Expr' object has no attribute 'cumsum'",
+          "traceback": []
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;/Users/brianblandin/repositories/crypto_trading/.venv/lib/python3.11/site-packages/marimo/_runtime/executor.py&quot;</span>, line <span class=\"m\">138</span>, in <span class=\"n\">execute_cell</span>\n<span class=\"w\">    </span><span class=\"n\">exec</span><span class=\"p\">(</span><span class=\"n\">cell</span><span class=\"o\">.</span><span class=\"n\">body</span><span class=\"p\">,</span> <span class=\"n\">glbls</span><span class=\"p\">)</span>\n  File <span class=\"nb\">&quot;/var/folders/bd/h0b6vc1576d3w6nx0lqrmylr0000gn/T/marimo_3706/__marimo__cell_OSsL_.py&quot;</span>, line <span class=\"m\">11</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"p\">(</span><span class=\"n\">pl</span><span class=\"o\">.</span><span class=\"n\">col</span><span class=\"p\">(</span><span class=\"s2\">&quot;vwap&quot;</span><span class=\"p\">)</span> <span class=\"o\">*</span> <span class=\"n\">pl</span><span class=\"o\">.</span><span class=\"n\">col</span><span class=\"p\">(</span><span class=\"s2\">&quot;base_volume&quot;</span><span class=\"p\">))</span><span class=\"o\">.</span><span class=\"n\">cumsum</span><span class=\"p\">()</span><span class=\"o\">.</span><span class=\"n\">alias</span><span class=\"p\">(</span><span class=\"s2\">&quot;cum_qv&quot;</span><span class=\"p\">),</span>\n<span class=\"w\">    </span><span class=\"pm\">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>\n<span class=\"gr\">AttributeError</span>: <span class=\"n\">&#39;Expr&#39; object has no attribute &#39;cumsum&#39;</span>\n</pre></div>\n</span>"
+        }
+      ]
+    }
+  ]
+}
