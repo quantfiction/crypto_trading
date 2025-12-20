@@ -1,0 +1,349 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.14.1"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "23a58f635f4ceee4d2b4be10e4b20b7b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"imports\">Imports</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "577d17fec47c6dfcfda22e86f7a593d9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "bb1207a5c9979e0a818a335a6e4c9eb5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"config-params\">Config / Params</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "15de65f4d3b8c09d6523213e821b1669",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "0535d2cb2996626d78e20fb553d87819",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "26464903760a0d161153aaa3af0a5462",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"inputs\">Inputs</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "932d445edcc69b83ae6565de385f8075",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "fef2d04164a7d58a9055b2f05a250311",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "b13fb57dd4602fd4856670fabd29ae2f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "886fedd1ea676b1d5a3d9031ffefe605",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"database-functions\">Database Functions</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "b76a422cca085e0ca30e49d11bac1587",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "aa2ae922ed5a7a3a4a12b5d7b8d14c15",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"get-data\">Get Data</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "f0915f5c00ac5212ff6cdca525a9c940",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='Hstk-0' random-id='009431f4-b07f-8400-12fb-5ba8b750e92c'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;XVS-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:3.507,&#92;&quot;high&#92;&quot;:3.8,&#92;&quot;low&#92;&quot;:3.422,&#92;&quot;close&#92;&quot;:3.637,&#92;&quot;base_volume&#92;&quot;:263445.564,&#92;&quot;quote_volume&#92;&quot;:942093.216375,&#92;&quot;base_volume_buy&#92;&quot;:120379.528,&#92;&quot;quote_volume_buy&#92;&quot;:431602.275525,&#92;&quot;vwap&#92;&quot;:3.5760450928488585,&#92;&quot;quote_volume_delta&#92;&quot;:-78888.66532499995},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;HOT-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:0.0005849,&#92;&quot;high&#92;&quot;:0.0006709,&#92;&quot;low&#92;&quot;:0.0005801,&#92;&quot;close&#92;&quot;:0.0006155,&#92;&quot;base_volume&#92;&quot;:2778198255.0,&#92;&quot;quote_volume&#92;&quot;:1731611.7771279,&#92;&quot;base_volume_buy&#92;&quot;:1581640425.0,&#92;&quot;quote_volume_buy&#92;&quot;:986133.5415439,&#92;&quot;vwap&#92;&quot;:0.0006232858918586787,&#92;&quot;quote_volume_delta&#92;&quot;:240655.30595990014},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;XRP-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:0.21959,&#92;&quot;high&#92;&quot;:0.25,&#92;&quot;low&#92;&quot;:0.216,&#92;&quot;close&#92;&quot;:0.23746,&#92;&quot;base_volume&#92;&quot;:1490489727.4,&#92;&quot;quote_volume&#92;&quot;:351730366.621461,&#92;&quot;base_volume_buy&#92;&quot;:757643334.4,&#92;&quot;quote_volume_buy&#92;&quot;:178883309.527251,&#92;&quot;vwap&#92;&quot;:0.23598308673687873,&#92;&quot;quote_volume_delta&#92;&quot;:6036252.433041036},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;FET-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:0.05152,&#92;&quot;high&#92;&quot;:0.05607,&#92;&quot;low&#92;&quot;:0.0515,&#92;&quot;close&#92;&quot;:0.05333,&#92;&quot;base_volume&#92;&quot;:15879644.5,&#92;&quot;quote_volume&#92;&quot;:858374.918268,&#92;&quot;base_volume_buy&#92;&quot;:8273815.7,&#92;&quot;quote_volume_buy&#92;&quot;:447527.005834,&#92;&quot;vwap&#92;&quot;:0.05405504627436716,&#92;&quot;quote_volume_delta&#92;&quot;:36679.09340000001},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;SXP-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:0.742,&#92;&quot;high&#92;&quot;:0.771,&#92;&quot;low&#92;&quot;:0.675,&#92;&quot;close&#92;&quot;:0.712,&#92;&quot;base_volume&#92;&quot;:17088286.156,&#92;&quot;quote_volume&#92;&quot;:12372974.256963,&#92;&quot;base_volume_buy&#92;&quot;:8205986.352,&#92;&quot;quote_volume_buy&#92;&quot;:5944512.105835,&#92;&quot;vwap&#92;&quot;:0.724061742881022,&#92;&quot;quote_volume_delta&#92;&quot;:-483950.0452929996}]&quot;' data-total-rows='5' data-total-columns='12' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;datetime&quot;, [&quot;datetime&quot;, &quot;datetime[&#92;u03bcs]&quot;]], [&quot;symbol&quot;, [&quot;string&quot;, &quot;str&quot;]], [&quot;open&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;high&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;low&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;close&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;vwap&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_delta&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "9e3c666b2839a6237ecad7bd95d70283",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<span class=\"markdown prose dark:prose-invert\"><h1 id=\"top-performance\">Top Performance</h1></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "c967c3fe0ac038e376fd595f69667790",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "907de3abaa514e5ca156a32f56ce34c3",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ROlb",
+      "code_hash": "55daa0fe49f7adb358f210d1db275800",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "qnkX",
+      "code_hash": "eeaaca84d3fc437119facf83f7aa0dae",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "TqIu",
+      "code_hash": "b4ee31385b034d7771f3e5f4c58e1a68",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Vxnm",
+      "code_hash": "dfcfd58a828ca860b253ea4a65aff548",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "DnEU",
+      "code_hash": "cb23d33c2d7e6023bab26855b995e3cb",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ulZA",
+      "code_hash": "43e61fdd6bbcd99658b921139835627f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ecfG",
+      "code_hash": "6014ef701093e032e9d84492b3504c65",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "Pvdt",
+      "code_hash": "d8af26d61c51452436c66eaf3096e653",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "ZBYS",
+      "code_hash": "7d93cdad0169735108b50c86c6b4955c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aLJB",
+      "code_hash": "16c9a5d7fe159b30837ed6245ac9713c",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "nHfw",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "xXTn",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "AjVT",
+      "code_hash": null,
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "pHFh",
+      "code_hash": "66887e8d5f72bf0c76a88b05e998de2f",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "NCOB",
+      "code_hash": "0eb768582a7f50b18a88f551f921d476",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "aqbW",
+      "code_hash": "ba3ae45c8f953e1ed1988274e3b7c9e2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='aqbW-0' random-id='68f84a12-fede-8bd7-b1b5-b8c4eb9e2b27'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-01 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:1.3637,&#92;&quot;high&#92;&quot;:1.3974,&#92;&quot;low&#92;&quot;:1.0863,&#92;&quot;close&#92;&quot;:1.155,&#92;&quot;base_volume&#92;&quot;:20279992.26,&#92;&quot;quote_volume&#92;&quot;:24465518.026843,&#92;&quot;base_volume_buy&#92;&quot;:9096169.67,&#92;&quot;quote_volume_buy&#92;&quot;:10983604.249296,&#92;&quot;vwap&#92;&quot;:1.206386950901282,&#92;&quot;quote_volume_delta&#92;&quot;:-2498309.5282509997,&#92;&quot;log_return&#92;&quot;:null},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-02 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:1.155,&#92;&quot;high&#92;&quot;:1.1607,&#92;&quot;low&#92;&quot;:1.0,&#92;&quot;close&#92;&quot;:1.025,&#92;&quot;base_volume&#92;&quot;:11922746.16,&#92;&quot;quote_volume&#92;&quot;:12861436.62075,&#92;&quot;base_volume_buy&#92;&quot;:5114974.76,&#92;&quot;quote_volume_buy&#92;&quot;:5532459.586454,&#92;&quot;vwap&#92;&quot;:1.0787310614646182,&#92;&quot;quote_volume_delta&#92;&quot;:-1796517.447842,&#92;&quot;log_return&#92;&quot;:-0.11940773138338545},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-03 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:1.025,&#92;&quot;high&#92;&quot;:1.1568,&#92;&quot;low&#92;&quot;:0.9456,&#92;&quot;close&#92;&quot;:1.108,&#92;&quot;base_volume&#92;&quot;:20147704.01,&#92;&quot;quote_volume&#92;&quot;:21379421.776639,&#92;&quot;base_volume_buy&#92;&quot;:10264272.78,&#92;&quot;quote_volume_buy&#92;&quot;:10882839.975117,&#92;&quot;vwap&#92;&quot;:1.0611343985412756,&#92;&quot;quote_volume_delta&#92;&quot;:386258.17359500006,&#92;&quot;log_return&#92;&quot;:0.07786397573472073},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-04 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:1.108,&#92;&quot;high&#92;&quot;:1.24,&#92;&quot;low&#92;&quot;:0.9666,&#92;&quot;close&#92;&quot;:1.0317,&#92;&quot;base_volume&#92;&quot;:18714450.36,&#92;&quot;quote_volume&#92;&quot;:20652733.11878,&#92;&quot;base_volume_buy&#92;&quot;:9426073.01,&#92;&quot;quote_volume_buy&#92;&quot;:10425694.581387,&#92;&quot;vwap&#92;&quot;:1.1035714499487976,&#92;&quot;quote_volume_delta&#92;&quot;:198656.04399400204,&#92;&quot;log_return&#92;&quot;:-0.07134866120089893},{&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-01-05 00:00:00&#92;&quot;,&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;open&#92;&quot;:1.0317,&#92;&quot;high&#92;&quot;:1.38,&#92;&quot;low&#92;&quot;:0.98,&#92;&quot;close&#92;&quot;:1.2501,&#92;&quot;base_volume&#92;&quot;:21614286.19,&#92;&quot;quote_volume&#92;&quot;:24772365.76234,&#92;&quot;base_volume_buy&#92;&quot;:11324499.88,&#92;&quot;quote_volume_buy&#92;&quot;:13047793.620305,&#92;&quot;vwap&#92;&quot;:1.1461107502963066,&#92;&quot;quote_volume_delta&#92;&quot;:1323221.478269998,&#92;&quot;log_return&#92;&quot;:0.1920156209901872}]&quot;' data-total-rows='5' data-total-columns='13' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;datetime&quot;, [&quot;datetime&quot;, &quot;datetime[&#92;u03bcs]&quot;]], [&quot;symbol&quot;, [&quot;string&quot;, &quot;str&quot;]], [&quot;open&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;high&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;low&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;close&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;base_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_buy&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;vwap&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;quote_volume_delta&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;log_return&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "aKxl",
+      "code_hash": "0db3b670c3ff42bad783b080ff156fc9",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='aKxl-0' random-id='edae7877-e98e-9c12-22a1-c90f4eb5fad0'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-22 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-2.9994629902601693},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-23 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-2.605753342401358},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-24 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-3.456735579205686},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-25 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-3.3215763686445077},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-26 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-2.4058412894332926},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-27 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-4.279679403931366},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-28 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-4.617656777566526},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-29 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-5.486924100085494},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-30 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-4.616750620050111},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ZRX-USDT&#92;&quot;,&#92;&quot;datetime&#92;&quot;:&#92;&quot;2021-12-31 00:00:00&#92;&quot;,&#92;&quot;sharpe_30d&#92;&quot;:-4.230164589429162}]&quot;' data-total-rows='10' data-total-columns='3' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;symbol&quot;, [&quot;string&quot;, &quot;str&quot;]], [&quot;datetime&quot;, [&quot;datetime&quot;, &quot;datetime[&#92;u03bcs]&quot;]], [&quot;sharpe_30d&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='false' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "VNyu",
+      "code_hash": "c190bb90fb71d373e57cc7e30edc7253",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='VNyu-0' random-id='232c2b5d-e0f0-9401-2097-459ec1dffba4'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;symbol&#92;&quot;:&#92;&quot;SLP-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-9.213541664416399},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;LAZIO-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-9.049003594734824},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;SUSHI-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.79103473889914},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;CITY-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.703368045666828},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;BAR-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.515872915470661},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;QNT-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.186042923957121},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;SNX-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.110677638340261},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;TRU-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.058826270769732},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;VET-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-8.002401043209744},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ADA-USDT&#92;&quot;,&#92;&quot;min_sharpe_after&#92;&quot;:-7.859052308808559}]&quot;' data-total-rows='191' data-total-columns='2' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;symbol&quot;, [&quot;string&quot;, &quot;str&quot;]], [&quot;min_sharpe_after&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZhTt",
+      "code_hash": "cfa234a75b3148b2467e7a3dd2d9d1da",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='ZhTt-0' random-id='8a62ed23-6475-df25-ea45-223df2ddaa4c'><marimo-plotly data-initial-value='{}' data-label='null' data-figure='{&quot;data&quot;: [{&quot;hoverinfo&quot;: &quot;x+y&quot;, &quot;marker&quot;: {&quot;color&quot;: &quot;crimson&quot;}, &quot;x&quot;: [&quot;SLP-USDT&quot;, &quot;LAZIO-USDT&quot;, &quot;SUSHI-USDT&quot;, &quot;CITY-USDT&quot;, &quot;BAR-USDT&quot;, &quot;QNT-USDT&quot;, &quot;SNX-USDT&quot;, &quot;TRU-USDT&quot;, &quot;VET-USDT&quot;, &quot;ADA-USDT&quot;, &quot;ATM-USDT&quot;, &quot;ASR-USDT&quot;, &quot;NEO-USDT&quot;, &quot;YFI-USDT&quot;, &quot;DOT-USDT&quot;, &quot;AAVE-USDT&quot;, &quot;VTHO-USDT&quot;, &quot;CAKE-USDT&quot;, &quot;ETC-USDT&quot;, &quot;ICP-USDT&quot;, &quot;DOGE-USDT&quot;, &quot;FARM-USDT&quot;, &quot;OXT-USDT&quot;, &quot;PERP-USDT&quot;, &quot;CELO-USDT&quot;, &quot;LINK-USDT&quot;, &quot;ACM-USDT&quot;, &quot;C98-USDT&quot;, &quot;COMP-USDT&quot;, &quot;XEC-USDT&quot;, &quot;MLN-USDT&quot;, &quot;XRP-USDT&quot;, &quot;FTT-USDT&quot;, &quot;FIL-USDT&quot;, &quot;HBAR-USDT&quot;, &quot;KSM-USDT&quot;, &quot;XVS-USDT&quot;, &quot;BCH-USDT&quot;, &quot;FORTH-USDT&quot;, &quot;PHA-USDT&quot;, &quot;AR-USDT&quot;, &quot;BTC-USDT&quot;, &quot;AXS-USDT&quot;, &quot;JUV-USDT&quot;, &quot;RVN-USDT&quot;, &quot;BAKE-USDT&quot;, &quot;IOST-USDT&quot;, &quot;ZIL-USDT&quot;, &quot;RIF-USDT&quot;, &quot;LTC-USDT&quot;, &quot;ARPA-USDT&quot;, &quot;DODO-USDT&quot;, &quot;TRB-USDT&quot;, &quot;HOT-USDT&quot;, &quot;1INCH-USDT&quot;, &quot;TFUEL-USDT&quot;, &quot;RUNE-USDT&quot;, &quot;SFP-USDT&quot;, &quot;THETA-USDT&quot;, &quot;COTI-USDT&quot;, &quot;MOVR-USDT&quot;, &quot;KAVA-USDT&quot;, &quot;DENT-USDT&quot;, &quot;BNT-USDT&quot;, &quot;CELR-USDT&quot;, &quot;XLM-USDT&quot;, &quot;PUNDIX-USDT&quot;, &quot;FLM-USDT&quot;, &quot;DYDX-USDT&quot;, &quot;ONGAS-USDT&quot;, &quot;DASH-USDT&quot;, &quot;QTUM-USDT&quot;, &quot;OG-USDT&quot;, &quot;SUN-USDT&quot;, &quot;SKL-USDT&quot;, &quot;CHR-USDT&quot;, &quot;RLC-USDT&quot;, &quot;XTZ-USDT&quot;, &quot;NMR-USDT&quot;, &quot;ICX-USDT&quot;, &quot;ONT-USDT&quot;, &quot;GRT-USDT&quot;, &quot;ADX-USDT&quot;, &quot;RAY-USDT&quot;, &quot;MTL-USDT&quot;, &quot;UNI-USDT&quot;, &quot;AVA-USDT&quot;, &quot;SXP-USDT&quot;, &quot;PSG-USDT&quot;, &quot;BAND-USDT&quot;, &quot;FUN-USDT&quot;, &quot;NKN-USDT&quot;, &quot;CHZ-USDT&quot;, &quot;LPT-USDT&quot;, &quot;FET-USDT&quot;, &quot;ATOM-USDT&quot;, &quot;TKO-USDT&quot;, &quot;RARE-USDT&quot;, &quot;FLOW-USDT&quot;, &quot;SHIB-USDT&quot;, &quot;AGLD-USDT&quot;, &quot;UTK-USDT&quot;, &quot;CFX-USDT&quot;, &quot;OGN-USDT&quot;, &quot;ALPHA-USDT&quot;, &quot;PAXG-USDT&quot;, &quot;DCR-USDT&quot;, &quot;GTC-USDT&quot;, &quot;TWT-USDT&quot;, &quot;ONE-USDT&quot;, &quot;ZRX-USDT&quot;, &quot;XVG-USDT&quot;, &quot;DGB-USDT&quot;, &quot;DF-USDT&quot;, &quot;STRAX-USDT&quot;, &quot;AUCTION-USDT&quot;, &quot;JST-USDT&quot;, &quot;IOTX-USDT&quot;, &quot;FIDA-USDT&quot;, &quot;BEL-USDT&quot;, &quot;SOL-USDT&quot;, &quot;KNC-USDT&quot;, &quot;AUDIO-USDT&quot;, &quot;MINA-USDT&quot;, &quot;INJ-USDT&quot;, &quot;WAN-USDT&quot;, &quot;TRX-USDT&quot;, &quot;NEAR-USDT&quot;, &quot;LSK-USDT&quot;, &quot;OM-USDT&quot;, &quot;FIS-USDT&quot;, &quot;MKR-USDT&quot;, &quot;DIA-USDT&quot;, &quot;WIN-USDT&quot;, &quot;GNO-USDT&quot;, &quot;CVC-USDT&quot;, &quot;POND-USDT&quot;, &quot;ATA-USDT&quot;, &quot;ARDR-USDT&quot;, &quot;ALGO-USDT&quot;, &quot;ZEN-USDT&quot;, &quot;UMA-USDT&quot;, &quot;DEGO-USDT&quot;, &quot;CTK-USDT&quot;, &quot;FIO-USDT&quot;, &quot;TUSD-USDT&quot;, &quot;SUPER-USDT&quot;, &quot;RSR-USDT&quot;, &quot;IDEX-USDT&quot;, &quot;CTSI-USDT&quot;, &quot;ETH-USDT&quot;, &quot;USDP-USDT&quot;, &quot;USDC-USDT&quot;, &quot;STX-USDT&quot;, &quot;SC-USDT&quot;, &quot;MASK-USDT&quot;, &quot;CHESS-USDT&quot;, &quot;MIOTA-USDT&quot;, &quot;REQ-USDT&quot;, &quot;DEXE-USDT&quot;, &quot;MBL-USDT&quot;, &quot;RAD-USDT&quot;, &quot;COS-USDT&quot;, &quot;CKB-USDT&quot;, &quot;DATA-USDT&quot;, &quot;LRC-USDT&quot;, &quot;EGLD-USDT&quot;, &quot;ENJ-USDT&quot;, &quot;BNB-USDT&quot;, &quot;DAI-USDT&quot;, &quot;CRV-USDT&quot;, &quot;MBOX-USDT&quot;, &quot;ROSE-USDT&quot;, &quot;ANKR-USDT&quot;, &quot;ZEC-USDT&quot;, &quot;HIVE-USDT&quot;, &quot;ALICE-USDT&quot;, &quot;YGG-USDT&quot;, &quot;TLM-USDT&quot;, &quot;WAXP-USDT&quot;, &quot;GALA-USDT&quot;, &quot;SYS-USDT&quot;, &quot;AVAX-USDT&quot;, &quot;BAT-USDT&quot;, &quot;ILV-USDT&quot;, &quot;STORJ-USDT&quot;, &quot;DUSK-USDT&quot;, &quot;MDT-USDT&quot;, &quot;GHST-USDT&quot;, &quot;MANA-USDT&quot;, &quot;SAND-USDT&quot;], &quot;y&quot;: [-9.213541664416399, -9.049003594734824, -8.79103473889914, -8.703368045666828, -8.515872915470661, -8.186042923957121, -8.110677638340261, -8.058826270769732, -8.002401043209744, -7.859052308808559, -7.8474569993099, -7.838012263740257, -7.692535868723232, -7.64956758634069, -7.54300636913649, -7.499675384280039, -7.424790350599423, -7.400972708303836, -7.390120172887805, -7.343022438677045, -7.3310951125936885, -7.310090231361129, -7.281205726962386, -7.200378544596231, -7.151189159173316, -7.0995505931754375, -7.052107501736635, -7.0121162164850555, -6.978352878669867, -6.966591538986334, -6.766907907485343, -6.756127036735207, -6.717487048946515, -6.671980239536829, -6.479813602331423, -6.476750618780975, -6.470206037611188, -6.396416852427971, -6.36406550297491, -6.335080889672589, -6.321967892198911, -6.205468631368073, -6.1891743678273485, -6.189057284635897, -6.140856412939987, -6.092369481035398, -6.092032004294896, -6.087142117447361, -5.997776135982294, -5.9754076731149555, -5.974328653254007, -5.9233875658022175, -5.872658474684982, -5.862342638945788, -5.842046440213874, -5.8420072599036255, -5.813563217724603, -5.75039404131702, -5.7478626220295705, -5.745633502662919, -5.706872078429287, -5.67748657258176, -5.62657896264497, -5.592274669485524, -5.536162514125953, -5.505718938292804, -5.476207196942219, -5.462548114827522, -5.460883497071583, -5.453073116717134, -5.37019189166115, -5.361744125284382, -5.354577662716972, -5.3472791621105875, -5.32949229377197, -5.322290164456004, -5.244187248636476, -5.2144832777313015, -5.2141397195712305, -5.203513284879584, -5.184037493879228, -5.183554595006885, -5.173138338855029, -5.146076384458874, -5.144437377798069, -5.115973782651946, -5.108692200445346, -5.0657973580493545, -5.054369322211402, -5.029564824791881, -5.004757791542964, -5.000844365416764, -5.000396318842293, -4.965080574393141, -4.939218256637245, -4.917297903782382, -4.903794216564239, -4.852186407641667, -4.848796562722724, -4.785510110617028, -4.7410478696374705, -4.638260254780027, -4.6336048590544205, -4.575352474447354, -4.564441691485469, -4.5618358841020195, -4.547401602300346, -4.533945002891559, -4.495603335437478, -4.429094303156644, -4.425449479081736, -4.409866958082321, -4.406334341509373, -4.3940917614245985, -4.348426587689645, -4.305839957303355, -4.2739969658604196, -4.187324039105977, -4.021458356650728, -3.934504154505321, -3.781218780736149, -3.7761153341945195, -3.772514632160585, -3.655750854060705, -3.6005815429153576, -3.5560042191521877, -3.493453058370585, -3.4766180055196156, -3.470145101389239, -3.401117928138675, -3.3699763125413487, -3.269119388491746, -3.2538569699713134, -3.172781851890102, -3.1710532314712543, -3.1688571002980144, -3.154659362165501, -3.1128047967093604, -3.100464219965993, -3.0829375127544183, -2.847903536078163, -2.7839759521469976, -2.6436215000112173, -2.6408548733314676, -2.549688797073162, -2.534337575513368, -2.4537458305588027, -2.4327179979071736, -2.4062207595711578, -2.392776159509102, -2.356530170095693, -2.3554499529236153, -2.3348702816237057, -2.2916414861502927, -2.2778354130081175, -2.244262406991366, -2.2334674186072396, -2.1492038220371525, -2.1299458730163194, -2.1065701541010147, -2.0810749981165513, -2.066674825912944, -2.0461436444130956, -1.9226778829495643, -1.8661533790921667, -1.8281614059149824, -1.7974396333400433, -1.7817771710226145, -1.7038866712595404, -1.6788808606971544, -1.6200538217028817, -1.6105119543677662, -1.3190570838711662, -1.3051749389590783, -1.2904569526957848, -1.186108497262395, -1.096397692699984, -1.0542466596135842, -0.9612661331851856, -0.8284887693855476, -0.7846018441612924, -0.5745318163042152, -0.46118447228820647, -0.1709477311877711, 0.1464563964888008, 0.2836655484585911, 0.34223987855313204, 0.8378987575635599, 1.7262609567237652, 1.8366944207593445, 3.801025765747053], &quot;type&quot;: &quot;bar&quot;}], &quot;layout&quot;: {&quot;template&quot;: {&quot;data&quot;: {&quot;barpolar&quot;: [{&quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;white&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;barpolar&quot;}], &quot;bar&quot;: [{&quot;error_x&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;error_y&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;white&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;bar&quot;}], &quot;carpet&quot;: [{&quot;aaxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;#C8D4E3&quot;, &quot;linecolor&quot;: &quot;#C8D4E3&quot;, &quot;minorgridcolor&quot;: &quot;#C8D4E3&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;baxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;#C8D4E3&quot;, &quot;linecolor&quot;: &quot;#C8D4E3&quot;, &quot;minorgridcolor&quot;: &quot;#C8D4E3&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;type&quot;: &quot;carpet&quot;}], &quot;choropleth&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;choropleth&quot;}], &quot;contourcarpet&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;contourcarpet&quot;}], &quot;contour&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;contour&quot;}], &quot;heatmap&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;heatmap&quot;}], &quot;histogram2dcontour&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;histogram2dcontour&quot;}], &quot;histogram2d&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;histogram2d&quot;}], &quot;histogram&quot;: [{&quot;marker&quot;: {&quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;histogram&quot;}], &quot;mesh3d&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;mesh3d&quot;}], &quot;parcoords&quot;: [{&quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;parcoords&quot;}], &quot;pie&quot;: [{&quot;automargin&quot;: true, &quot;type&quot;: &quot;pie&quot;}], &quot;scatter3d&quot;: [{&quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatter3d&quot;}], &quot;scattercarpet&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattercarpet&quot;}], &quot;scattergeo&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattergeo&quot;}], &quot;scattergl&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattergl&quot;}], &quot;scattermapbox&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattermapbox&quot;}], &quot;scattermap&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattermap&quot;}], &quot;scatterpolargl&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterpolargl&quot;}], &quot;scatterpolar&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterpolar&quot;}], &quot;scatter&quot;: [{&quot;fillpattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}, &quot;type&quot;: &quot;scatter&quot;}], &quot;scatterternary&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterternary&quot;}], &quot;surface&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;surface&quot;}], &quot;table&quot;: [{&quot;cells&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#EBF0F8&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;header&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#C8D4E3&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;type&quot;: &quot;table&quot;}]}, &quot;layout&quot;: {&quot;annotationdefaults&quot;: {&quot;arrowcolor&quot;: &quot;#2a3f5f&quot;, &quot;arrowhead&quot;: 0, &quot;arrowwidth&quot;: 1}, &quot;autotypenumbers&quot;: &quot;strict&quot;, &quot;coloraxis&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;colorscale&quot;: {&quot;diverging&quot;: [[0, &quot;#8e0152&quot;], [0.1, &quot;#c51b7d&quot;], [0.2, &quot;#de77ae&quot;], [0.3, &quot;#f1b6da&quot;], [0.4, &quot;#fde0ef&quot;], [0.5, &quot;#f7f7f7&quot;], [0.6, &quot;#e6f5d0&quot;], [0.7, &quot;#b8e186&quot;], [0.8, &quot;#7fbc41&quot;], [0.9, &quot;#4d9221&quot;], [1, &quot;#276419&quot;]], &quot;sequential&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;sequentialminus&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}, &quot;colorway&quot;: [&quot;#636efa&quot;, &quot;#EF553B&quot;, &quot;#00cc96&quot;, &quot;#ab63fa&quot;, &quot;#FFA15A&quot;, &quot;#19d3f3&quot;, &quot;#FF6692&quot;, &quot;#B6E880&quot;, &quot;#FF97FF&quot;, &quot;#FECB52&quot;], &quot;font&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;geo&quot;: {&quot;bgcolor&quot;: &quot;white&quot;, &quot;lakecolor&quot;: &quot;white&quot;, &quot;landcolor&quot;: &quot;white&quot;, &quot;showlakes&quot;: true, &quot;showland&quot;: true, &quot;subunitcolor&quot;: &quot;#C8D4E3&quot;}, &quot;hoverlabel&quot;: {&quot;align&quot;: &quot;left&quot;}, &quot;hovermode&quot;: &quot;closest&quot;, &quot;mapbox&quot;: {&quot;style&quot;: &quot;light&quot;}, &quot;paper_bgcolor&quot;: &quot;white&quot;, &quot;plot_bgcolor&quot;: &quot;white&quot;, &quot;polar&quot;: {&quot;angularaxis&quot;: {&quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;bgcolor&quot;: &quot;white&quot;, &quot;radialaxis&quot;: {&quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;scene&quot;: {&quot;xaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}, &quot;yaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}, &quot;zaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}}, &quot;shapedefaults&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}}, &quot;ternary&quot;: {&quot;aaxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;baxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;bgcolor&quot;: &quot;white&quot;, &quot;caxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;title&quot;: {&quot;x&quot;: 0.05}, &quot;xaxis&quot;: {&quot;automargin&quot;: true, &quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;, &quot;zerolinewidth&quot;: 2}, &quot;yaxis&quot;: {&quot;automargin&quot;: true, &quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;, &quot;zerolinewidth&quot;: 2}}}, &quot;xaxis&quot;: {&quot;title&quot;: {&quot;text&quot;: &quot;Symbol&quot;}, &quot;tickangle&quot;: -45}, &quot;title&quot;: {&quot;text&quot;: &quot;Lowest 30d Sharpe Ratio per Asset after 2025-11-10&quot;}, &quot;yaxis&quot;: {&quot;title&quot;: {&quot;text&quot;: &quot;Minimum 30d Sharpe Ratio (post-2025-11-10)&quot;}}}}' data-config='{}'></marimo-plotly></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "dHWt",
+      "code_hash": "a1359cf624b21763c76eabd2b5539bb7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='dHWt-0' random-id='18e44645-4af6-74da-c2d5-4e546b87eaf4'><marimo-table data-initial-value='[]' data-label='null' data-data='&quot;[{&#92;&quot;symbol&#92;&quot;:&#92;&quot;1INCH-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:2.4926280861619894,&#92;&quot;sharpe_30d_post&#92;&quot;:-5.139566909942038},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;AAVE-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:1.4867594129795012,&#92;&quot;sharpe_30d_post&#92;&quot;:-7.36882602475254},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ACM-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:-3.2523529533066857,&#92;&quot;sharpe_30d_post&#92;&quot;:-6.632600100160016},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ADA-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:-0.6123004897633098,&#92;&quot;sharpe_30d_post&#92;&quot;:-7.737591929704757},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ADX-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:null,&#92;&quot;sharpe_30d_post&#92;&quot;:-3.8011535086060233},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;AGLD-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:-3.5071595596994465,&#92;&quot;sharpe_30d_post&#92;&quot;:-4.27867128829046},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ALGO-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:1.656809608574645,&#92;&quot;sharpe_30d_post&#92;&quot;:-3.0829375127544183},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ALICE-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:1.027055356209902,&#92;&quot;sharpe_30d_post&#92;&quot;:-0.43109242607836945},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ALPHA-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:1.7716520592703988,&#92;&quot;sharpe_30d_post&#92;&quot;:-4.182175131412296},{&#92;&quot;symbol&#92;&quot;:&#92;&quot;ANKR-USDT&#92;&quot;,&#92;&quot;sharpe_30d_pre&#92;&quot;:2.588713692745287,&#92;&quot;sharpe_30d_post&#92;&quot;:-0.9874994335247946}]&quot;' data-total-rows='191' data-total-columns='3' data-max-columns='50' data-banner-text='&quot;&quot;' data-pagination='true' data-page-size='10' data-field-types='[[&quot;symbol&quot;, [&quot;string&quot;, &quot;str&quot;]], [&quot;sharpe_30d_pre&quot;, [&quot;number&quot;, &quot;f64&quot;]], [&quot;sharpe_30d_post&quot;, [&quot;number&quot;, &quot;f64&quot;]]]' data-show-filters='true' data-show-download='true' data-show-column-summaries='true' data-row-headers='[]' data-has-stable-row-id='false' data-lazy='false' data-preload='false'></marimo-table></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "JStA",
+      "code_hash": "f9e490b7bb73eb375c92115edacab48b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='JStA-0' random-id='0c2eeaae-01c0-c06f-02d3-7f9e1fb3032b'><marimo-plotly data-initial-value='{}' data-label='null' data-figure='{&quot;data&quot;: [{&quot;marker&quot;: {&quot;color&quot;: &quot;darkorange&quot;, &quot;line&quot;: {&quot;color&quot;: &quot;black&quot;, &quot;width&quot;: 1}, &quot;size&quot;: 10}, &quot;mode&quot;: &quot;markers+text&quot;, &quot;text&quot;: [&quot;1INCH-USDT&quot;, &quot;AAVE-USDT&quot;, &quot;ACM-USDT&quot;, &quot;ADA-USDT&quot;, &quot;ADX-USDT&quot;, &quot;AGLD-USDT&quot;, &quot;ALGO-USDT&quot;, &quot;ALICE-USDT&quot;, &quot;ALPHA-USDT&quot;, &quot;ANKR-USDT&quot;, &quot;AR-USDT&quot;, &quot;ARDR-USDT&quot;, &quot;ARPA-USDT&quot;, &quot;ASR-USDT&quot;, &quot;ATA-USDT&quot;, &quot;ATM-USDT&quot;, &quot;ATOM-USDT&quot;, &quot;AUCTION-USDT&quot;, &quot;AUDIO-USDT&quot;, &quot;AVA-USDT&quot;, &quot;AVAX-USDT&quot;, &quot;AXS-USDT&quot;, &quot;BAKE-USDT&quot;, &quot;BAND-USDT&quot;, &quot;BAR-USDT&quot;, &quot;BAT-USDT&quot;, &quot;BCH-USDT&quot;, &quot;BEL-USDT&quot;, &quot;BNB-USDT&quot;, &quot;BNT-USDT&quot;, &quot;BTC-USDT&quot;, &quot;C98-USDT&quot;, &quot;CAKE-USDT&quot;, &quot;CELO-USDT&quot;, &quot;CELR-USDT&quot;, &quot;CFX-USDT&quot;, &quot;CHESS-USDT&quot;, &quot;CHR-USDT&quot;, &quot;CHZ-USDT&quot;, &quot;CITY-USDT&quot;, &quot;CKB-USDT&quot;, &quot;COMP-USDT&quot;, &quot;COS-USDT&quot;, &quot;COTI-USDT&quot;, &quot;CRV-USDT&quot;, &quot;CTK-USDT&quot;, &quot;CTSI-USDT&quot;, &quot;CVC-USDT&quot;, &quot;DAI-USDT&quot;, &quot;DASH-USDT&quot;, &quot;DATA-USDT&quot;, &quot;DCR-USDT&quot;, &quot;DEGO-USDT&quot;, &quot;DENT-USDT&quot;, &quot;DEXE-USDT&quot;, &quot;DF-USDT&quot;, &quot;DGB-USDT&quot;, &quot;DIA-USDT&quot;, &quot;DODO-USDT&quot;, &quot;DOGE-USDT&quot;, &quot;DOT-USDT&quot;, &quot;DUSK-USDT&quot;, &quot;DYDX-USDT&quot;, &quot;EGLD-USDT&quot;, &quot;ENJ-USDT&quot;, &quot;ETC-USDT&quot;, &quot;ETH-USDT&quot;, &quot;FARM-USDT&quot;, &quot;FET-USDT&quot;, &quot;FIDA-USDT&quot;, &quot;FIL-USDT&quot;, &quot;FIO-USDT&quot;, &quot;FIS-USDT&quot;, &quot;FLM-USDT&quot;, &quot;FLOW-USDT&quot;, &quot;FORTH-USDT&quot;, &quot;FTT-USDT&quot;, &quot;FUN-USDT&quot;, &quot;GALA-USDT&quot;, &quot;GHST-USDT&quot;, &quot;GNO-USDT&quot;, &quot;GRT-USDT&quot;, &quot;GTC-USDT&quot;, &quot;HBAR-USDT&quot;, &quot;HIVE-USDT&quot;, &quot;HOT-USDT&quot;, &quot;ICP-USDT&quot;, &quot;ICX-USDT&quot;, &quot;IDEX-USDT&quot;, &quot;ILV-USDT&quot;, &quot;INJ-USDT&quot;, &quot;IOST-USDT&quot;, &quot;IOTX-USDT&quot;, &quot;JST-USDT&quot;, &quot;JUV-USDT&quot;, &quot;KAVA-USDT&quot;, &quot;KNC-USDT&quot;, &quot;KSM-USDT&quot;, &quot;LAZIO-USDT&quot;, &quot;LINK-USDT&quot;, &quot;LPT-USDT&quot;, &quot;LRC-USDT&quot;, &quot;LSK-USDT&quot;, &quot;LTC-USDT&quot;, &quot;MANA-USDT&quot;, &quot;MASK-USDT&quot;, &quot;MBL-USDT&quot;, &quot;MBOX-USDT&quot;, &quot;MDT-USDT&quot;, &quot;MINA-USDT&quot;, &quot;MIOTA-USDT&quot;, &quot;MKR-USDT&quot;, &quot;MLN-USDT&quot;, &quot;MOVR-USDT&quot;, &quot;MTL-USDT&quot;, &quot;NEAR-USDT&quot;, &quot;NEO-USDT&quot;, &quot;NKN-USDT&quot;, &quot;NMR-USDT&quot;, &quot;OG-USDT&quot;, &quot;OGN-USDT&quot;, &quot;OM-USDT&quot;, &quot;ONE-USDT&quot;, &quot;ONGAS-USDT&quot;, &quot;ONT-USDT&quot;, &quot;OXT-USDT&quot;, &quot;PAXG-USDT&quot;, &quot;PERP-USDT&quot;, &quot;PHA-USDT&quot;, &quot;POND-USDT&quot;, &quot;PSG-USDT&quot;, &quot;PUNDIX-USDT&quot;, &quot;QNT-USDT&quot;, &quot;QTUM-USDT&quot;, &quot;RAD-USDT&quot;, &quot;RARE-USDT&quot;, &quot;RAY-USDT&quot;, &quot;REQ-USDT&quot;, &quot;RIF-USDT&quot;, &quot;RLC-USDT&quot;, &quot;ROSE-USDT&quot;, &quot;RSR-USDT&quot;, &quot;RUNE-USDT&quot;, &quot;RVN-USDT&quot;, &quot;SAND-USDT&quot;, &quot;SC-USDT&quot;, &quot;SFP-USDT&quot;, &quot;SHIB-USDT&quot;, &quot;SKL-USDT&quot;, &quot;SLP-USDT&quot;, &quot;SNX-USDT&quot;, &quot;SOL-USDT&quot;, &quot;STORJ-USDT&quot;, &quot;STRAX-USDT&quot;, &quot;STX-USDT&quot;, &quot;SUN-USDT&quot;, &quot;SUPER-USDT&quot;, &quot;SUSHI-USDT&quot;, &quot;SXP-USDT&quot;, &quot;SYS-USDT&quot;, &quot;TFUEL-USDT&quot;, &quot;THETA-USDT&quot;, &quot;TKO-USDT&quot;, &quot;TLM-USDT&quot;, &quot;TRB-USDT&quot;, &quot;TRU-USDT&quot;, &quot;TRX-USDT&quot;, &quot;TUSD-USDT&quot;, &quot;TWT-USDT&quot;, &quot;UMA-USDT&quot;, &quot;UNI-USDT&quot;, &quot;USDC-USDT&quot;, &quot;USDP-USDT&quot;, &quot;UTK-USDT&quot;, &quot;VET-USDT&quot;, &quot;VTHO-USDT&quot;, &quot;WAN-USDT&quot;, &quot;WAXP-USDT&quot;, &quot;WIN-USDT&quot;, &quot;XEC-USDT&quot;, &quot;XLM-USDT&quot;, &quot;XRP-USDT&quot;, &quot;XTZ-USDT&quot;, &quot;XVG-USDT&quot;, &quot;XVS-USDT&quot;, &quot;YFI-USDT&quot;, &quot;YGG-USDT&quot;, &quot;ZEC-USDT&quot;, &quot;ZEN-USDT&quot;, &quot;ZIL-USDT&quot;, &quot;ZRX-USDT&quot;], &quot;textposition&quot;: &quot;top right&quot;, &quot;x&quot;: [2.4926280861619894, 1.4867594129795012, -3.2523529533066857, -0.6123004897633098, null, -3.5071595596994465, 1.656809608574645, 1.027055356209902, 1.7716520592703988, 2.588713692745287, 1.373520237911272, -2.048116520005649, 3.2502053590667455, -3.645488816465941, 2.264937440612988, -6.017163434175785, 0.013098408445076287, null, 1.707574665923842, -0.7425978244934622, 5.803154000770078, 2.470586278098499, 1.7449002862658831, 1.4838998809233768, -5.758616102452162, 2.5456323645018037, 1.5126392344859378, 2.0360291505464945, 6.469305078372678, 4.002704410880856, 2.50980154536794, 1.8701354334348972, -0.5344513427576697, 1.261511433637021, -1.050389520185656, -1.2838483694995992, null, 6.281997651659812, 2.8349543765652343, null, 5.069196777392159, 1.1229885130198602, -1.6812198746153917, 0.13307169938842733, 3.3188591997454737, 0.32021342725732477, 5.267662660203013, -1.181456751767854, -0.3815315912753317, 2.3989395680935606, -0.47502464510742753, -4.547401602300346, 1.2641117391778232, 1.28423575469402, -0.47666344580866704, -1.1370129475964301, 1.7119997642509097, 0.721227516449774, 2.0397432096473724, 1.0942864452525733, 3.4445955515530065, 5.194165062527531, -5.1017385133514885, 3.194292324915489, 4.5606672735518865, 0.8481240832406924, 5.0206822147251025, -1.2565652189102847, 2.334869974172299, 4.383795151040504, -2.3455761689443078, -0.8511868520060303, 0.390125147584846, 3.4056780554414874, -3.8485052706506027, 1.8383013762785763, 1.362568737772888, -1.0437199206249463, -0.7846018441612924, 4.824746057821595, 5.975329906974433, 4.746888683538246, 1.650726767882922, 2.3124031882447236, -0.22515425544697534, 3.3539213346491947, 0.8198798135843615, -0.7832183517297818, -2.4062207595711578, 8.020302374661394, 1.425440732757371, -1.854440370918493, 4.24201462721352, 0.6082918423568349, -3.0174369499751243, -1.7430932973580051, 0.8244498358115613, 3.0897892268325196, null, 4.39275087171003, 6.675356550506593, 8.61925536492364, 1.051964986718158, 4.912640618808358, 3.759061886038379, 4.786917269008065, -1.763456946462887, -1.4351160562016707, 0.9386247996900964, 2.4945584081064567, -1.5954776726486273, 2.290708900325234, 0.22706420194039384, null, -1.4707514051489408, 3.584031938788067, 1.043276059397443, 2.980663493056765, -0.02985944581589886, -1.752961701462112, 2.8198921464837623, -0.10068536253364058, 1.6961712434884795, -0.8303265781103384, 1.5278690438435873, 4.904134437680878, 4.824217930810888, 1.0486877467305356, -1.18170358958588, 0.8104877810729634, -2.8326420773033916, -1.7909008834149727, -0.5785133041502357, 2.446169946514643, -2.066674825912944, -4.852186407641667, 2.3076215136267244, 0.7155297910796149, 2.029058664717408, 2.0135422274908628, -1.3190570838711662, 1.89398173046584, 4.828105132573368, 1.7806049208043024, 5.221603851171586, 0.41261174141682977, 1.2501169428451546, 2.3238798124909716, 1.7625269126150576, 0.08079887507225336, 0.01118032033177254, 6.029490707524625, 0.2836655484585911, -1.8907372012307542, 0.8835065136452072, 2.55699803278821, 6.792156068965474, 0.7856050434141257, -0.33431377237493426, 1.7868963358760186, 2.362823919935087, 1.8084046794409303, 0.5903004471897211, 1.9450864340345453, 5.133654055885965, 3.4281395655703393, 1.703048362731853, -0.26231433466435633, 1.1447080687095457, 2.8677799816092207, 0.7694915229933319, -0.41297466651089004, -0.9800618404609815, 2.033233955143794, 4.929126232649296, 2.4851127156004207, 0.5958297101800568, 7.088741087841148, 2.7560990899635174, -2.3394371448163507, 1.3691416443224445, 0.7802468332478877, -2.6317138564979836, 2.6984203066896306, -1.531611211557942, -1.3640043327282938, -1.0542466596135842, 4.775109237547893, 2.5709690435766053, 1.0474196042610513, 2.3124790580106476], &quot;y&quot;: [-5.139566909942038, -7.36882602475254, -6.632600100160016, -7.737591929704757, -3.8011535086060233, -4.27867128829046, -3.0829375127544183, -0.43109242607836945, -4.182175131412296, -0.9874994335247946, -6.098310262377871, -2.6075616967494355, -5.974328653254007, -7.150149154173953, -3.0210029721224796, -6.893952856038537, -3.334412390124332, -4.305839957303355, -3.170305610540904, -4.550204449054897, -0.46118447228820647, -5.043176039942234, -6.053773138445637, -4.9317405912157195, -8.360061712565335, -0.09619874544055192, -5.816233308140076, -2.526012049793236, -1.4890498805535792, -5.592274669485524, -5.825603442970918, -6.314429292301726, -6.403145982697996, -5.603356742605141, -5.536162514125953, -3.8935558099537184, -1.8176256619899318, -5.322290164456004, -5.000396318842293, -8.703368045666828, -1.5013066319888195, -6.703009262594785, 0.6889141412728037, -5.456222055233587, -1.5509078050086857, -0.9686493311268567, -2.392776159509102, -2.6940969080790516, 0.779686135525524, -4.89922463884032, -1.3168303070350658, -2.927773380237775, -2.2603821336024907, -5.216562949299414, 0.6230830658208654, -4.118135748458775, -4.406334341509373, -3.186854440970584, -5.6506031931181155, -6.919485242994918, -6.579756986529627, 0.5020821723974288, -3.7834037528645856, -1.7974396333400433, -1.36035966005317, -6.966990035742669, -2.356530170095693, -7.047051341106048, -4.771299598414561, -4.021458356650728, -5.242633385308443, -0.3429544213880494, -3.343413632409852, -5.009819597810989, -4.282324036261826, -6.176787977431851, -6.529653810600476, -5.004757791542964, 6.0233600186190674, 2.1163902149001403, -1.8033081749818032, -4.940541489542735, 0.33888777027837663, -6.479813602331423, 2.5558100210842833, -5.647446901004186, -6.822049737101152, -5.04247257121656, 1.2431083723219152, 0.1464563964888008, -2.0389481718351443, -5.5466070958287, -4.187324039105977, -3.3385299893079843, -4.575152747476866, -5.439831857250564, -3.505014816949757, -4.892786887778503, -2.423515760134871, -7.023717170283056, -4.965080574393141, -1.8281614059149824, -3.3689519129060606, -5.9754076731149555, 1.8366944207593445, -2.244262406991366, -0.9550189610524344, 1.2476546254801097, 4.6757570856057615, -3.655750854060705, -1.6057694533806592, -3.269119388491746, -6.301458201345437, -5.1542624979579035, -4.346949591491181, -0.6237477584176911, -7.3532801699786505, -4.402980884073694, -5.137992869433834, -5.254760271385485, -4.575352474447354, -3.299423667716488, -4.30626222315187, -4.4022845888018916, -4.63853668425054, -7.281205726962386, -4.5618358841020195, -7.200378544596231, -4.978410240059909, -3.154659362165501, -4.805051397190541, -2.851025910269692, -7.257719216881387, -5.014497520045993, -1.234735138552578, -1.9090078188686088, -5.110877558062043, 1.8131019395226964, -5.834338435605638, -5.205542251199388, 0.97445427985568, -1.9132112456977872, -5.083155166442094, -5.5620139083217, 4.753953251775327, -1.7639016003566665, 2.0537911755971785, -3.5994927602666054, -4.681775691545054, -6.408241276703534, -7.693714186163211, -3.781218780736149, 0.46352528580598534, -4.191554549854534, -0.5148057677512099, -4.649256334516012, -1.992590998789761, -6.067188105142774, -4.727116529824584, 3.276444412921933, -5.197699703209464, -5.379496204411133, -4.438219188553634, -0.5017835771402129, -5.796453924840808, -8.058826270769732, -2.760978844832506, 6.77491538406097e-17, -3.975812054945905, -2.432466599387184, -5.115973782651946, -0.22369300804353734, 0.9764480616890712, -3.66490699492499, -8.002401043209744, -7.081556152316804, -3.5560042191521877, 0.26505963333731575, -2.9938855874298516, -6.768142499385121, -5.250188431059875, -6.485763024524091, -1.9905504098014006, -4.409866958082321, -5.759665149677175, -7.226471877294144, -0.6654416078353375, -0.7976883379735877, -2.4020353023902326, -5.646305278890585, -4.378745750122979], &quot;type&quot;: &quot;scatter&quot;}], &quot;layout&quot;: {&quot;template&quot;: {&quot;data&quot;: {&quot;barpolar&quot;: [{&quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;white&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;barpolar&quot;}], &quot;bar&quot;: [{&quot;error_x&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;error_y&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;marker&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;white&quot;, &quot;width&quot;: 0.5}, &quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;bar&quot;}], &quot;carpet&quot;: [{&quot;aaxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;#C8D4E3&quot;, &quot;linecolor&quot;: &quot;#C8D4E3&quot;, &quot;minorgridcolor&quot;: &quot;#C8D4E3&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;baxis&quot;: {&quot;endlinecolor&quot;: &quot;#2a3f5f&quot;, &quot;gridcolor&quot;: &quot;#C8D4E3&quot;, &quot;linecolor&quot;: &quot;#C8D4E3&quot;, &quot;minorgridcolor&quot;: &quot;#C8D4E3&quot;, &quot;startlinecolor&quot;: &quot;#2a3f5f&quot;}, &quot;type&quot;: &quot;carpet&quot;}], &quot;choropleth&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;choropleth&quot;}], &quot;contourcarpet&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;contourcarpet&quot;}], &quot;contour&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;contour&quot;}], &quot;heatmap&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;heatmap&quot;}], &quot;histogram2dcontour&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;histogram2dcontour&quot;}], &quot;histogram2d&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;histogram2d&quot;}], &quot;histogram&quot;: [{&quot;marker&quot;: {&quot;pattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}}, &quot;type&quot;: &quot;histogram&quot;}], &quot;mesh3d&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;type&quot;: &quot;mesh3d&quot;}], &quot;parcoords&quot;: [{&quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;parcoords&quot;}], &quot;pie&quot;: [{&quot;automargin&quot;: true, &quot;type&quot;: &quot;pie&quot;}], &quot;scatter3d&quot;: [{&quot;line&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatter3d&quot;}], &quot;scattercarpet&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattercarpet&quot;}], &quot;scattergeo&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattergeo&quot;}], &quot;scattergl&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattergl&quot;}], &quot;scattermapbox&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattermapbox&quot;}], &quot;scattermap&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scattermap&quot;}], &quot;scatterpolargl&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterpolargl&quot;}], &quot;scatterpolar&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterpolar&quot;}], &quot;scatter&quot;: [{&quot;fillpattern&quot;: {&quot;fillmode&quot;: &quot;overlay&quot;, &quot;size&quot;: 10, &quot;solidity&quot;: 0.2}, &quot;type&quot;: &quot;scatter&quot;}], &quot;scatterternary&quot;: [{&quot;marker&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;type&quot;: &quot;scatterternary&quot;}], &quot;surface&quot;: [{&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}, &quot;colorscale&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;type&quot;: &quot;surface&quot;}], &quot;table&quot;: [{&quot;cells&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#EBF0F8&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;header&quot;: {&quot;fill&quot;: {&quot;color&quot;: &quot;#C8D4E3&quot;}, &quot;line&quot;: {&quot;color&quot;: &quot;white&quot;}}, &quot;type&quot;: &quot;table&quot;}]}, &quot;layout&quot;: {&quot;annotationdefaults&quot;: {&quot;arrowcolor&quot;: &quot;#2a3f5f&quot;, &quot;arrowhead&quot;: 0, &quot;arrowwidth&quot;: 1}, &quot;autotypenumbers&quot;: &quot;strict&quot;, &quot;coloraxis&quot;: {&quot;colorbar&quot;: {&quot;outlinewidth&quot;: 0, &quot;ticks&quot;: &quot;&quot;}}, &quot;colorscale&quot;: {&quot;diverging&quot;: [[0, &quot;#8e0152&quot;], [0.1, &quot;#c51b7d&quot;], [0.2, &quot;#de77ae&quot;], [0.3, &quot;#f1b6da&quot;], [0.4, &quot;#fde0ef&quot;], [0.5, &quot;#f7f7f7&quot;], [0.6, &quot;#e6f5d0&quot;], [0.7, &quot;#b8e186&quot;], [0.8, &quot;#7fbc41&quot;], [0.9, &quot;#4d9221&quot;], [1, &quot;#276419&quot;]], &quot;sequential&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]], &quot;sequentialminus&quot;: [[0.0, &quot;#0d0887&quot;], [0.1111111111111111, &quot;#46039f&quot;], [0.2222222222222222, &quot;#7201a8&quot;], [0.3333333333333333, &quot;#9c179e&quot;], [0.4444444444444444, &quot;#bd3786&quot;], [0.5555555555555556, &quot;#d8576b&quot;], [0.6666666666666666, &quot;#ed7953&quot;], [0.7777777777777778, &quot;#fb9f3a&quot;], [0.8888888888888888, &quot;#fdca26&quot;], [1.0, &quot;#f0f921&quot;]]}, &quot;colorway&quot;: [&quot;#636efa&quot;, &quot;#EF553B&quot;, &quot;#00cc96&quot;, &quot;#ab63fa&quot;, &quot;#FFA15A&quot;, &quot;#19d3f3&quot;, &quot;#FF6692&quot;, &quot;#B6E880&quot;, &quot;#FF97FF&quot;, &quot;#FECB52&quot;], &quot;font&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}, &quot;geo&quot;: {&quot;bgcolor&quot;: &quot;white&quot;, &quot;lakecolor&quot;: &quot;white&quot;, &quot;landcolor&quot;: &quot;white&quot;, &quot;showlakes&quot;: true, &quot;showland&quot;: true, &quot;subunitcolor&quot;: &quot;#C8D4E3&quot;}, &quot;hoverlabel&quot;: {&quot;align&quot;: &quot;left&quot;}, &quot;hovermode&quot;: &quot;closest&quot;, &quot;mapbox&quot;: {&quot;style&quot;: &quot;light&quot;}, &quot;paper_bgcolor&quot;: &quot;white&quot;, &quot;plot_bgcolor&quot;: &quot;white&quot;, &quot;polar&quot;: {&quot;angularaxis&quot;: {&quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;bgcolor&quot;: &quot;white&quot;, &quot;radialaxis&quot;: {&quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;scene&quot;: {&quot;xaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}, &quot;yaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}, &quot;zaxis&quot;: {&quot;backgroundcolor&quot;: &quot;white&quot;, &quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;gridwidth&quot;: 2, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;showbackground&quot;: true, &quot;ticks&quot;: &quot;&quot;, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;}}, &quot;shapedefaults&quot;: {&quot;line&quot;: {&quot;color&quot;: &quot;#2a3f5f&quot;}}, &quot;ternary&quot;: {&quot;aaxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;baxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}, &quot;bgcolor&quot;: &quot;white&quot;, &quot;caxis&quot;: {&quot;gridcolor&quot;: &quot;#DFE8F3&quot;, &quot;linecolor&quot;: &quot;#A2B1C6&quot;, &quot;ticks&quot;: &quot;&quot;}}, &quot;title&quot;: {&quot;x&quot;: 0.05}, &quot;xaxis&quot;: {&quot;automargin&quot;: true, &quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;, &quot;zerolinewidth&quot;: 2}, &quot;yaxis&quot;: {&quot;automargin&quot;: true, &quot;gridcolor&quot;: &quot;#EBF0F8&quot;, &quot;linecolor&quot;: &quot;#EBF0F8&quot;, &quot;ticks&quot;: &quot;&quot;, &quot;title&quot;: {&quot;standoff&quot;: 15}, &quot;zerolinecolor&quot;: &quot;#EBF0F8&quot;, &quot;zerolinewidth&quot;: 2}}}, &quot;title&quot;: {&quot;text&quot;: &quot;30d Sharpe on 2021-11-10 vs. 2021-12-10 (Trailing)&quot;}, &quot;xaxis&quot;: {&quot;title&quot;: {&quot;text&quot;: &quot;30d Sharpe ON 2021-11-10&quot;}}, &quot;yaxis&quot;: {&quot;title&quot;: {&quot;text&quot;: &quot;30d Sharpe ON 2021-12-10&quot;}}, &quot;showlegend&quot;: false}}' data-config='{}'></marimo-plotly></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}

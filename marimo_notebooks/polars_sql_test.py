@@ -1,7 +1,10 @@
 import marimo
 
 __generated_with = "0.14.1"
-app = marimo.App(layout_file="layouts/polars_sql_test.grid.json")
+app = marimo.App(
+    width="medium",
+    layout_file="layouts/polars_sql_test.grid.json",
+)
 
 
 @app.cell(hide_code=True)
@@ -72,7 +75,7 @@ def _(dd_exchange, get_df_from_query, uri):
 def _(datetime, list_instruments, mo, timedelta):
     default_symbol = list_instruments[0] if list_instruments else ""
     dd_symbol = mo.ui.dropdown(
-        list_instruments, value=default_symbol, label="Symbol"
+        sorted(list_instruments), value=default_symbol, label="Symbol"
     )
 
     dt_start = mo.ui.date(label="Start Date", value=(datetime.utcnow() - timedelta(days=30)).date())
@@ -189,6 +192,16 @@ def _():
 
 
 @app.cell
+def _(mo):
+    decay_slider = mo.ui.slider(
+        start=0.01, stop=2, value=0.5, step=0.01, label="Exponential Decay Rate"
+    )
+
+    decay_ui = mo.ui.number(start=0, stop=365, step=1, value=30, label="Half Life")
+    return (decay_ui,)
+
+
+@app.cell
 def _(
     get_kdy,
     get_lv_levels,
@@ -198,11 +211,29 @@ def _(
     make_subplots,
     np,
 ):
-    def prepare_volume_profile(df_ohlc, num_samples=500):
+    def get_time_based_weights(datetimes, half_life_days):
+        """
+        Calculate exponential weights for each row, using days as the time unit.
+        - datetimes: pl.Series or np.array of timestamps
+        - half_life_days: decay half-life in days
+        Returns: np.array of weights
+        """
+        times = np.array(datetimes)
+        # convert to float days since start
+        t0 = times[0]
+        t_days = (times - t0) / np.timedelta64(1, 'D')
+        # Backwards so recent has t=0
+        t_backwards = t_days[-1] - t_days
+        lam = np.log(2) / half_life_days
+        weights = np.exp(-lam * t_backwards)
+        return weights
+
+    def prepare_volume_profile(df_ohlc, num_samples=500, half_life_days=30):
         volume_ = df_ohlc['base_volume']
-        n = len(volume_)
-        decay_rate = 1 / (0.5 * n)
-        weights = np.exp(-decay_rate * np.arange(n))[::-1]
+        # n = len(volume_)
+        # decay_rate = 1 / (decay * n)
+        # weights = np.exp(-decay_rate * np.arange(n))[::-1]
+        weights = get_time_based_weights(df_ohlc['datetime'], half_life_days)
         weighted_volume = volume_ * weights
         xr = get_xr(df_ohlc['vwap'], num_samples=num_samples)
         ticks_per_sample = get_ticks_per_sample(xr, num_samples=num_samples)
@@ -213,7 +244,7 @@ def _(
         return xr, kdy_raw, kdy_weighted, lv_levels_raw, lv_levels_weighted
 
 
-    def plot_volume_profile(df_ohlc_resampled, profile_results, symbol):
+    def plot_volume_profile(df_plot, profile_results, symbol):
         xr, kdy_raw, kdy_weighted, lv_levels_raw, lv_levels_weighted = profile_results
         fig = make_subplots(
             rows=1, cols=2,
@@ -222,6 +253,7 @@ def _(
             shared_yaxes=True,
             shared_xaxes='columns',
         )
+        # --- Volume profile (left)
         fig.add_trace(
             go.Scatter(x=kdy_raw, y=xr, line={'color':'red'}, name='Raw Volume'),
             row=1, col=1
@@ -230,24 +262,55 @@ def _(
             go.Scatter(x=kdy_weighted, y=xr, line={'color':'blue'}, name='Weighted Volume'),
             row=1, col=1
         )
-        # Use 'bar_time' instead of 'date'
+        # --- Candlestick (right)
         fig.add_trace(
             go.Candlestick(
-                x=df_ohlc_resampled['bar_time'],
-                open=df_ohlc_resampled['open'],
-                high=df_ohlc_resampled['high'],
-                low=df_ohlc_resampled['low'],
-                close=df_ohlc_resampled['close'],
+                x=df_plot['bar_time'],
+                open=df_plot['open'],
+                high=df_plot['high'],
+                low=df_plot['low'],
+                close=df_plot['close'],
+                increasing=dict(
+                    line=dict(color='#ffffff'),      # Border color
+                    fillcolor='rgba(255,255,255,0.3)'         # Fill color
+                ),
+
+                decreasing=dict(
+                    line=dict(color='#0f177a'),    # Border color
+                    fillcolor='#0f177a'          # Fill color
+                ),
                 showlegend=False,
             ),
             row=1, col=2
         )
+
+        # --- Level lines
         for lvl in lv_levels_raw:
             fig.add_hline(lvl, line={'width':1, 'dash':'dash', 'color':'red'})
         for lvl in lv_levels_weighted:
             fig.add_hline(lvl, line={'width':1, 'dash':'dash', 'color':'blue'})
+
+        # --- VWAP overlay
+        fig.add_trace(
+            go.Scatter(
+                x=df_plot['bar_time'],
+                y=df_plot['anchored_vwap'],
+                mode='lines',
+                line={'color':'yellow', 'width':2},
+                name='VWAP'
+            ),
+            row=1, col=2
+        )
+
         fig.update_xaxes(rangeslider={'visible':False}, row=1, col=2)
-        fig.update_layout(title=symbol, height=600)
+        fig.update_layout(
+            title=symbol,
+            height=600,
+            hovermode='x',
+            plot_bgcolor='rgba(0,0,0,0)',  # Transparent plot area
+            paper_bgcolor='#708090'  # Light gray background for the whole plot
+        )
+
         return fig
     return plot_volume_profile, prepare_volume_profile
 
@@ -274,7 +337,7 @@ def _(df_ohlc, pl):
 @app.cell
 def _(df_ohlc, dt_end, dt_start, pl):
     # Resampled OHLC 
-    def best_bar_interval(start_date, end_date, target_bars=60):
+    def best_bar_interval(start_date, end_date, target_bars=100):
         # List of standardized intervals with minutes in each
         allowed = [
             ("15m", 15), ("30m", 30), ("1h", 60), ("2h", 120), ("4h", 240),
@@ -289,7 +352,7 @@ def _(df_ohlc, dt_end, dt_start, pl):
         # Default to largest if all else fails
         return allowed[-1][0]
 
-    _bar_duration = best_bar_interval(dt_start.value, dt_end.value, target_bars=60)
+    _bar_duration = best_bar_interval(dt_start.value, dt_end.value, target_bars=100)
 
     df_ohlc_resampled = (
         df_ohlc
@@ -305,11 +368,12 @@ def _(df_ohlc, dt_end, dt_start, pl):
         ])
         .sort('bar_time')
     )
-    return (df_ohlc_resampled,)
+    df_ohlc_resampled.head()
+    return best_bar_interval, df_ohlc_resampled
 
 
 @app.cell
-def _(df_ohlc, df_ohlc_resampled, pl):
+def _(best_bar_interval, df_ohlc, df_ohlc_resampled, dt_end, dt_start, pl):
     # Calculate anchored VWAP at 1-minute resolution
     price = df_ohlc['vwap']
     volume = df_ohlc['base_volume']
@@ -320,8 +384,8 @@ def _(df_ohlc, df_ohlc_resampled, pl):
 
     df_min_vwap = (
         df_ohlc.with_columns([
-            (pl.col("vwap") * pl.col("base_volume")).cumsum().alias("cum_qv"),
-            pl.col("base_volume").cumsum().alias("cum_vol")
+            (pl.col("vwap") * pl.col("base_volume")).cum_sum().alias("cum_qv"),
+            pl.col("base_volume").cum_sum().alias("cum_vol")
         ])
         .with_columns(
             (pl.col("cum_qv") / pl.col("cum_vol")).alias("anchored_vwap")
@@ -329,6 +393,7 @@ def _(df_ohlc, df_ohlc_resampled, pl):
     )
 
     # Downsample anchored VWAP to the resampled ohlc time grid
+    _bar_duration = best_bar_interval(dt_start.value, dt_end.value, target_bars=60)
     df_vwap_resampled = (
         df_min_vwap
         .with_columns(pl.col('datetime').dt.truncate(_bar_duration).alias('bar_time'))
@@ -342,8 +407,8 @@ def _(df_ohlc, df_ohlc_resampled, pl):
     # Join VWAP and OHLC on bar_time for plotting
     df_plot = df_ohlc_resampled.join(df_vwap_resampled, on='bar_time', how='left')
     df_plot.tail()
-   
-    return
+
+    return (df_plot,)
 
 
 @app.cell
@@ -353,22 +418,23 @@ def _(df_ohlc_1d):
 
 
 @app.cell
-def _(dd_exchange, dd_symbol, dt_end, dt_start, mo):
-    mo.hstack([dd_exchange, dd_symbol, dt_start, dt_end])
+def _(dd_exchange, dd_symbol, decay_ui, dt_end, dt_start, mo):
+    mo.hstack([dd_exchange, dd_symbol, dt_start, dt_end, decay_ui])
     return
 
 
 @app.cell
 def _(
     dd_symbol,
+    decay_ui,
     df_ohlc,
-    df_ohlc_resampled,
+    df_plot,
     mo,
     plot_volume_profile,
     prepare_volume_profile,
 ):
-    profile_results = prepare_volume_profile(df_ohlc)
-    mo.ui.plotly(plot_volume_profile(df_ohlc_resampled, profile_results, dd_symbol.value))
+    profile_results = prepare_volume_profile(df_ohlc, half_life_days=decay_ui.value)
+    mo.ui.plotly(plot_volume_profile(df_plot, profile_results, dd_symbol.value))
     return
 
 
@@ -385,7 +451,12 @@ def _(df_ohlc_1d):
 
 
 @app.cell
-def _():
+def _(df_plot, pl):
+    is_monotonic = (df_plot['bar_time'].diff().cast(pl.Int64).ge(0)).all()
+    # Any duplicates?
+    num_duplicates = df_plot['bar_time'].is_duplicated().sum()
+
+    is_monotonic, num_duplicates
     return
 
 
@@ -401,6 +472,18 @@ def _():
 
 @app.cell
 def _():
+    return
+
+
+@app.cell
+def _(list_instruments):
+    ','.join([f'{str.replace(instrument, "USDT","")}-USDT-VANILLA-PERPETUAL' for instrument in list_instruments])
+    return
+
+
+@app.cell
+def _(pl):
+    pl.read_parquet('/tmp/futures_ohlcv_parquet/futures_ohlcv_20190908_to_20190909.parquet')
     return
 
 
